@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nairobi Packed Lunches</title>
+    <style>
+        :root {
+            --glovo-yellow: #FFC244;
+            --glovo-green: #00A082;
+            --glovo-dark: #232323;
+            --glovo-gray: #F2F2F2;
+            --white: #ffffff;
+        }
+
+        body { 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background: var(--glovo-gray);
+            color: var(--glovo-dark);
+        }
+
+        header {
+            background: var(--glovo-yellow);
+            padding: 20px 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 { margin: 0; font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: -0.5px; }
+
+        .container { padding: 12px; padding-bottom: 110px; }
+
+        .food-card {
+            background: var(--white);
+            border-radius: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .food-img {
+            width: 85px;
+            height: 85px;
+            border-radius: 12px;
+            object-fit: cover;
+            background: #eee;
+        }
+
+        .food-info {
+            flex: 1;
+            padding-left: 15px;
+        }
+
+        .food-info h3 { margin: 0 0 5px 0; font-size: 1.1rem; font-weight: 700; }
+        .price { font-weight: bold; color: var(--glovo-green); font-size: 1rem; }
+
+        .add-btn {
+            background: var(--glovo-yellow);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .add-btn:active { transform: scale(0.95); }
+
+        .cart-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 15px;
+            right: 15px;
+            background: var(--glovo-green);
+            color: var(--white);
+            padding: 16px 20px;
+            border-radius: 16px;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(0, 160, 130, 0.3);
+            z-index: 200;
+        }
+
+        .cart-bar button {
+            background: var(--white);
+            border: none;
+            color: var(--glovo-green);
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 300;
+        }
+
+        .modal-content {
+            background: var(--white);
+            width: 100%;
+            padding: 30px 20px;
+            border-radius: 25px 25px 0 0;
+            text-align: center;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .order-details-box {
+            background: var(--glovo-gray);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .method-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            margin: 12px 0;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        .wa { background: #25D366; color: white; }
+        .sms { background: #007AFF; color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Nairobi Packed Lunches</h1>
+    </header>
+
+    <div class="container">
+        <div id="menu-container"></div>
+    </div>
+
+    <div class="cart-bar" id="cart-bar">
+        <div>
+            <div style="font-size: 0.8rem; opacity: 0.9;">Total Amount</div>
+            <strong>KES <span id="total-price">0</span></strong>
+        </div>
+        <button onclick="openCheckout()">Order Now</button>
+    </div>
+
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content">
+            <h2 style="margin-top:0">Order Summary</h2>
+            <div class="order-details-box" id="order-items-list"></div>
+            <p style="font-weight: bold; font-size: 1.2rem;">Total: KES <span id="summary-total">0</span></p>
+            <p style="color: #666; font-size: 0.9rem;">How would you like to send this order?</p>
+            
+            <a href="#" id="wa-link" class="method-btn wa">Order via WhatsApp</a>
+            <a href="#" id="sms-link" class="method-btn sms">Order via SMS</a>
+            
+            <button onclick="closeCheckout()" style="background:none; border:none; color:#999; margin-top:10px; font-weight: 600;">Edit Order</button>
+        </div>
+    </div>
+
+    <script>
+        const MY_PHONE = "254784132601";
+        
+        const sides = [
+            { name: "Kamande", price: 100, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
+            { name: "Beans", price: 100, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
+            { name: "Ndegu", price: 100, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
+            { name: "Minji", price: 100, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
+            { name: "Meat", price: 120, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
+            { name: "Cabbage", price: 100, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
+            { name: "Viazi", price: 100, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
+            { name: "Pilau", price: 100, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" }
+        ];
+
+        let cart = [];
+
+        function renderMenu() {
+            const container = document.getElementById('menu-container');
+            container.innerHTML = sides.map((item, index) => `
+                <div class="food-card">
+                    <img src="${item.img}" class="food-img" alt="Rice ${item.name}">
+                    <div class="food-info">
+                        <h3>Rice ${item.name}</h3>
+                        <span class="price">KES ${item.price}</span>
+                    </div>
+                    <button class="add-btn" onclick="addToCart(${index})">ADD</button>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(index) {
+            cart.push(sides[index]);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const bar = document.getElementById('cart-bar');
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('total-price').innerText = total;
+            bar.style.display = cart.length > 0 ? 'flex' : 'none';
+        }
+
+        function openCheckout() {
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            
+            // Generate detailed summary for the screen
+            const summaryHTML = cart.map(i => `<div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>Rice ${i.name}</span><span>KES ${i.price}</span></div>`).join('');
+            document.getElementById('order-items-list').innerHTML = summaryHTML;
+            document.getElementById('summary-total').innerText = total;
+
+            // Generate message for WhatsApp/SMS
+            const itemsList = cart.map(i => `Rice ${i.name}`).join(', ');
+            const message = `Hello Nairobi Packed Lunches! 🍱\n\nI'd like to order:\n${itemsList}\n\nTotal: KES ${total}\n\nPlease send the M-Pesa prompt to this number.`;
+            
+            const encodedMsg = encodeURIComponent(message);
+            document.getElementById('wa-link').href = `https://wa.me/${MY_PHONE}?text=${encodedMsg}`;
+            document.getElementById('sms-link').href = `sms:+${MY_PHONE}?body=${encodedMsg}`;
+            
+            document.getElementById('checkout-modal').style.display = 'flex';
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkout-modal').style.display = 'none';
+        }
+
+        renderMenu();
+    </script>
+</body>
+</html>
