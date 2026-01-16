@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nairobi Packed Lunches</title>
+    <title>Nairobi Packed Dishes</title>
     <style>
         :root {
             --glovo-yellow: #FFC244;
@@ -11,6 +11,7 @@
             --glovo-dark: #232323;
             --glovo-gray: #F2F2F2;
             --white: #ffffff;
+            --error-red: #e74c3c;
         }
 
         body { 
@@ -23,7 +24,7 @@
 
         header {
             background: var(--glovo-yellow);
-            padding: 20px 15px;
+            padding: 25px 15px;
             text-align: center;
             position: sticky;
             top: 0;
@@ -31,7 +32,21 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        h1 { margin: 0; font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: -0.5px; }
+        header h1 { 
+            margin: 0; 
+            font-size: 1.4rem; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: -0.5px; 
+        }
+
+        .motto {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 5px;
+            opacity: 0.9;
+            color: var(--glovo-dark);
+        }
 
         .container { padding: 12px; padding-bottom: 110px; }
 
@@ -118,8 +133,9 @@
             padding: 30px 20px;
             border-radius: 25px 25px 0 0;
             text-align: center;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
+            box-sizing: border-box;
         }
 
         .order-details-box {
@@ -140,16 +156,29 @@
             text-decoration: none;
             font-weight: 800;
             font-size: 1rem;
+            box-sizing: border-box;
         }
 
         .wa { background: #25D366; color: white; }
         .sms { background: #007AFF; color: white; }
+
+        .clear-btn {
+            background: none;
+            border: none;
+            color: var(--error-red);
+            margin-top: 10px;
+            font-weight: 600;
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Nairobi Packed Lunches</h1>
+        <h1>Nairobi Packed Dishes</h1>
+        <div class="motto">Affordable. Healthy. Microwavable</div>
     </header>
 
     <div class="container">
@@ -174,7 +203,7 @@
             <a href="#" id="wa-link" class="method-btn wa">Order via WhatsApp</a>
             <a href="#" id="sms-link" class="method-btn sms">Order via SMS</a>
             
-            <button onclick="closeCheckout()" style="background:none; border:none; color:#999; margin-top:10px; font-weight: 600;">Edit Order</button>
+            <button onclick="closeAndClear()" class="clear-btn">Clear & Start Over</button>
         </div>
     </div>
 
@@ -182,30 +211,33 @@
         const MY_PHONE = "254784132601";
         
         const sides = [
-            { name: "Kamande", price: 100, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
-            { name: "Beans", price: 100, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
-            { name: "Ndegu", price: 100, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
-            { name: "Minji", price: 100, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
-            { name: "Meat", price: 120, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
-            { name: "Cabbage", price: 100, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
-            { name: "Viazi", price: 100, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
-            { name: "Pilau", price: 100, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" }
+            { name: "Kamande", price: 100, isRiceSide: true, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
+            { name: "Beans", price: 100, isRiceSide: true, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
+            { name: "Ndegu", price: 100, isRiceSide: true, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
+            { name: "Minji", price: 100, isRiceSide: true, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
+            { name: "Meat", price: 120, isRiceSide: true, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
+            { name: "Cabbage", price: 100, isRiceSide: true, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
+            { name: "Viazi", price: 100, isRiceSide: true, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
+            { name: "Pilau", price: 100, isRiceSide: false, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" }
         ];
 
         let cart = [];
 
         function renderMenu() {
             const container = document.getElementById('menu-container');
-            container.innerHTML = sides.map((item, index) => `
-                <div class="food-card">
-                    <img src="${item.img}" class="food-img" alt="Rice ${item.name}">
-                    <div class="food-info">
-                        <h3>Rice ${item.name}</h3>
-                        <span class="price">KES ${item.price}</span>
+            container.innerHTML = sides.map((item, index) => {
+                const displayName = item.isRiceSide ? `Rice ${item.name}` : item.name;
+                return `
+                    <div class="food-card">
+                        <img src="${item.img}" class="food-img" alt="${displayName}">
+                        <div class="food-info">
+                            <h3>${displayName}</h3>
+                            <span class="price">KES ${item.price}</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart(${index})">ADD</button>
                     </div>
-                    <button class="add-btn" onclick="addToCart(${index})">ADD</button>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function addToCart(index) {
@@ -224,13 +256,17 @@
             const total = cart.reduce((sum, item) => sum + item.price, 0);
             
             // Generate detailed summary for the screen
-            const summaryHTML = cart.map(i => `<div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>Rice ${i.name}</span><span>KES ${i.price}</span></div>`).join('');
+            const summaryHTML = cart.map(i => {
+                const name = i.isRiceSide ? `Rice ${i.name}` : i.name;
+                return `<div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>${name}</span><span>KES ${i.price}</span></div>`;
+            }).join('');
+            
             document.getElementById('order-items-list').innerHTML = summaryHTML;
             document.getElementById('summary-total').innerText = total;
 
             // Generate message for WhatsApp/SMS
-            const itemsList = cart.map(i => `Rice ${i.name}`).join(', ');
-            const message = `Hello Nairobi Packed Lunches! 🍱\n\nI'd like to order:\n${itemsList}\n\nTotal: KES ${total}\n\nPlease send the M-Pesa prompt to this number.`;
+            const itemsList = cart.map(i => i.isRiceSide ? `Rice ${i.name}` : i.name).join(', ');
+            const message = `Hello Nairobi Packed Dishes! 🍱\n\nI'd like to order:\n${itemsList}\n\nTotal: KES ${total}\n\nPlease trigger the M-Pesa prompt.`;
             
             const encodedMsg = encodeURIComponent(message);
             document.getElementById('wa-link').href = `https://wa.me/${MY_PHONE}?text=${encodedMsg}`;
@@ -239,7 +275,9 @@
             document.getElementById('checkout-modal').style.display = 'flex';
         }
 
-        function closeCheckout() {
+        function closeAndClear() {
+            cart = [];
+            updateCartUI();
             document.getElementById('checkout-modal').style.display = 'none';
         }
 
