@@ -6,10 +6,10 @@
     <title>Nairobi Packed Dishes</title>
     <style>
         :root {
-            --glovo-yellow: #FFC244;
-            --glovo-green: #00A082;
-            --glovo-dark: #232323;
-            --glovo-gray: #F2F2F2;
+            --brand-yellow: #FFC244;
+            --brand-green: #00A082;
+            --brand-dark: #232323;
+            --bg-gray: #F2F2F2;
             --white: #ffffff;
             --error-red: #e74c3c;
         }
@@ -18,34 +18,48 @@
             font-family: 'Inter', -apple-system, sans-serif; 
             margin: 0; 
             padding: 0; 
-            background: var(--glovo-gray);
-            color: var(--glovo-dark);
+            background: var(--bg-gray);
+            color: var(--brand-dark);
         }
 
         header {
-            background: var(--glovo-yellow);
-            padding: 25px 15px;
-            text-align: center;
+            background: var(--brand-yellow);
+            padding: 15px;
+            display: flex;
+            align-items: center;
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%; /* Makes it round */
+            object-fit: cover;
+            margin-right: 15px;
+            background: white;
+            border: 2px solid white;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
         header h1 { 
             margin: 0; 
-            font-size: 1.4rem; 
+            font-size: 1.2rem; 
             font-weight: 800; 
             text-transform: uppercase; 
             letter-spacing: -0.5px; 
         }
 
         .motto {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            margin-top: 5px;
+            margin-top: 2px;
             opacity: 0.9;
-            color: var(--glovo-dark);
         }
 
         .container { padding: 12px; padding-bottom: 110px; }
@@ -58,7 +72,6 @@
             align-items: center;
             padding: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.03);
         }
 
         .food-img {
@@ -66,7 +79,6 @@
             height: 85px;
             border-radius: 12px;
             object-fit: cover;
-            background: #eee;
         }
 
         .food-info {
@@ -75,27 +87,24 @@
         }
 
         .food-info h3 { margin: 0 0 5px 0; font-size: 1.1rem; font-weight: 700; }
-        .price { font-weight: bold; color: var(--glovo-green); font-size: 1rem; }
+        .price { font-weight: bold; color: var(--brand-green); font-size: 1rem; }
 
         .add-btn {
-            background: var(--glovo-yellow);
+            background: var(--brand-yellow);
             border: none;
             padding: 8px 15px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 800;
             cursor: pointer;
-            transition: transform 0.1s;
         }
-
-        .add-btn:active { transform: scale(0.95); }
 
         .cart-bar {
             position: fixed;
             bottom: 20px;
             left: 15px;
             right: 15px;
-            background: var(--glovo-green);
+            background: var(--brand-green);
             color: var(--white);
             padding: 16px 20px;
             border-radius: 16px;
@@ -109,12 +118,11 @@
         .cart-bar button {
             background: var(--white);
             border: none;
-            color: var(--glovo-green);
+            color: var(--brand-green);
             padding: 10px 18px;
             border-radius: 10px;
             font-weight: 800;
             font-size: 0.9rem;
-            text-transform: uppercase;
         }
 
         .modal {
@@ -133,18 +141,15 @@
             padding: 30px 20px;
             border-radius: 25px 25px 0 0;
             text-align: center;
-            max-height: 85vh;
-            overflow-y: auto;
             box-sizing: border-box;
         }
 
         .order-details-box {
-            background: var(--glovo-gray);
+            background: var(--bg-gray);
             padding: 15px;
             border-radius: 12px;
             margin: 15px 0;
             text-align: left;
-            font-size: 0.95rem;
         }
 
         .method-btn {
@@ -155,7 +160,6 @@
             border-radius: 15px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 1rem;
             box-sizing: border-box;
         }
 
@@ -166,10 +170,8 @@
             background: none;
             border: none;
             color: var(--error-red);
-            margin-top: 10px;
-            font-weight: 600;
             text-decoration: underline;
-            cursor: pointer;
+            font-weight: 600;
             padding: 10px;
         }
     </style>
@@ -177,8 +179,11 @@
 <body>
 
     <header>
-        <h1>Nairobi Packed Dishes</h1>
-        <div class="motto">Affordable. Healthy. Microwavable</div>
+        <img src="Nairobidishes.png" alt="Logo" class="logo">
+        <div class="header-text">
+            <h1>Nairobi Packed Dishes</h1>
+            <div class="motto">Affordable. Healthy. Microwavable</div>
+        </div>
     </header>
 
     <div class="container">
@@ -198,7 +203,6 @@
             <h2 style="margin-top:0">Order Summary</h2>
             <div class="order-details-box" id="order-items-list"></div>
             <p style="font-weight: bold; font-size: 1.2rem;">Total: KES <span id="summary-total">0</span></p>
-            <p style="color: #666; font-size: 0.9rem;">How would you like to send this order?</p>
             
             <a href="#" id="wa-link" class="method-btn wa">Order via WhatsApp</a>
             <a href="#" id="sms-link" class="method-btn sms">Order via SMS</a>
@@ -254,24 +258,19 @@
 
         function openCheckout() {
             const total = cart.reduce((sum, item) => sum + item.price, 0);
-            
-            // Generate detailed summary for the screen
             const summaryHTML = cart.map(i => {
                 const name = i.isRiceSide ? `Rice ${i.name}` : i.name;
                 return `<div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>${name}</span><span>KES ${i.price}</span></div>`;
             }).join('');
-            
             document.getElementById('order-items-list').innerHTML = summaryHTML;
             document.getElementById('summary-total').innerText = total;
 
-            // Generate message for WhatsApp/SMS
             const itemsList = cart.map(i => i.isRiceSide ? `Rice ${i.name}` : i.name).join(', ');
-            const message = `Hello Nairobi Packed Dishes! 🍱\n\nI'd like to order:\n${itemsList}\n\nTotal: KES ${total}\n\nPlease trigger the M-Pesa prompt.`;
+            const message = `Hello Nairobi Packed Dishes! 🍱\n\nOrder:\n${itemsList}\n\nTotal: KES ${total}\n\nPlease trigger M-Pesa.`;
             
             const encodedMsg = encodeURIComponent(message);
             document.getElementById('wa-link').href = `https://wa.me/${MY_PHONE}?text=${encodedMsg}`;
             document.getElementById('sms-link').href = `sms:+${MY_PHONE}?body=${encodedMsg}`;
-            
             document.getElementById('checkout-modal').style.display = 'flex';
         }
 
