@@ -6,7 +6,7 @@
     <title>Nairobi Dishes</title>
     <link rel="icon" type="image/png" href="Nairobidishes.png">
     <link rel="apple-touch-icon" href="Nairobidishes.png">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,600&family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --yellow: #FFC244;
@@ -53,11 +53,11 @@
 
         .header-text h1 {
             margin: 0;
-            font-family: 'Syne', sans-serif;
-            font-size: 1.1rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
             font-weight: 800;
             line-height: 1.1;
-            letter-spacing: -0.3px;
+            letter-spacing: 0.2px;
         }
 
         .header-sub {
@@ -173,6 +173,7 @@
         .sub-price {
             font-size: 1.15rem;
             font-weight: 700;
+            font-family: 'DM Sans', sans-serif;
             color: var(--green);
             margin-bottom: 4px;
         }
@@ -266,9 +267,9 @@
         .closed-emoji { font-size: 2.5rem; margin-bottom: 10px; }
 
         .closed-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 800;
+            font-family: 'Fraunces', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
             margin-bottom: 6px;
         }
 
@@ -298,7 +299,7 @@
         }
 
         .cart-bar-info { font-size: 0.8rem; opacity: 0.85; }
-        .cart-bar-total { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; }
+        .cart-bar-total { font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700; }
 
         .cart-bar button {
             background: var(--white);
@@ -306,7 +307,7 @@
             color: var(--green);
             padding: 10px 18px;
             border-radius: 10px;
-            font-family: 'Syne', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-weight: 700;
             font-size: 0.9rem;
             cursor: pointer;
@@ -367,7 +368,7 @@
         .order-row:last-child { border-bottom: none; }
 
         .order-total {
-            font-family: 'Syne', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 1rem;
             font-weight: 700;
             text-align: right;
@@ -465,7 +466,7 @@
     <div class="notice-strip">
         <div class="notice-row" onclick="toggleNotice(this)">
             <span class="notice-icon">⏰</span>
-            <span class="notice-text">Orders close at <strong>11:00 AM</strong> <span>· Mon – Fri</span></span>
+            <span class="notice-text">Orders close at <strong>11:30 AM</strong> <span>· Mon – Fri</span></span>
             <span class="notice-chevron">›</span>
         </div>
         <div class="notice-expand">
@@ -503,7 +504,7 @@
     <div class="closed-state" id="closed-state">
         <div class="closed-emoji">🍱</div>
         <div class="closed-title">Orders closed for today</div>
-        <div class="closed-sub">We stopped taking orders at 11:00 AM.<br>Come back tomorrow (Mon–Fri) before 11:00 AM.<br><br>Interested in a subscription? Message us on WhatsApp!</div>
+        <div class="closed-sub">We stopped taking orders at 11:30 AM.<br>Come back tomorrow (Mon–Fri) before 11:30 AM.<br><br>Interested in a subscription? Message us on WhatsApp!</div>
         <a href="https://wa.me/254784132601" class="method-btn wa" style="margin-top:16px; display:flex;">💬 WhatsApp Us</a>
     </div>
 
@@ -576,7 +577,8 @@
         const eatHour = now.getUTCHours() + 3;
         const eatMin  = now.getUTCMinutes();
         // Closed if >= 11:00 AM EAT (changed from 11:30 as requested)
-        return (eatHour > 23) || (eatHour === 23 && eatMin >= 0);
+        //return (eatHour > 11) || (eatHour === 11 && eatMin >= 0);
+        return (eatHour > 11) || (eatHour === 11 && eatMin >= 30);
     }
 
     function applyTimeGate() {
