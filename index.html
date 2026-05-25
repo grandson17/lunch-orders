@@ -11,10 +11,7 @@
     <meta name="author" content="Nairobi Dishes">
     <meta name="robots" content="index, follow">
 
-    <!-- Canonical -->
     <link rel="canonical" href="https://nairobidishes.com/">
-
-    <!-- Open Graph (WhatsApp, Facebook, LinkedIn previews) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nairobidishes.com/">
     <meta property="og:title" content="Nairobi Dishes | Packed Meals from KES 100">
@@ -22,18 +19,14 @@
     <meta property="og:image" content="https://nairobidishes.com/Nairobidishes.png">
     <meta property="og:locale" content="en_KE">
     <meta property="og:site_name" content="Nairobi Dishes">
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Nairobi Dishes | Packed Meals from KES 100">
     <meta name="twitter:description" content="Affordable, healthy, microwavable packed meals delivered within Nairobi CBD. Order by 11:30 AM Mon–Fri.">
     <meta name="twitter:image" content="https://nairobidishes.com/Nairobidishes.png">
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="Nairobidishes.png">
     <link rel="apple-touch-icon" href="Nairobidishes.png">
 
-    <!-- Local Business Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -42,45 +35,20 @@
         "description": "Affordable, healthy, microwavable packed meals delivered within Nairobi CBD. Meals from KES 100.",
         "url": "https://nairobidishes.com",
         "logo": "https://nairobidishes.com/Nairobidishes.png",
-        "image": "https://nairobidishes.com/Nairobidishes.png",
         "telephone": "+254784132601",
         "priceRange": "KES 100-120",
         "servesCuisine": "Kenyan",
-        "areaServed": {
-            "@type": "Place",
-            "name": "Nairobi CBD, Kenya"
-        },
-        "openingHoursSpecification": [
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-                "opens": "07:00",
-                "closes": "11:30"
-            }
-        ],
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Meal Plans",
-            "itemListElement": [
-                {
-                    "@type": "Offer",
-                    "name": "Weekly Meal Plan",
-                    "price": "500",
-                    "priceCurrency": "KES",
-                    "description": "5 meals across Mon-Fri"
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Monthly Meal Plan",
-                    "price": "2000",
-                    "priceCurrency": "KES",
-                    "description": "20 meals per month"
-                }
-            ]
-        }
+        "areaServed": { "@type": "Place", "name": "Nairobi CBD, Kenya" },
+        "openingHoursSpecification": [{
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "opens": "07:00", "closes": "11:30"
+        }]
     }
     </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,600&family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --yellow: #FFC244;
@@ -92,9 +60,7 @@
             --red: #E74C3C;
             --border: #E8E8E8;
         }
-
         * { box-sizing: border-box; }
-
         body {
             font-family: 'DM Sans', sans-serif;
             margin: 0;
@@ -115,25 +81,20 @@
             z-index: 100;
             box-shadow: 0 2px 8px rgba(0,0,0,0.12);
         }
-
         .logo {
-            width: 44px;
-            height: 44px;
+            width: 44px; height: 44px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid rgba(255,255,255,0.7);
             flex-shrink: 0;
         }
-
         .header-text h1 {
             margin: 0;
             font-family: 'Playfair Display', serif;
             font-size: 1.2rem;
             font-weight: 800;
             line-height: 1.1;
-            letter-spacing: 0.2px;
         }
-
         .header-sub {
             font-size: 0.68rem;
             font-weight: 500;
@@ -141,7 +102,7 @@
             margin-top: 2px;
         }
 
-        /* ── MAIN ── */
+        /* ── CONTAINER ── */
         .container {
             padding: 12px 14px 120px;
             max-width: 480px;
@@ -156,7 +117,6 @@
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-
         .notice-row {
             display: flex;
             align-items: center;
@@ -169,13 +129,11 @@
         }
         .notice-row:last-child { border-bottom: none; }
         .notice-row:active { background: #fafafa; }
-
         .notice-icon { font-size: 1rem; flex-shrink: 0; }
         .notice-text { flex: 1; font-weight: 500; color: var(--dark); }
         .notice-text span { color: var(--mid); font-weight: 400; }
         .notice-chevron { color: #bbb; font-size: 0.75rem; transition: transform 0.2s; }
         .notice-row.open .notice-chevron { transform: rotate(90deg); }
-
         .notice-expand {
             display: none;
             padding: 0 14px 12px 34px;
@@ -196,14 +154,12 @@
             color: var(--mid);
             margin: 16px 2px 8px;
         }
-
         .sub-cards {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-bottom: 16px;
         }
-
         .sub-card {
             background: var(--white);
             border-radius: 14px;
@@ -211,18 +167,18 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
         }
-
+        .sub-card:active { transform: scale(0.97); }
         .sub-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 3px;
         }
-
         .sub-card.weekly::before { background: var(--yellow); }
         .sub-card.monthly::before { background: var(--green); }
-
         .sub-badge {
             font-size: 0.62rem;
             font-weight: 700;
@@ -233,17 +189,14 @@
             display: inline-block;
             margin-bottom: 7px;
         }
-
         .sub-card.weekly .sub-badge { background: #FFF3CD; color: #7A5300; }
         .sub-card.monthly .sub-badge { background: #E8F8F5; color: #005C49; }
-
         .sub-card-title {
             font-family: 'Syne', sans-serif;
             font-size: 0.92rem;
             font-weight: 700;
             margin-bottom: 4px;
         }
-
         .sub-price {
             font-size: 1.15rem;
             font-weight: 700;
@@ -251,16 +204,20 @@
             color: var(--green);
             margin-bottom: 4px;
         }
-
         .sub-card.weekly .sub-price { color: #C98000; }
-
-        .sub-desc {
+        .sub-desc { font-size: 0.72rem; color: var(--mid); line-height: 1.4; }
+        .sub-cta {
+            margin-top: 8px;
             font-size: 0.72rem;
-            color: var(--mid);
-            line-height: 1.4;
+            font-weight: 700;
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            gap: 3px;
         }
+        .sub-card.weekly .sub-cta { color: #C98000; }
 
-        /* ── SECTION LABEL ── */
+        /* ── MENU LABEL ── */
         .menu-label {
             font-family: 'Syne', sans-serif;
             font-size: 0.75rem;
@@ -282,17 +239,13 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.04);
             gap: 12px;
         }
-
         .food-img {
-            width: 60px;
-            height: 60px;
+            width: 60px; height: 60px;
             border-radius: 10px;
             object-fit: cover;
             flex-shrink: 0;
         }
-
         .food-info { flex: 1; min-width: 0; }
-
         .food-info h3 {
             margin: 0 0 3px;
             font-family: 'Syne', sans-serif;
@@ -302,18 +255,11 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-
-        .price {
-            font-weight: 600;
-            color: var(--green);
-            font-size: 0.88rem;
-        }
-
+        .price { font-weight: 600; color: var(--green); font-size: 0.88rem; }
         .add-btn {
             background: var(--yellow);
             border: none;
-            width: 34px;
-            height: 34px;
+            width: 34px; height: 34px;
             border-radius: 50%;
             font-size: 1.3rem;
             font-weight: 700;
@@ -322,10 +268,9 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            transition: transform 0.1s, background 0.1s;
-            line-height: 1;
+            transition: transform 0.1s;
         }
-        .add-btn:active { transform: scale(0.88); background: #e5ad30; }
+        .add-btn:active { transform: scale(0.88); }
 
         /* ── CLOSED STATE ── */
         .closed-state {
@@ -337,28 +282,19 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             margin-bottom: 14px;
         }
-
         .closed-emoji { font-size: 2.5rem; margin-bottom: 10px; }
-
         .closed-title {
             font-family: 'Fraunces', serif;
             font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 6px;
         }
-
-        .closed-sub {
-            font-size: 0.82rem;
-            color: var(--mid);
-            line-height: 1.5;
-        }
+        .closed-sub { font-size: 0.82rem; color: var(--mid); line-height: 1.5; }
 
         /* ── CART BAR ── */
         .cart-bar {
             position: fixed;
-            bottom: 16px;
-            left: 14px;
-            right: 14px;
+            bottom: 16px; left: 14px; right: 14px;
             background: var(--green);
             color: var(--white);
             padding: 14px 16px;
@@ -371,10 +307,8 @@
             max-width: 452px;
             margin: 0 auto;
         }
-
         .cart-bar-info { font-size: 0.8rem; opacity: 0.85; }
         .cart-bar-total { font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700; }
-
         .cart-bar button {
             background: var(--white);
             border: none;
@@ -387,7 +321,7 @@
             cursor: pointer;
         }
 
-        /* ── MODAL ── */
+        /* ── MODALS (shared) ── */
         .modal {
             display: none;
             position: fixed;
@@ -397,7 +331,6 @@
             align-items: flex-end;
             z-index: 300;
         }
-
         .modal-content {
             background: var(--white);
             width: 100%;
@@ -405,25 +338,28 @@
             padding: 24px 18px 32px;
             border-radius: 22px 22px 0 0;
             text-align: center;
-            max-height: 88vh;
+            max-height: 90vh;
             overflow-y: auto;
         }
-
         .modal-handle {
-            width: 36px;
-            height: 4px;
+            width: 36px; height: 4px;
             background: var(--border);
             border-radius: 2px;
             margin: 0 auto 18px;
         }
-
         .modal-title {
             font-family: 'Syne', sans-serif;
             font-size: 1.1rem;
             font-weight: 800;
-            margin: 0 0 14px;
+            margin: 0 0 4px;
+        }
+        .modal-subtitle {
+            font-size: 0.8rem;
+            color: var(--mid);
+            margin-bottom: 16px;
         }
 
+        /* ── ORDER CHECKOUT ── */
         .order-list {
             background: var(--light);
             border-radius: 12px;
@@ -431,7 +367,6 @@
             text-align: left;
             margin-bottom: 4px;
         }
-
         .order-row {
             display: flex;
             justify-content: space-between;
@@ -440,7 +375,6 @@
             border-bottom: 1px solid var(--border);
         }
         .order-row:last-child { border-bottom: none; }
-
         .order-total {
             font-family: 'DM Sans', sans-serif;
             font-size: 1rem;
@@ -448,19 +382,9 @@
             text-align: right;
             padding: 10px 0 4px;
         }
-
-        /* location input */
         .field-group { text-align: left; margin: 12px 0; }
-
-        .field-label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
+        .field-label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 6px; }
         .field-label .req { color: var(--red); }
-
         .field-input {
             width: 100%;
             padding: 12px 14px;
@@ -473,11 +397,8 @@
         }
         .field-input:focus { border-color: var(--green); }
         .field-input.err { border-color: var(--red); }
-
         .field-hint { font-size: 0.72rem; color: var(--mid); margin-top: 5px; }
         .field-err { font-size: 0.72rem; color: var(--red); margin-top: 5px; display: none; }
-
-        /* cbd note */
         .cbd-note {
             background: #FFF8E7;
             border-radius: 10px;
@@ -490,8 +411,6 @@
             gap: 7px;
             align-items: flex-start;
         }
-
-        /* order buttons */
         .method-btn {
             display: flex;
             align-items: center;
@@ -506,11 +425,10 @@
             font-weight: 700;
             font-size: 0.95rem;
             cursor: pointer;
+            border: none;
         }
-
         .wa { background: #25D366; color: white; }
-        .sms-btn { background: #007AFF; color: white; border: none; }
-
+        .sms-btn { background: #007AFF; color: white; }
         .clear-btn {
             background: none;
             border: none;
@@ -520,8 +438,186 @@
             text-decoration: underline;
             padding: 8px;
             cursor: pointer;
-            margin-top: 2px;
         }
+
+        /* ── SUBSCRIPTION MENU PICKER ── */
+        .sub-modal-content {
+            background: var(--white);
+            width: 100%;
+            max-width: 480px;
+            border-radius: 22px 22px 0 0;
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .sub-modal-header {
+            padding: 20px 18px 14px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        .sub-modal-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 18px;
+        }
+        .sub-modal-footer {
+            padding: 14px 18px 28px;
+            border-top: 1px solid var(--border);
+            flex-shrink: 0;
+            background: var(--white);
+        }
+
+        /* step progress */
+        .step-progress {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 14px;
+        }
+        .step-dot {
+            flex: 1;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--border);
+            transition: background 0.25s;
+        }
+        .step-dot.done { background: var(--green); }
+        .step-dot.active { background: var(--yellow); }
+
+        .day-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .day-sublabel {
+            font-size: 0.78rem;
+            color: var(--mid);
+            margin-bottom: 14px;
+        }
+
+        /* meal option rows inside picker */
+        .meal-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 12px;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: border-color 0.15s, background 0.15s;
+        }
+        .meal-option.selected {
+            border-color: var(--green);
+            background: #E8F8F5;
+        }
+        .meal-option-img {
+            width: 48px; height: 48px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .meal-option-info { flex: 1; }
+        .meal-option-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        .meal-option-price { font-size: 0.78rem; color: var(--green); font-weight: 600; }
+        .meal-option-check {
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: transparent;
+            flex-shrink: 0;
+            transition: all 0.15s;
+        }
+        .meal-option.selected .meal-option-check {
+            background: var(--green);
+            border-color: var(--green);
+            color: white;
+        }
+
+        /* nav buttons */
+        .sub-nav {
+            display: flex;
+            gap: 10px;
+        }
+        .btn-back {
+            background: var(--light);
+            border: none;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            color: var(--mid);
+        }
+        .btn-next {
+            flex: 1;
+            background: var(--green);
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: white;
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+        .btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        /* summary step */
+        .summary-day-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.85rem;
+        }
+        .summary-day-row:last-child { border-bottom: none; }
+        .summary-day { font-weight: 600; color: var(--mid); font-size: 0.78rem; }
+        .summary-meal { font-weight: 600; }
+        .summary-price { color: var(--green); font-size: 0.82rem; }
+
+        .plan-total-box {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 12px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 12px 0;
+        }
+        .plan-total-label { font-size: 0.82rem; color: var(--mid); }
+        .plan-total-amount {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .renewal-note {
+            background: #E8F8F5;
+            border-radius: 10px;
+            padding: 9px 12px;
+            font-size: 0.75rem;
+            color: #005C49;
+            text-align: left;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 7px;
+        }
+
+        .sub-location-group { text-align: left; margin-bottom: 14px; }
     </style>
 </head>
 <body>
@@ -536,7 +632,7 @@
 
 <div class="container">
 
-    <!-- Collapsible notice strip -->
+    <!-- Notice strip -->
     <div class="notice-strip">
         <div class="notice-row" onclick="toggleNotice(this)">
             <span class="notice-icon">⏰</span>
@@ -546,7 +642,6 @@
         <div class="notice-expand">
             To keep deliveries on time and reduce logistics costs, we stop taking orders at 11:30 AM on weekdays. No weekend orders.
         </div>
-
         <div class="notice-row" onclick="toggleNotice(this)">
             <span class="notice-icon">📍</span>
             <span class="notice-text">Delivery: <strong>Nairobi CBD only</strong></span>
@@ -560,29 +655,34 @@
     <!-- Subscription cards -->
     <div class="sub-section-title">Subscriptions</div>
     <div class="sub-cards">
-        <div class="sub-card weekly">
+        <div class="sub-card weekly" onclick="openSubPicker('weekly')">
             <span class="sub-badge">Weekly</span>
             <div class="sub-card-title">5-Day Plan</div>
             <div class="sub-price">KES 500</div>
-            <div class="sub-desc">One week of meals, Mon – Fri. Select your weekly menu.</div>
+            <div class="sub-desc">Mon – Fri. Pick a meal for each day.</div>
+            <div class="sub-cta">Select menu →</div>
         </div>
-        <div class="sub-card monthly">
+        <div class="sub-card monthly" onclick="openSubPicker('monthly')">
             <span class="sub-badge">Monthly</span>
             <div class="sub-card-title">20-Day Plan</div>
             <div class="sub-price">KES 2,000</div>
-            <div class="sub-desc">20 meal days. Order daily or pick a weekly menu each week.</div>
+            <div class="sub-desc">4 weeks, Mon – Fri. We'll ask for a new menu each week.</div>
+            <div class="sub-cta">Select menu →</div>
         </div>
     </div>
 
-    <!-- Closed state (shown after 11 AM EAT) -->
+    <!-- Closed state -->
     <div class="closed-state" id="closed-state">
         <div class="closed-emoji">🍱</div>
         <div class="closed-title">Orders closed for today</div>
-        <div class="closed-sub">We stopped taking orders at 11:30 AM.<br>Come back tomorrow (Mon–Fri) before 11:30 AM.<br><br>Interested in a subscription? Message us on WhatsApp!</div>
-        <a href="https://wa.me/254784132601" class="method-btn wa" style="margin-top:16px; display:flex;">💬 WhatsApp Us</a>
+        <div class="closed-sub">
+            We stopped taking orders at 11:30 AM.<br>
+            Come back tomorrow (Mon–Fri) before 11:30 AM.<br><br>
+            You can still sign up for a subscription below!
+        </div>
     </div>
 
-    <!-- Menu (hidden after 11 AM EAT) -->
+    <!-- Menu (hidden after 11:30 AM EAT) -->
     <div id="menu-section">
         <div class="menu-label">Today's Menu</div>
         <div id="menu-container"></div>
@@ -599,38 +699,57 @@
     <button onclick="openCheckout()">Order Now →</button>
 </div>
 
-<!-- Checkout modal -->
-<div class="modal" id="checkout-modal" onclick="handleModalBg(event)">
+<!-- ── CHECKOUT MODAL ── -->
+<div class="modal" id="checkout-modal" onclick="handleModalBg(event, 'checkout-modal')">
     <div class="modal-content">
         <div class="modal-handle"></div>
         <div class="modal-title">Confirm Order</div>
-
         <div class="order-list" id="order-items-list"></div>
         <div class="order-total">Total: KES <span id="summary-total">0</span></div>
-
-        <!-- CBD notice -->
         <div class="cbd-note">
             <span>📍</span>
-            <span>We deliver within <strong>Nairobi CBD only</strong>. Please make sure your location is within the CBD.</span>
+            <span>We deliver within <strong>Nairobi CBD only</strong>. Please ensure your location is within the CBD.</span>
         </div>
-
-        <!-- Location input -->
         <div class="field-group">
             <label class="field-label">Delivery Location <span class="req">*</span></label>
             <input type="text" id="delivery-location" class="field-input" placeholder="e.g. Anniversary Towers, Moi Ave">
             <div class="field-hint">Building, street or landmark within Nairobi CBD.</div>
             <div class="field-err" id="location-error">Please enter your delivery location.</div>
         </div>
-
         <a href="#" class="method-btn wa" onclick="return handleOrder('wa')">📲 Order via WhatsApp</a>
         <button class="method-btn sms-btn" onclick="handleOrder('sms')">💬 Order via SMS</button>
-
         <button onclick="closeAndClear()" class="clear-btn">Clear & start over</button>
+    </div>
+</div>
+
+<!-- ── SUBSCRIPTION PICKER MODAL ── -->
+<div class="modal" id="sub-modal" onclick="handleModalBg(event, 'sub-modal')">
+    <div class="sub-modal-content">
+
+        <div class="sub-modal-header">
+            <div class="modal-handle"></div>
+            <div class="modal-title" id="sub-modal-title">Weekly Plan</div>
+            <div class="modal-subtitle" id="sub-modal-subtitle">Pick a meal for each day</div>
+            <div class="step-progress" id="step-progress"></div>
+        </div>
+
+        <div class="sub-modal-body" id="sub-modal-body">
+            <!-- filled by JS -->
+        </div>
+
+        <div class="sub-modal-footer">
+            <div class="sub-nav">
+                <button class="btn-back" id="sub-btn-back" onclick="subStepBack()">← Back</button>
+                <button class="btn-next" id="sub-btn-next" onclick="subStepNext()">Next →</button>
+            </div>
+        </div>
+
     </div>
 </div>
 
 <script>
     const MY_PHONE = "254784132601";
+    const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
     const sides = [
         { name: "Kamande", price: 100, isRiceSide: true,  img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" },
@@ -643,15 +762,15 @@
         { name: "Pilau",   price: 100, isRiceSide: false, img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80" }
     ];
 
+    function mealName(item) { return item.isRiceSide ? `Rice + ${item.name}` : item.name; }
+
     let cart = [];
 
-    /* ── Time check (EAT = UTC+3) ── */
+    /* ── TIME GATE ── */
     function isOrderingClosed() {
         const now = new Date();
         const eatHour = now.getUTCHours() + 3;
         const eatMin  = now.getUTCMinutes();
-        // Closed if >= 11:00 AM EAT (changed from 11:30 as requested)
-        //return (eatHour > 11) || (eatHour === 11 && eatMin >= 0);
         return (eatHour > 11) || (eatHour === 11 && eatMin >= 30);
     }
 
@@ -663,62 +782,47 @@
         }
     }
 
-    /* ── Notice accordion ── */
+    /* ── NOTICE ACCORDION ── */
     function toggleNotice(row) {
         const expand = row.nextElementSibling;
         const isOpen = expand.classList.contains('visible');
-        // close all
         document.querySelectorAll('.notice-expand').forEach(e => e.classList.remove('visible'));
         document.querySelectorAll('.notice-row').forEach(r => r.classList.remove('open'));
-        if (!isOpen) {
-            expand.classList.add('visible');
-            row.classList.add('open');
-        }
+        if (!isOpen) { expand.classList.add('visible'); row.classList.add('open'); }
     }
 
-    /* ── Render menu ── */
+    /* ── REGULAR MENU ── */
     function renderMenu() {
-        const container = document.getElementById('menu-container');
-        container.innerHTML = sides.map((item, index) => {
-            const name = item.isRiceSide ? `Rice + ${item.name}` : item.name;
-            return `
-                <div class="food-card">
-                    <img src="${item.img}" class="food-img" alt="${name}" loading="lazy">
-                    <div class="food-info">
-                        <h3>${name}</h3>
-                        <span class="price">KES ${item.price}</span>
-                    </div>
-                    <button class="add-btn" onclick="addToCart(${index})" aria-label="Add ${name}">+</button>
+        document.getElementById('menu-container').innerHTML = sides.map((item, i) => `
+            <div class="food-card">
+                <img src="${item.img}" class="food-img" alt="${mealName(item)}" loading="lazy">
+                <div class="food-info">
+                    <h3>${mealName(item)}</h3>
+                    <span class="price">KES ${item.price}</span>
                 </div>
-            `;
-        }).join('');
+                <button class="add-btn" onclick="addToCart(${i})" aria-label="Add ${mealName(item)}">+</button>
+            </div>
+        `).join('');
     }
 
-    function addToCart(index) {
-        cart.push(sides[index]);
-        updateCartUI();
-    }
+    function addToCart(index) { cart.push(sides[index]); updateCartUI(); }
 
     function updateCartUI() {
-        const bar = document.getElementById('cart-bar');
         const total = cart.reduce((s, i) => s + i.price, 0);
         document.getElementById('total-price').innerText = total;
+        const bar = document.getElementById('cart-bar');
         bar.style.display = (cart.length > 0 && !isOrderingClosed()) ? 'flex' : 'none';
     }
 
     function openCheckout() {
         const total = cart.reduce((s, i) => s + i.price, 0);
-        document.getElementById('order-items-list').innerHTML = cart.map(i => {
-            const name = i.isRiceSide ? `Rice + ${i.name}` : i.name;
-            return `<div class="order-row"><span>${name}</span><span>KES ${i.price}</span></div>`;
-        }).join('');
+        document.getElementById('order-items-list').innerHTML = cart.map(i =>
+            `<div class="order-row"><span>${mealName(i)}</span><span>KES ${i.price}</span></div>`
+        ).join('');
         document.getElementById('summary-total').innerText = total;
-
         const loc = document.getElementById('delivery-location');
-        loc.value = '';
-        loc.classList.remove('err');
+        loc.value = ''; loc.classList.remove('err');
         document.getElementById('location-error').style.display = 'none';
-
         document.getElementById('checkout-modal').style.display = 'flex';
     }
 
@@ -733,28 +837,230 @@
         }
         loc.classList.remove('err');
         document.getElementById('location-error').style.display = 'none';
-
         const total = cart.reduce((s, i) => s + i.price, 0);
-        const items = cart.map(i => i.isRiceSide ? `Rice + ${i.name}` : i.name).join(', ');
+        const items = cart.map(i => mealName(i)).join(', ');
         const msg = `Hello Nairobi Dishes! 🍱\n\nOrder: ${items}\nDelivery: ${location} (Nairobi CBD)\nTotal: KES ${total}\n\nPlease trigger M-Pesa. Asante!`;
         const enc = encodeURIComponent(msg);
-
-        if (type === 'wa') {
-            window.location.href = `https://wa.me/${MY_PHONE}?text=${enc}`;
-        } else {
-            window.location.href = `sms:+${MY_PHONE}?body=${enc}`;
-        }
+        window.location.href = type === 'wa'
+            ? `https://wa.me/${MY_PHONE}?text=${enc}`
+            : `sms:+${MY_PHONE}?body=${enc}`;
         return false;
     }
 
-    function handleModalBg(e) {
-        if (e.target === document.getElementById('checkout-modal')) closeAndClear();
+    function handleModalBg(e, id) {
+        if (e.target === document.getElementById(id)) {
+            if (id === 'checkout-modal') closeAndClear();
+            else closeSubPicker();
+        }
     }
 
     function closeAndClear() {
-        cart = [];
-        updateCartUI();
+        cart = []; updateCartUI();
         document.getElementById('checkout-modal').style.display = 'none';
+    }
+
+    /* ════════════════════════════════
+       SUBSCRIPTION PICKER
+    ════════════════════════════════ */
+    let subPlan = 'weekly';      // 'weekly' | 'monthly'
+    let subStep = 0;             // 0–4 = day picking, 5 = summary
+    let subSelections = {};      // { Monday: sideIndex, ... }
+    let subLocation = '';
+
+    const TOTAL_STEPS = 6; // 5 days + 1 summary
+
+    function openSubPicker(plan) {
+        subPlan = plan;
+        subStep = 0;
+        subSelections = {};
+        subLocation = '';
+        document.getElementById('sub-modal-title').innerText =
+            plan === 'weekly' ? 'Weekly Plan – KES 500' : 'Monthly Plan – KES 2,000';
+        document.getElementById('sub-modal').style.display = 'flex';
+        renderSubStep();
+    }
+
+    function closeSubPicker() {
+        document.getElementById('sub-modal').style.display = 'none';
+    }
+
+    function renderSubStep() {
+        renderProgressDots();
+        const body = document.getElementById('sub-modal-body');
+        const backBtn = document.getElementById('sub-btn-back');
+        const nextBtn = document.getElementById('sub-btn-next');
+
+        // Back button
+        backBtn.style.display = subStep === 0 ? 'none' : 'block';
+
+        if (subStep < 5) {
+            // Day picking step
+            const day = DAYS[subStep];
+            document.getElementById('sub-modal-subtitle').innerText = `Step ${subStep + 1} of 5 — Choose a meal`;
+
+            body.innerHTML = `
+                <div class="day-label">${day}</div>
+                <div class="day-sublabel">What would you like for ${day}?</div>
+                ${sides.map((item, i) => `
+                    <div class="meal-option ${subSelections[day] === i ? 'selected' : ''}"
+                         onclick="selectMeal('${day}', ${i})">
+                        <img src="${item.img}" class="meal-option-img" alt="${mealName(item)}" loading="lazy">
+                        <div class="meal-option-info">
+                            <div class="meal-option-name">${mealName(item)}</div>
+                            <div class="meal-option-price">KES ${item.price}</div>
+                        </div>
+                        <div class="meal-option-check">✓</div>
+                    </div>
+                `).join('')}
+            `;
+
+            // Next enabled only if selection made
+            nextBtn.disabled = subSelections[day] === undefined;
+            nextBtn.innerText = subStep === 4 ? 'Review →' : 'Next →';
+
+        } else {
+            // Summary step
+            document.getElementById('sub-modal-subtitle').innerText = 'Review your weekly menu';
+            nextBtn.disabled = false;
+
+            const BASE_PRICE = 100;
+            const planBase   = subPlan === 'weekly' ? 500 : 2000;
+            const planLabel  = subPlan === 'weekly' ? 'Weekly Plan (5 days)' : 'Monthly Plan (4 × this menu)';
+            const weeksInPlan = subPlan === 'weekly' ? 1 : 4;
+
+            // Calculate top-up for meals above base price
+            const weeklyTopUp = DAYS.reduce((sum, day) => {
+                const item = sides[subSelections[day]];
+                return sum + Math.max(0, item.price - BASE_PRICE);
+            }, 0);
+            const totalTopUp = weeklyTopUp * weeksInPlan;
+            const grandTotal = planBase + totalTopUp;
+
+            const summaryRows = DAYS.map(day => {
+                const idx   = subSelections[day];
+                const item  = sides[idx];
+                const topUp = Math.max(0, item.price - BASE_PRICE);
+                const badge = topUp > 0
+                    ? `<span style="font-size:0.68rem;background:#FFF3CD;color:#7A5300;padding:2px 6px;border-radius:8px;margin-left:5px;font-weight:700;">+KES ${topUp}</span>`
+                    : '';
+                return `
+                    <div class="summary-day-row">
+                        <span class="summary-day">${day}</span>
+                        <span class="summary-meal">${mealName(item)}${badge}</span>
+                        <span class="summary-price">KES ${item.price}</span>
+                    </div>
+                `;
+            }).join('');
+
+            const topUpNote = totalTopUp > 0 ? `
+                <div style="background:#FFF8E7;border-radius:10px;padding:10px 13px;margin-bottom:10px;font-size:0.78rem;color:#7A5300;display:flex;gap:8px;align-items:flex-start;text-align:left;">
+                    <span>⚠️</span>
+                    <span>Some meals exceed the base price of KES 100. A top-up of <strong>KES ${totalTopUp}</strong> applies${subPlan === 'monthly' ? ' (KES ' + weeklyTopUp + '/week × 4 weeks)' : ''}.</span>
+                </div>
+            ` : '';
+
+            const renewalNote = subPlan === 'monthly'
+                ? `<div class="renewal-note"><span>🔄</span><span>This menu covers your first week. We'll WhatsApp you to pick a new menu for each following week.</span></div>`
+                : '';
+
+            body.innerHTML = `
+                <div style="text-align:left">
+                    <div style="font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Your Menu</div>
+                    <div class="order-list" style="margin-bottom:10px;">${summaryRows}</div>
+                    ${topUpNote}
+                    <div class="plan-total-box">
+                        <div>
+                            <div class="plan-total-label">${planLabel}</div>
+                            ${totalTopUp > 0 ? `<div style="font-size:0.72rem;color:var(--mid);margin-top:2px;">Base KES ${planBase} + top-up KES ${totalTopUp}</div>` : ''}
+                        </div>
+                        <span class="plan-total-amount">KES ${grandTotal}</span>
+                    </div>
+                    ${renewalNote}
+                    <div class="sub-location-group">
+                        <label class="field-label">Delivery Location <span class="req">*</span></label>
+                        <input type="text" id="sub-location-input" class="field-input"
+                            placeholder="e.g. Anniversary Towers, Moi Ave"
+                            value="${subLocation}"
+                            oninput="subLocation=this.value">
+                        <div class="field-hint">Building, street or landmark within Nairobi CBD.</div>
+                        <div class="field-err" id="sub-location-error">Please enter your delivery location.</div>
+                    </div>
+                </div>
+            `;
+
+            nextBtn.innerText = '📲 Send via WhatsApp';
+        }
+
+        // Scroll body to top on step change
+        body.scrollTop = 0;
+    }
+
+    function renderProgressDots() {
+        const prog = document.getElementById('step-progress');
+        prog.innerHTML = DAYS.map((_, i) => {
+            let cls = 'step-dot';
+            if (i < subStep) cls += ' done';
+            else if (i === subStep) cls += ' active';
+            return `<div class="${cls}"></div>`;
+        }).join('');
+    }
+
+    function selectMeal(day, index) {
+        subSelections[day] = index;
+        renderSubStep();
+    }
+
+    function subStepNext() {
+        if (subStep < 5) {
+            subStep++;
+            renderSubStep();
+        } else {
+            // Send subscription
+            const loc = document.getElementById('sub-location-input');
+            if (!subLocation.trim()) {
+                loc.classList.add('err');
+                document.getElementById('sub-location-error').style.display = 'block';
+                return;
+            }
+            sendSubscription();
+        }
+    }
+
+    function subStepBack() {
+        if (subStep > 0) { subStep--; renderSubStep(); }
+    }
+
+    function sendSubscription() {
+        const BASE_PRICE  = 100;
+        const planBase    = subPlan === 'weekly' ? 500 : 2000;
+        const weeksInPlan = subPlan === 'weekly' ? 1 : 4;
+        const planLabel   = subPlan === 'weekly' ? 'Weekly Plan' : 'Monthly Plan';
+
+        const weeklyTopUp = DAYS.reduce((sum, day) => {
+            const item = sides[subSelections[day]];
+            return sum + Math.max(0, item.price - BASE_PRICE);
+        }, 0);
+        const totalTopUp = weeklyTopUp * weeksInPlan;
+        const grandTotal = planBase + totalTopUp;
+
+        const menuLines = DAYS.map(day => {
+            const item  = sides[subSelections[day]];
+            const topUp = Math.max(0, item.price - BASE_PRICE);
+            const note  = topUp > 0 ? ` (+KES ${topUp} top-up)` : '';
+            return `  ${day}: ${mealName(item)} – KES ${item.price}${note}`;
+        }).join('\n');
+
+        const topUpLine = totalTopUp > 0
+            ? `\nTop-up: KES ${totalTopUp}` + (subPlan === 'monthly' ? ` (KES ${weeklyTopUp}/week × 4 weeks)` : '')
+            : '';
+
+        const renewalNote = subPlan === 'monthly'
+            ? '\n\nNote: Please send me a new menu selection after the first week.'
+            : '';
+
+        const msg = `Hello Nairobi Dishes! 🍱\n\nI'd like to subscribe to the ${planLabel}.\n\nMy weekly menu:\n${menuLines}\n\nPlan base: KES ${planBase}${topUpLine}\nTotal: KES ${grandTotal}\n\nDelivery: ${subLocation.trim()} (Nairobi CBD)${renewalNote}\n\nPlease share M-Pesa payment details. Asante!`;
+
+        window.location.href = `https://wa.me/${MY_PHONE}?text=${encodeURIComponent(msg)}`;
     }
 
     renderMenu();
