@@ -47,7 +47,7 @@
     }
     </script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,600&family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -62,7 +62,7 @@
         }
         * { box-sizing: border-box; }
         body {
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             margin: 0;
             background: var(--light);
             color: var(--dark);
@@ -90,7 +90,7 @@
         }
         .header-text h1 {
             margin: 0;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1.2rem;
             font-weight: 800;
             line-height: 1.1;
@@ -146,80 +146,95 @@
 
         /* ── SUBSCRIPTION CARDS ── */
         .sub-section-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 700;
             letter-spacing: 0.8px;
             text-transform: uppercase;
             color: var(--mid);
             margin: 16px 2px 8px;
         }
-        .sub-cards {
+        .sub-cards-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-bottom: 16px;
         }
-        .sub-card {
+        .sub-card-full {
             background: var(--white);
             border-radius: 14px;
-            padding: 14px 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 12px 12px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             position: relative;
             overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.15s, box-shadow 0.15s;
+            display: flex;
+            flex-direction: column;
         }
-        .sub-card:active { transform: scale(0.97); }
-        .sub-card::before {
+        .sub-card-full::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 3px;
         }
-        .sub-card.weekly::before { background: var(--yellow); }
-        .sub-card.monthly::before { background: var(--green); }
+        .sub-card-full.weekly::before { background: var(--yellow); }
+        .sub-card-full.monthly::before { background: var(--green); }
         .sub-badge {
-            font-size: 0.62rem;
+            font-size: 0.58rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            padding: 3px 7px;
+            padding: 2px 6px;
             border-radius: 20px;
             display: inline-block;
-            margin-bottom: 7px;
+            margin-bottom: 5px;
         }
-        .sub-card.weekly .sub-badge { background: #FFF3CD; color: #7A5300; }
-        .sub-card.monthly .sub-badge { background: #E8F8F5; color: #005C49; }
+        .sub-card-full.weekly .sub-badge { background: #FFF3CD; color: #7A5300; }
+        .sub-card-full.monthly .sub-badge { background: #E8F8F5; color: #005C49; }
         .sub-card-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.92rem;
+            font-size: 0.88rem;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
         .sub-price {
-            font-size: 1.15rem;
-            font-weight: 700;
-            font-family: 'DM Sans', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 800;
             color: var(--green);
-            margin-bottom: 4px;
+            margin-bottom: 8px;
         }
-        .sub-card.weekly .sub-price { color: #C98000; }
-        .sub-desc { font-size: 0.72rem; color: var(--mid); line-height: 1.4; }
-        .sub-cta {
-            margin-top: 8px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            color: var(--green);
+        .sub-card-full.weekly .sub-price { color: #C98000; }
+        .sub-per { font-size: 0.7rem; font-weight: 500; color: var(--mid); }
+        .sub-perks {
+            list-style: none;
+            margin: 0;
+            padding: 0;
             display: flex;
-            align-items: center;
-            gap: 3px;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
         }
-        .sub-card.weekly .sub-cta { color: #C98000; }
+        .sub-perks li {
+            font-size: 0.73rem;
+            color: var(--mid);
+            line-height: 1.35;
+        }
+        .sub-subscribe-btn {
+            width: calc(100% + 24px);
+            margin: 10px -12px 0;
+            padding: 11px;
+            border: none;
+            border-radius: 0 0 14px 14px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.15s, transform 0.1s;
+            display: block;
+        }
+        .sub-subscribe-btn:active { opacity: 0.85; }
+        .weekly-btn { background: var(--yellow); color: var(--dark); }
+        .monthly-btn { background: var(--green); color: white; }
 
         /* ── MENU LABEL ── */
         .menu-label {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 0.75rem;
             font-weight: 700;
             letter-spacing: 0.8px;
@@ -248,7 +263,7 @@
         .food-info { flex: 1; min-width: 0; }
         .food-info h3 {
             margin: 0 0 3px;
-            font-family: 'Syne', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 0.95rem;
             font-weight: 700;
             white-space: nowrap;
@@ -284,7 +299,7 @@
         }
         .closed-emoji { font-size: 2.5rem; margin-bottom: 10px; }
         .closed-title {
-            font-family: 'Fraunces', serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 6px;
@@ -308,14 +323,14 @@
             margin: 0 auto;
         }
         .cart-bar-info { font-size: 0.8rem; opacity: 0.85; }
-        .cart-bar-total { font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700; }
+        .cart-bar-total { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; font-weight: 700; }
         .cart-bar button {
             background: var(--white);
             border: none;
             color: var(--green);
             padding: 10px 18px;
             border-radius: 10px;
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 700;
             font-size: 0.9rem;
             cursor: pointer;
@@ -348,7 +363,7 @@
             margin: 0 auto 18px;
         }
         .modal-title {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1.1rem;
             font-weight: 800;
             margin: 0 0 4px;
@@ -376,7 +391,7 @@
         }
         .order-row:last-child { border-bottom: none; }
         .order-total {
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1rem;
             font-weight: 700;
             text-align: right;
@@ -391,7 +406,7 @@
             border: 1.5px solid var(--border);
             border-radius: 11px;
             font-size: 0.9rem;
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             outline: none;
             transition: border-color 0.18s;
         }
@@ -421,7 +436,7 @@
             margin: 9px 0;
             border-radius: 13px;
             text-decoration: none;
-            font-family: 'Syne', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 700;
             font-size: 0.95rem;
             cursor: pointer;
@@ -485,7 +500,7 @@
         .step-dot.active { background: var(--yellow); }
 
         .day-label {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1rem;
             font-weight: 800;
             margin-bottom: 4px;
@@ -520,7 +535,7 @@
         }
         .meal-option-info { flex: 1; }
         .meal-option-name {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 0.9rem;
             font-weight: 700;
         }
@@ -553,7 +568,7 @@
             border: none;
             padding: 14px 20px;
             border-radius: 12px;
-            font-family: 'Syne', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 700;
             font-size: 0.9rem;
             cursor: pointer;
@@ -565,7 +580,7 @@
             border: none;
             padding: 14px;
             border-radius: 12px;
-            font-family: 'Syne', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 700;
             font-size: 0.9rem;
             color: white;
@@ -599,7 +614,7 @@
         }
         .plan-total-label { font-size: 0.82rem; color: var(--mid); }
         .plan-total-amount {
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1.1rem;
             font-weight: 700;
             color: var(--green);
@@ -654,21 +669,38 @@
 
     <!-- Subscription cards -->
     <div class="sub-section-title">Subscriptions</div>
-    <div class="sub-cards">
-        <div class="sub-card weekly" onclick="openSubPicker('weekly')">
+    <div class="sub-cards-list">
+
+        <div class="sub-card-full weekly">
             <span class="sub-badge">Weekly</span>
             <div class="sub-card-title">5-Day Plan</div>
-            <div class="sub-price">KES 500</div>
-            <div class="sub-desc">Mon – Fri. Pick a meal for each day.</div>
-            <div class="sub-cta">Select menu →</div>
+            <div class="sub-price">KES 500 <span class="sub-per">/ week</span></div>
+            <ul class="sub-perks">
+                <li>✔ Mon – Fri, 5 meals</li>
+                <li>✔ Predictable weekly spend</li>
+                <li>✔ No daily ordering stress</li>
+                <li>✔ Great for office workers</li>
+            </ul>
+            <button class="sub-subscribe-btn weekly-btn" onclick="subscribeViaWA('weekly')">
+                Subscribe →
+            </button>
         </div>
-        <div class="sub-card monthly" onclick="openSubPicker('monthly')">
+
+        <div class="sub-card-full monthly">
             <span class="sub-badge">Monthly</span>
             <div class="sub-card-title">20-Day Plan</div>
-            <div class="sub-price">KES 2,000</div>
-            <div class="sub-desc">4 weeks, Mon – Fri. We'll ask for a new menu each week.</div>
-            <div class="sub-cta">Select menu →</div>
+            <div class="sub-price">KES 2,000 <span class="sub-per">/ month</span></div>
+            <ul class="sub-perks">
+                <li>✔ Full month covered</li>
+                <li>✔ Best value, KES 100/meal</li>
+                <li>✔ New menu every week</li>
+                <li>✔ Ideal for daily lunch</li>
+            </ul>
+            <button class="sub-subscribe-btn monthly-btn" onclick="subscribeViaWA('monthly')">
+                Subscribe →
+            </button>
         </div>
+
     </div>
 
     <!-- Closed state -->
@@ -680,6 +712,10 @@
             Come back tomorrow (Mon–Fri) before 11:30 AM.<br><br>
             You can still sign up for a subscription below!
         </div>
+        <a href="https://wa.me/254784132601" target="_blank"
+           style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:#25D366;color:white;padding:13px 22px;border-radius:12px;text-decoration:none;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.9rem;">
+            💬 Chat with us on WhatsApp
+        </a>
     </div>
 
     <!-- Menu (hidden after 11:30 AM EAT) -->
@@ -722,30 +758,6 @@
     </div>
 </div>
 
-<!-- ── SUBSCRIPTION PICKER MODAL ── -->
-<div class="modal" id="sub-modal" onclick="handleModalBg(event, 'sub-modal')">
-    <div class="sub-modal-content">
-
-        <div class="sub-modal-header">
-            <div class="modal-handle"></div>
-            <div class="modal-title" id="sub-modal-title">Weekly Plan</div>
-            <div class="modal-subtitle" id="sub-modal-subtitle">Pick a meal for each day</div>
-            <div class="step-progress" id="step-progress"></div>
-        </div>
-
-        <div class="sub-modal-body" id="sub-modal-body">
-            <!-- filled by JS -->
-        </div>
-
-        <div class="sub-modal-footer">
-            <div class="sub-nav">
-                <button class="btn-back" id="sub-btn-back" onclick="subStepBack()">← Back</button>
-                <button class="btn-next" id="sub-btn-next" onclick="subStepNext()">Next →</button>
-            </div>
-        </div>
-
-    </div>
-</div>
 
 <script>
     const MY_PHONE = "254784132601";
@@ -767,19 +779,54 @@
     let cart = [];
 
     /* ── TIME GATE ── */
-    function isOrderingClosed() {
+    function getEAT() {
         const now = new Date();
-        const eatHour = now.getUTCHours() + 3;
-        const eatMin  = now.getUTCMinutes();
-        return (eatHour > 11) || (eatHour === 11 && eatMin >= 30);
+        const eatMs = now.getTime() + (3 * 60 * 60 * 1000);
+        const eat = new Date(eatMs);
+        return {
+            hour: eat.getUTCHours(),
+            min:  eat.getUTCMinutes(),
+            day:  eat.getUTCDay() // 0=Sun,1=Mon...5=Fri,6=Sat
+        };
+    }
+
+    function isOrderingClosed() {
+        const { hour, min, day } = getEAT();
+        const isWeekend = (day === 0 || day === 6);
+        const isPastCutoff = (hour > 11) || (hour === 11 && min >= 30);
+        return isWeekend || isPastCutoff;
     }
 
     function applyTimeGate() {
-        if (isOrderingClosed()) {
-            document.getElementById('menu-section').style.display = 'none';
-            document.getElementById('closed-state').style.display = 'block';
+        const closed = isOrderingClosed();
+        const { day } = getEAT();
+        const isWeekend = (day === 0 || day === 6);
+
+        document.getElementById('menu-section').style.display = closed ? 'none' : 'block';
+        document.getElementById('closed-state').style.display = closed ? 'block' : 'none';
+        if (!closed && cart.length > 0) {
+            document.getElementById('cart-bar').style.display = 'flex';
+        } else if (closed) {
             document.getElementById('cart-bar').style.display = 'none';
         }
+
+        const sub = document.querySelector('.closed-sub');
+        if (sub) {
+            sub.innerHTML = isWeekend
+                ? "We only operate Monday to Friday.<br>Come back on Monday before 11:30 AM!<br><br>You can still sign up for a subscription below!"
+                : "We stopped taking orders at 11:30 AM.<br>Come back tomorrow (Mon–Fri) before 11:30 AM.<br><br>You can still sign up for a subscription below!";
+        }
+    }
+
+    /* Re-check every minute so the menu unlocks at midnight without a refresh */
+    function scheduleTimeGate() {
+        applyTimeGate();
+        const now = new Date();
+        const msToNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
+        setTimeout(() => {
+            applyTimeGate();
+            setInterval(applyTimeGate, 60 * 1000);
+        }, msToNextMinute);
     }
 
     /* ── NOTICE ACCORDION ── */
@@ -838,8 +885,18 @@
         loc.classList.remove('err');
         document.getElementById('location-error').style.display = 'none';
         const total = cart.reduce((s, i) => s + i.price, 0);
-        const items = cart.map(i => mealName(i)).join(', ');
-        const msg = `Hello Nairobi Dishes! 🍱\n\nOrder: ${items}\nDelivery: ${location} (Nairobi CBD)\nTotal: KES ${total}\n\nPlease trigger M-Pesa. Asante!`;
+        const itemLines = cart.map((i, idx) => `  ${idx + 1}. ${mealName(i)} — KES ${i.price}`).join('\n');
+        const msg = [
+            '🍱 *New Order — Nairobi Dishes*',
+            '',
+            '*Items:*',
+            itemLines,
+            '',
+            `*Total:* KES ${total}`,
+            `*Delivery:* ${location}, Nairobi CBD`,
+            '',
+            'Please trigger M-Pesa. Asante! 🙏'
+        ].join('\n');
         const enc = encodeURIComponent(msg);
         window.location.href = type === 'wa'
             ? `https://wa.me/${MY_PHONE}?text=${enc}`
@@ -848,10 +905,7 @@
     }
 
     function handleModalBg(e, id) {
-        if (e.target === document.getElementById(id)) {
-            if (id === 'checkout-modal') closeAndClear();
-            else closeSubPicker();
-        }
+        if (e.target === document.getElementById(id)) closeAndClear();
     }
 
     function closeAndClear() {
@@ -859,212 +913,24 @@
         document.getElementById('checkout-modal').style.display = 'none';
     }
 
-    /* ════════════════════════════════
-       SUBSCRIPTION PICKER
-    ════════════════════════════════ */
-    let subPlan = 'weekly';      // 'weekly' | 'monthly'
-    let subStep = 0;             // 0–4 = day picking, 5 = summary
-    let subSelections = {};      // { Monday: sideIndex, ... }
-    let subLocation = '';
-
-    const TOTAL_STEPS = 6; // 5 days + 1 summary
-
-    function openSubPicker(plan) {
-        subPlan = plan;
-        subStep = 0;
-        subSelections = {};
-        subLocation = '';
-        document.getElementById('sub-modal-title').innerText =
-            plan === 'weekly' ? 'Weekly Plan – KES 500' : 'Monthly Plan – KES 2,000';
-        document.getElementById('sub-modal').style.display = 'flex';
-        renderSubStep();
-    }
-
-    function closeSubPicker() {
-        document.getElementById('sub-modal').style.display = 'none';
-    }
-
-    function renderSubStep() {
-        renderProgressDots();
-        const body = document.getElementById('sub-modal-body');
-        const backBtn = document.getElementById('sub-btn-back');
-        const nextBtn = document.getElementById('sub-btn-next');
-
-        // Back button
-        backBtn.style.display = subStep === 0 ? 'none' : 'block';
-
-        if (subStep < 5) {
-            // Day picking step
-            const day = DAYS[subStep];
-            document.getElementById('sub-modal-subtitle').innerText = `Step ${subStep + 1} of 5 — Choose a meal`;
-
-            body.innerHTML = `
-                <div class="day-label">${day}</div>
-                <div class="day-sublabel">What would you like for ${day}?</div>
-                ${sides.map((item, i) => `
-                    <div class="meal-option ${subSelections[day] === i ? 'selected' : ''}"
-                         onclick="selectMeal('${day}', ${i})">
-                        <img src="${item.img}" class="meal-option-img" alt="${mealName(item)}" loading="lazy">
-                        <div class="meal-option-info">
-                            <div class="meal-option-name">${mealName(item)}</div>
-                            <div class="meal-option-price">KES ${item.price}</div>
-                        </div>
-                        <div class="meal-option-check">✓</div>
-                    </div>
-                `).join('')}
-            `;
-
-            // Next enabled only if selection made
-            nextBtn.disabled = subSelections[day] === undefined;
-            nextBtn.innerText = subStep === 4 ? 'Review →' : 'Next →';
-
-        } else {
-            // Summary step
-            document.getElementById('sub-modal-subtitle').innerText = 'Review your weekly menu';
-            nextBtn.disabled = false;
-
-            const BASE_PRICE = 100;
-            const planBase   = subPlan === 'weekly' ? 500 : 2000;
-            const planLabel  = subPlan === 'weekly' ? 'Weekly Plan (5 days)' : 'Monthly Plan (4 × this menu)';
-            const weeksInPlan = subPlan === 'weekly' ? 1 : 4;
-
-            // Calculate top-up for meals above base price
-            const weeklyTopUp = DAYS.reduce((sum, day) => {
-                const item = sides[subSelections[day]];
-                return sum + Math.max(0, item.price - BASE_PRICE);
-            }, 0);
-            const totalTopUp = weeklyTopUp * weeksInPlan;
-            const grandTotal = planBase + totalTopUp;
-
-            const summaryRows = DAYS.map(day => {
-                const idx   = subSelections[day];
-                const item  = sides[idx];
-                const topUp = Math.max(0, item.price - BASE_PRICE);
-                const badge = topUp > 0
-                    ? `<span style="font-size:0.68rem;background:#FFF3CD;color:#7A5300;padding:2px 6px;border-radius:8px;margin-left:5px;font-weight:700;">+KES ${topUp}</span>`
-                    : '';
-                return `
-                    <div class="summary-day-row">
-                        <span class="summary-day">${day}</span>
-                        <span class="summary-meal">${mealName(item)}${badge}</span>
-                        <span class="summary-price">KES ${item.price}</span>
-                    </div>
-                `;
-            }).join('');
-
-            const topUpNote = totalTopUp > 0 ? `
-                <div style="background:#FFF8E7;border-radius:10px;padding:10px 13px;margin-bottom:10px;font-size:0.78rem;color:#7A5300;display:flex;gap:8px;align-items:flex-start;text-align:left;">
-                    <span>⚠️</span>
-                    <span>Some meals exceed the base price of KES 100. A top-up of <strong>KES ${totalTopUp}</strong> applies${subPlan === 'monthly' ? ' (KES ' + weeklyTopUp + '/week × 4 weeks)' : ''}.</span>
-                </div>
-            ` : '';
-
-            const renewalNote = subPlan === 'monthly'
-                ? `<div class="renewal-note"><span>🔄</span><span>This menu covers your first week. We'll WhatsApp you to pick a new menu for each following week.</span></div>`
-                : '';
-
-            body.innerHTML = `
-                <div style="text-align:left">
-                    <div style="font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Your Menu</div>
-                    <div class="order-list" style="margin-bottom:10px;">${summaryRows}</div>
-                    ${topUpNote}
-                    <div class="plan-total-box">
-                        <div>
-                            <div class="plan-total-label">${planLabel}</div>
-                            ${totalTopUp > 0 ? `<div style="font-size:0.72rem;color:var(--mid);margin-top:2px;">Base KES ${planBase} + top-up KES ${totalTopUp}</div>` : ''}
-                        </div>
-                        <span class="plan-total-amount">KES ${grandTotal}</span>
-                    </div>
-                    ${renewalNote}
-                    <div class="sub-location-group">
-                        <label class="field-label">Delivery Location <span class="req">*</span></label>
-                        <input type="text" id="sub-location-input" class="field-input"
-                            placeholder="e.g. Anniversary Towers, Moi Ave"
-                            value="${subLocation}"
-                            oninput="subLocation=this.value">
-                        <div class="field-hint">Building, street or landmark within Nairobi CBD.</div>
-                        <div class="field-err" id="sub-location-error">Please enter your delivery location.</div>
-                    </div>
-                </div>
-            `;
-
-            nextBtn.innerText = '📲 Send via WhatsApp';
-        }
-
-        // Scroll body to top on step change
-        body.scrollTop = 0;
-    }
-
-    function renderProgressDots() {
-        const prog = document.getElementById('step-progress');
-        prog.innerHTML = DAYS.map((_, i) => {
-            let cls = 'step-dot';
-            if (i < subStep) cls += ' done';
-            else if (i === subStep) cls += ' active';
-            return `<div class="${cls}"></div>`;
-        }).join('');
-    }
-
-    function selectMeal(day, index) {
-        subSelections[day] = index;
-        renderSubStep();
-    }
-
-    function subStepNext() {
-        if (subStep < 5) {
-            subStep++;
-            renderSubStep();
-        } else {
-            // Send subscription
-            const loc = document.getElementById('sub-location-input');
-            if (!subLocation.trim()) {
-                loc.classList.add('err');
-                document.getElementById('sub-location-error').style.display = 'block';
-                return;
-            }
-            sendSubscription();
-        }
-    }
-
-    function subStepBack() {
-        if (subStep > 0) { subStep--; renderSubStep(); }
-    }
-
-    function sendSubscription() {
-        const BASE_PRICE  = 100;
-        const planBase    = subPlan === 'weekly' ? 500 : 2000;
-        const weeksInPlan = subPlan === 'weekly' ? 1 : 4;
-        const planLabel   = subPlan === 'weekly' ? 'Weekly Plan' : 'Monthly Plan';
-
-        const weeklyTopUp = DAYS.reduce((sum, day) => {
-            const item = sides[subSelections[day]];
-            return sum + Math.max(0, item.price - BASE_PRICE);
-        }, 0);
-        const totalTopUp = weeklyTopUp * weeksInPlan;
-        const grandTotal = planBase + totalTopUp;
-
-        const menuLines = DAYS.map(day => {
-            const item  = sides[subSelections[day]];
-            const topUp = Math.max(0, item.price - BASE_PRICE);
-            const note  = topUp > 0 ? ` (+KES ${topUp} top-up)` : '';
-            return `  ${day}: ${mealName(item)} – KES ${item.price}${note}`;
-        }).join('\n');
-
-        const topUpLine = totalTopUp > 0
-            ? `\nTop-up: KES ${totalTopUp}` + (subPlan === 'monthly' ? ` (KES ${weeklyTopUp}/week × 4 weeks)` : '')
-            : '';
-
-        const renewalNote = subPlan === 'monthly'
-            ? '\n\nNote: Please send me a new menu selection after the first week.'
-            : '';
-
-        const msg = `Hello Nairobi Dishes! 🍱\n\nI'd like to subscribe to the ${planLabel}.\n\nMy weekly menu:\n${menuLines}\n\nPlan base: KES ${planBase}${topUpLine}\nTotal: KES ${grandTotal}\n\nDelivery: ${subLocation.trim()} (Nairobi CBD)${renewalNote}\n\nPlease share M-Pesa payment details. Asante!`;
-
+    /* ── SUBSCRIPTION ── */
+    function subscribeViaWA(plan) {
+        const label = plan === 'weekly'
+            ? 'Weekly Plan (5 days – KES 500/week)'
+            : 'Monthly Plan (20 days – KES 2,000/month)';
+        const msg = [
+            '👋 Hello Nairobi Dishes!',
+            '',
+            `I'd like to subscribe to the *${label}*.`,
+            '',
+            'Please share the payment details. Asante! 🙏'
+        ].join('\n');
         window.location.href = `https://wa.me/${MY_PHONE}?text=${encodeURIComponent(msg)}`;
     }
 
     renderMenu();
-    applyTimeGate();
+    scheduleTimeGate();
+
 </script>
 </body>
 </html>
