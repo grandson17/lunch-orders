@@ -6,7 +6,7 @@
 
     <!-- Primary SEO -->
     <title>Nairobi Dishes | Affordable Packed Meals Delivered in Nairobi CBD</title>
-    <meta name="description" content="Order affordable, healthy, microwavable packed meals delivered within Nairobi CBD. Meals from KES 100. Order by 11:30 AM Mon–Fri. Weekly &amp; monthly meal subscriptions available.">
+    <meta name="description" content="Order affordable, healthy, microwavable packed meals delivered within Nairobi CBD. Meals from KES 100. Order by 13:30 PM Mon–Fri. Weekly &amp; monthly meal subscriptions available.">
     <meta name="keywords" content="packed meals Nairobi, affordable lunch Nairobi CBD, food delivery Nairobi, meal subscription Nairobi, healthy packed food Kenya, rice and beans Nairobi, pilau delivery Nairobi">
     <meta name="author" content="Nairobi Dishes">
     <meta name="robots" content="index, follow">
@@ -15,13 +15,13 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nairobidishes.com/">
     <meta property="og:title" content="Nairobi Dishes | Packed Meals from KES 100">
-    <meta property="og:description" content="Affordable, healthy, microwavable packed meals delivered within Nairobi CBD. Order by 11:30 AM Mon–Fri. Subscriptions from KES 500/week.">
+    <meta property="og:description" content="Affordable, healthy, microwavable packed meals delivered within Nairobi CBD. Order by 13:30 PM Mon–Fri. Subscriptions from KES 500/week.">
     <meta property="og:image" content="https://nairobidishes.com/Nairobidishes.png">
     <meta property="og:locale" content="en_KE">
     <meta property="og:site_name" content="Nairobi Dishes">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Nairobi Dishes | Packed Meals from KES 100">
-    <meta name="twitter:description" content="Affordable, healthy, microwavable packed meals delivered within Nairobi CBD. Order by 11:30 AM Mon–Fri.">
+    <meta name="twitter:description" content="Affordable, healthy, microwavable packed meals delivered within Nairobi CBD. Order by 13:30 PM Mon–Fri.">
     <meta name="twitter:image" content="https://nairobidishes.com/Nairobidishes.png">
 
     <link rel="icon" type="image/png" href="Nairobidishes.png">
@@ -651,11 +651,11 @@
     <div class="notice-strip">
         <div class="notice-row" onclick="toggleNotice(this)">
             <span class="notice-icon">⏰</span>
-            <span class="notice-text">Orders close at <strong>11:30 AM</strong> <span>· Mon – Fri</span></span>
+            <span class="notice-text">Orders close at <strong>13:30 PM</strong> <span>· Mon – Fri</span></span>
             <span class="notice-chevron">›</span>
         </div>
         <div class="notice-expand">
-            To keep deliveries on time and reduce logistics costs, we stop taking orders at 11:30 AM on weekdays. No weekend orders.
+            To keep deliveries on time and reduce logistics costs, we stop taking orders at 13:30 PM on weekdays. No weekend orders.
         </div>
         <div class="notice-row" onclick="toggleNotice(this)">
             <span class="notice-icon">📍</span>
@@ -708,8 +708,8 @@
         <div class="closed-emoji">🍱</div>
         <div class="closed-title">Orders closed for today</div>
         <div class="closed-sub">
-            We stopped taking orders at 11:30 AM.<br>
-            Come back tomorrow (Mon–Fri) before 11:30 AM.<br><br>
+            We stopped taking orders at 13:30 PM.<br>
+            Come back tomorrow (Mon–Fri) before 13:30 PM.<br><br>
             You can still sign up for a subscription below!
         </div>
         <a href="https://wa.me/254714243150" target="_blank"
@@ -718,7 +718,7 @@
         </a>
     </div>
 
-    <!-- Menu (hidden after 11:30 AM EAT) -->
+    <!-- Menu (hidden after 13:30 PM EAT) -->
     <div id="menu-section">
         <div class="menu-label">Today's Menu</div>
         <div id="menu-container"></div>
@@ -793,7 +793,7 @@
     function isOrderingClosed() {
         const { hour, min, day } = getEAT();
         const isWeekend = (day === 0 || day === 6);
-        const isPastCutoff = (hour > 14) || (hour === 14 && min >= 30);
+        const isPastCutoff = (hour > 15) || (hour === 15 && min >= 30);
         return isWeekend || isPastCutoff;
     }
 
@@ -813,8 +813,8 @@
         const sub = document.querySelector('.closed-sub');
         if (sub) {
             sub.innerHTML = isWeekend
-                ? "We only operate Monday to Friday.<br>Come back on Monday before 11:30 AM!<br><br>You can still sign up for a subscription above!<br>⏰ Pro tip: Ordering early helps us plan better and deliver faster!"
-                : "We stopped taking orders at 11:30 AM.<br>Come back tomorrow (Mon–Fri) before 11:30 AM.<br><br>You can still sign up for a subscription above!<br>⏰ Pro tip: Ordering early helps us plan better and deliver faster!";
+                ? "We only operate Monday to Friday.<br>Come back on Monday before 13:30 PM!<br><br>You can still sign up for a subscription above!<br>⏰ Pro tip: Ordering early helps us plan better and deliver faster!"
+                : "We stopped taking orders at 13:30 PM.<br>Come back tomorrow (Mon–Fri) before 13:30 PM.<br><br>You can still sign up for a subscription above!<br>⏰ Pro tip: Ordering early helps us plan better and deliver faster!";
         }
     }
 
