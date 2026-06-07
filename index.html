@@ -42,7 +42,7 @@
         "openingHoursSpecification": [{
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-            "opens": "07:00", "closes": "11:30"
+            "opens": "07:00", "closes": "13:30"
         }]
     }
     </script>
@@ -793,7 +793,7 @@
     function isOrderingClosed() {
         const { hour, min, day } = getEAT();
         const isWeekend = (day === 0 || day === 6);
-        const isPastCutoff = (hour > 11) || (hour === 11 && min >= 30);
+        const isPastCutoff = (hour > 14) || (hour === 14 && min >= 30);
         return isWeekend || isPastCutoff;
     }
 
@@ -916,8 +916,8 @@
     /* ── SUBSCRIPTION ── */
     function subscribeViaWA(plan) {
         const label = plan === 'weekly'
-            ? 'Weekly Plan (5 days – KES 500/week)'
-            : 'Monthly Plan (20 days – KES 2,000/month)';
+            ? 'Weekly Plan (5 days – KES 750/week)'
+            : 'Monthly Plan (20 days – KES 3,000/month)';
         const msg = [
             '👋 Hello Nairobi Dishes!',
             '',
