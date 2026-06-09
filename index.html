@@ -789,7 +789,7 @@
     function isOrderingClosed() {
         const { hour, min, day } = getEAT();
         const isWeekend = (day === 0 || day === 6);
-        const isPastCutoff = (hour > 15) || (hour === 15 && min >= 30);
+        const isPastCutoff = (hour > 21) || (hour === 21 && min >= 30);
         return isWeekend || isPastCutoff;
     }
 
