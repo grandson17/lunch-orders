@@ -892,7 +892,6 @@
             `*Total:* KES ${total}`,
             `*Delivery:* ${location}, Nairobi CBD`,
             '',
-            'Please trigger M-Pesa. Asante! 🙏'
         ].join('\n');
         const enc = encodeURIComponent(msg);
         window.location.href = type === 'wa'
@@ -920,7 +919,6 @@
             '',
             `I'd like to subscribe to the *${label}*.`,
             '',
-            'Please share the payment details. Asante! 🙏'
         ].join('\n');
         window.location.href = `https://wa.me/${MY_PHONE}?text=${encodeURIComponent(msg)}`;
     }
