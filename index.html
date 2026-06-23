@@ -655,7 +655,7 @@
             <span class="notice-chevron">›</span>
         </div>
         <div class="notice-expand">
-            To keep deliveries on time and reduce logistics costs, we stop taking orders at 14:30 PM on weekdays. No weekend orders.
+            To keep deliveries on time and reduce logistics costs, we stop taking orders at 11:30 PM on weekdays. No weekend orders.
         </div>
         <div class="notice-row" onclick="toggleNotice(this)">
             <span class="notice-icon">📍</span>
@@ -797,7 +797,7 @@
     function isOrderingClosed() {
         const { hour, min, day } = getEAT();
         const isWeekend = (day === 0 || day === 6);
-        const isPastCutoff = (hour > 14) || (hour === 14 && min >= 30);
+        const isPastCutoff = (hour > 11) || (hour === 11 && min >= 30);
         return isWeekend || isPastCutoff;
     }
 
