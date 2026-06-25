@@ -1,936 +1,1219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Nairobi Dishes | Affordable Packed Meals Delivered in Nairobi CBD</title>
+<meta name="description" content="Order affordable, healthy, microwavable packed meals delivered within Nairobi CBD. Meals from KES 100. Order by 11:30 AM Mon–Fri.">
+<meta name="theme-color" content="#FFC244">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Nairobi Dishes">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="Nairobidishes.png">
+<link rel="apple-touch-icon" href="Nairobidishes.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20,400,0,0&display=swap" rel="stylesheet">
+<style>
+:root{
+  --yellow:#FFC244;--yellow-tint:#FFF3D6;--yellow-dark:#d4950a;
+  --green:#00b960;--green-dark:#008f48;--green-tint:#e6f9ee;
+  --dark:#1A1A1A;--mid:#5C5C5C;--muted:#8A8A8A;
+  --light:#F5F5F5;--white:#fff;
+  --red:#E74C3C;--red-tint:#FDECEA;
+  --border:#EEEEEE;--border2:#F2F2F2;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{height:100%;}
+body{font-family:'Nunito Sans',sans-serif;background:#e8e8e8;color:var(--dark);-webkit-font-smoothing:antialiased;height:100%;overflow:hidden;}
+.ms{font-family:'Material Symbols Rounded';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;-webkit-font-feature-settings:'liga';}
+.msfill{font-variation-settings:'FILL' 1;}
+::-webkit-scrollbar{width:0;height:0;}
 
-    <!-- Primary SEO -->
-    <title>Nairobi Dishes | Affordable Packed Meals Delivered in Nairobi CBD</title>
-    <meta name="description" content="Order affordable, healthy, microwavable packed meals delivered within Nairobi CBD. Meals from KES 100. Order by 11:30 PM Mon–Fri. Weekly &amp; monthly meal subscriptions available.">
-    <meta name="keywords" content="packed meals Nairobi, affordable lunch Nairobi CBD, food delivery Nairobi, meal subscription Nairobi, healthy packed food Kenya, rice and beans Nairobi, pilau delivery Nairobi">
-    <meta name="author" content="Nairobi Dishes">
-    <meta name="robots" content="index, follow">
+/* ── DESKTOP SHELL ── */
+#desktop-shell{
+  display:none;
+  min-height:100vh;
+  background:#f0f0f0;
+  align-items:flex-start;
+  justify-content:center;
+  gap:32px;
+  padding:40px 32px;
+}
+#desktop-sidebar{
+  width:260px;
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  position:sticky;
+  top:40px;
+}
+.ds-brand{background:var(--yellow);border-radius:20px;padding:24px 20px;text-align:center;}
+.ds-brand-logo{width:80px;height:80px;border-radius:50%;object-fit:cover;margin-bottom:10px;}
+.ds-brand-name{font:700 18px Poppins,sans-serif;color:var(--dark);}
+.ds-brand-tag{font-size:10px;color:rgba(26,26,26,.6);letter-spacing:.08em;margin-top:3px;}
+.ds-card{background:var(--white);border-radius:18px;padding:18px 20px;}
+.ds-card-title{font:700 12px Poppins,sans-serif;color:var(--muted);letter-spacing:.07em;margin-bottom:12px;}
+.ds-nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:11px;cursor:pointer;font:600 13px Poppins,sans-serif;color:var(--mid);margin-bottom:2px;transition:all .15s;}
+.ds-nav-item:hover{background:var(--light);}
+.ds-nav-item.active{background:var(--green-tint);color:var(--green);}
+.ds-nav-item .ms{font-size:19px;}
+.ds-info-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--mid);padding:5px 0;border-bottom:.5px solid var(--border2);}
+.ds-info-row:last-child{border-bottom:none;}
+.ds-info-row strong{color:var(--dark);font-weight:700;}
+#desktop-main{flex:1;max-width:560px;}
+.ds-main-section{display:none;}
+.ds-main-section.active{display:block;}
+.ds-section-title{font:700 22px Poppins,sans-serif;color:var(--dark);margin-bottom:4px;}
+.ds-section-sub{font-size:12px;color:var(--muted);margin-bottom:20px;}
+.ds-menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.ds-dish-card{background:var(--white);border-radius:16px;overflow:hidden;border:1.5px solid var(--border);transition:border-color .15s;}
+.ds-dish-card.has-qty{border-color:var(--yellow);}
+.ds-dish-img{height:90px;background:repeating-linear-gradient(45deg,#FFF3D6,#FFF3D6 8px,#FFE7AE 8px,#FFE7AE 16px);position:relative;}
+.ds-dish-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.ds-dish-body{padding:10px 12px 12px;}
+.ds-dish-name{font:700 13px Poppins,sans-serif;color:var(--dark);}
+.ds-dish-desc{font-size:10.5px;color:var(--muted);margin-top:2px;line-height:1.4;}
+.ds-dish-footer{display:flex;align-items:center;justify-content:space-between;margin-top:8px;}
+.ds-dish-price{font:700 13px Poppins,sans-serif;color:var(--green);}
+.ds-banner{background:var(--yellow-tint);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;margin-bottom:16px;}
+.ds-sub-card{background:var(--dark);border-radius:18px;padding:18px 20px;margin-bottom:16px;}
+.ds-weekly-table{background:var(--white);border-radius:16px;overflow:hidden;border:1px solid var(--border);margin-bottom:16px;}
+.ds-weekly-table-head{display:grid;grid-template-columns:60px 1fr auto;background:var(--dark);padding:10px 16px;gap:10px;}
+.ds-weekly-table-head span{font:700 10px Poppins,sans-serif;color:#9A9A9A;letter-spacing:.06em;}
+.ds-weekly-row{display:grid;grid-template-columns:60px 1fr auto;padding:11px 16px;gap:10px;border-top:.5px solid var(--border2);align-items:center;}
+.ds-weekly-row.today{background:#FFF8E8;}
+.ds-pop-list{background:var(--white);border-radius:16px;overflow:hidden;border:1px solid var(--border);}
+.ds-pop-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-top:.5px solid var(--border2);}
+.ds-pop-row:first-child{border-top:none;}
+.ds-order-sidebar{width:300px;flex-shrink:0;position:sticky;top:40px;}
+.ds-order-card{background:var(--white);border-radius:18px;padding:18px 20px;}
+.ds-order-empty{text-align:center;padding:32px 0;color:var(--muted);font-size:13px;}
 
-    <link rel="canonical" href="https://nairobidishes.com/">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nairobidishes.com/">
-    <meta property="og:title" content="Nairobi Dishes | Packed Meals from KES 100">
-    <meta property="og:description" content="Affordable, healthy, microwavable packed meals delivered within Nairobi CBD. Order by 11:30 PM Mon–Fri. Subscriptions from KES 750/week.">
-    <meta property="og:image" content="https://nairobidishes.com/Nairobidishes.png">
-    <meta property="og:locale" content="en_KE">
-    <meta property="og:site_name" content="Nairobi Dishes">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Nairobi Dishes | Packed Meals from KES 100">
-    <meta name="twitter:description" content="Affordable, healthy, microwavable packed meals delivered within Nairobi CBD. Order by 11:30 PM Mon–Fri.">
-    <meta name="twitter:image" content="https://nairobidishes.com/Nairobidishes.png">
+/* ── MOBILE SHELL ── */
+#mobile-shell{
+  display:flex;
+  align-items:stretch;
+  justify-content:center;
+  height:100%;
+}
+#app{
+  width:100%;
+  max-width:430px;
+  background:var(--white);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  position:relative;
+  height:100%;
+}
+/* wider mobile gets a card look */
+@media(min-width:500px) and (max-width:1023px){
+  body{background:#e8e8e8;overflow:auto;}
+  #mobile-shell{height:auto;min-height:100vh;align-items:flex-start;padding:24px 0;}
+  #app{border-radius:36px;height:780px;box-shadow:0 20px 60px rgba(0,0,0,.2);margin:0 auto;}
+}
 
-    <link rel="icon" type="image/png" href="Nairobidishes.png">
-    <link rel="apple-touch-icon" href="Nairobidishes.png">
+/* ── RESPONSIVE BREAKPOINT ── */
+@media(min-width:1024px){
+  body{overflow:auto;}
+  #desktop-shell{display:flex;}
+  #mobile-shell{display:none;}
+}
+@media(max-width:1023px){
+  #desktop-shell{display:none;}
+  #mobile-shell{display:flex;}
+}
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FoodEstablishment",
-        "name": "Nairobi Dishes",
-        "description": "Affordable, healthy, microwavable packed meals delivered within Nairobi CBD. Meals from KES 100.",
-        "url": "https://nairobidishes.com",
-        "logo": "https://nairobidishes.com/Nairobidishes.png",
-        "telephone": "+254784132601",
-        "priceRange": "KES 100-120",
-        "servesCuisine": "Kenyan",
-        "areaServed": { "@type": "Place", "name": "Nairobi CBD, Kenya" },
-        "openingHoursSpecification": [{
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-            "opens": "07:00", "closes": "11:30"
-        }]
-    }
-    </script>
+/* SPLASH */
+#splash{position:absolute;inset:0;background:var(--yellow);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;transition:opacity .4s;}
+#splash.hide{opacity:0;pointer-events:none;}
+.splash-logo{width:180px;height:180px;border-radius:50%;object-fit:cover;}
+.splash-tagline{font:700 18px Poppins,sans-serif;color:var(--dark);margin-top:20px;text-align:center;line-height:1.3;}
+.splash-loader-wrap{margin-top:32px;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.splash-loader-track{width:120px;height:3px;background:rgba(26,26,26,.15);border-radius:3px;overflow:hidden;}
+@keyframes ndLoad{0%{transform:translateX(-100%)}100%{transform:translateX(400%)}}
+.splash-loader-fill{width:38%;height:100%;background:var(--dark);border-radius:3px;animation:ndLoad 1.5s ease-in-out infinite;}
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+/* SCREENS */
+.screen{display:none;flex-direction:column;flex:1;overflow:hidden;background:var(--white);}
+.screen.active{display:flex;}
+.status-bar{height:36px;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font:600 11px Poppins,sans-serif;color:var(--dark);background:var(--white);}
+.status-icons{display:flex;gap:5px;align-items:center;}
 
-    <style>
-        :root {
-            --yellow: #FFC244;
-            --green: #00A082;
-            --dark: #1A1A1A;
-            --mid: #555;
-            --light: #F5F5F5;
-            --white: #fff;
-            --red: #E74C3C;
-            --border: #E8E8E8;
-        }
-        * { box-sizing: border-box; }
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            margin: 0;
-            background: var(--light);
-            color: var(--dark);
-            -webkit-font-smoothing: antialiased;
-        }
+/* TAB BAR */
+#tab-bar{height:62px;flex:0 0 auto;border-top:1px solid var(--border);display:flex;background:var(--white);z-index:10;}
+.tab-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;color:var(--muted);transition:color .15s;}
+.tab-item.active{color:var(--green);}
+.tab-item span.ms{font-size:23px;}
+.tab-item .tab-label{font:600 9px Poppins,sans-serif;}
+.tab-item.active .tab-label{font-weight:700;}
 
-        /* ── HEADER ── */
-        header {
-            background: var(--yellow);
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            gap: 11px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-        }
-        .logo {
-            width: 44px; height: 44px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid rgba(255,255,255,0.7);
-            flex-shrink: 0;
-        }
-        .header-text h1 {
-            margin: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 800;
-            line-height: 1.1;
-        }
-        .header-sub {
-            font-size: 0.68rem;
-            font-weight: 500;
-            opacity: 0.75;
-            margin-top: 2px;
-        }
+/* SCROLL AREAS */
+.scroll-area{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 
-        /* ── CONTAINER ── */
-        .container {
-            padding: 12px 14px 120px;
-            max-width: 480px;
-            margin: 0 auto;
-        }
+/* GREETING */
+.today-header{padding:8px 18px 4px;display:flex;justify-content:space-between;align-items:center;}
+.greeting-name{font:700 19px Poppins,sans-serif;color:var(--dark);}
+.greeting-sub{font-size:11px;color:var(--muted);margin-top:1px;}
+.avatar-circle{width:38px;height:38px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font:700 13px Poppins,sans-serif;color:var(--dark);flex-shrink:0;}
 
-        /* ── NOTICE STRIP ── */
-        .notice-strip {
-            background: var(--white);
-            border-radius: 14px;
-            margin-bottom: 14px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .notice-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 11px 14px;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.82rem;
-            cursor: pointer;
-            transition: background 0.15s;
-        }
-        .notice-row:last-child { border-bottom: none; }
-        .notice-row:active { background: #fafafa; }
-        .notice-icon { font-size: 1rem; flex-shrink: 0; }
-        .notice-text { flex: 1; font-weight: 500; color: var(--dark); }
-        .notice-text span { color: var(--mid); font-weight: 400; }
-        .notice-chevron { color: #bbb; font-size: 0.75rem; transition: transform 0.2s; }
-        .notice-row.open .notice-chevron { transform: rotate(90deg); }
-        .notice-expand {
-            display: none;
-            padding: 0 14px 12px 34px;
-            font-size: 0.78rem;
-            color: var(--mid);
-            line-height: 1.5;
-            border-top: 1px solid var(--border);
-        }
-        .notice-expand.visible { display: block; }
+/* SEGMENTED */
+.seg-wrap{margin:10px 16px 0;padding:3px;background:#F2F2F2;border-radius:13px;display:flex;gap:3px;}
+.seg-btn{flex:1;text-align:center;padding:8px;border-radius:10px;font:600 11px Poppins,sans-serif;color:var(--muted);cursor:pointer;border:none;background:transparent;}
+.seg-btn.active{background:var(--white);color:var(--dark);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.1);}
 
-        /* ── SUBSCRIPTION CARDS ── */
-        .sub-section-title {
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            color: var(--mid);
-            margin: 16px 2px 8px;
-        }
-        .sub-cards-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-        .sub-card-full {
-            background: var(--white);
-            border-radius: 14px;
-            padding: 12px 12px 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .sub-card-full::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-        }
-        .sub-card-full.weekly::before { background: var(--yellow); }
-        .sub-card-full.monthly::before { background: var(--green); }
-        .sub-badge {
-            font-size: 0.58rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 2px 6px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 5px;
-        }
-        .sub-card-full.weekly .sub-badge { background: #FFF3CD; color: #7A5300; }
-        .sub-card-full.monthly .sub-badge { background: #E8F8F5; color: #005C49; }
-        .sub-card-title {
-            font-size: 0.88rem;
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
-        .sub-price {
-            font-size: 1.05rem;
-            font-weight: 800;
-            color: var(--green);
-            margin-bottom: 8px;
-        }
-        .sub-card-full.weekly .sub-price { color: #C98000; }
-        .sub-per { font-size: 0.7rem; font-weight: 500; color: var(--mid); }
-        .sub-perks {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            flex: 1;
-        }
-        .sub-perks li {
-            font-size: 0.73rem;
-            color: var(--mid);
-            line-height: 1.35;
-        }
-        .sub-subscribe-btn {
-            width: calc(100% + 24px);
-            margin: 10px -12px 0;
-            padding: 11px;
-            border: none;
-            border-radius: 0 0 14px 14px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: opacity 0.15s, transform 0.1s;
-            display: block;
-        }
-        .sub-subscribe-btn:active { opacity: 0.85; }
-        .weekly-btn { background: var(--yellow); color: var(--dark); }
-        .monthly-btn { background: var(--green); color: white; }
+/* BANNER */
+.banner{margin:10px 16px 0;padding:12px 13px;border-radius:14px;display:flex;gap:10px;align-items:flex-start;}
+.banner-title{font:700 12.5px Poppins,sans-serif;}
+.banner-text{font-size:11px;color:var(--mid);margin-top:2px;line-height:1.45;}
 
-        /* ── MENU LABEL ── */
-        .menu-label {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            color: var(--mid);
-            margin: 4px 2px 10px;
-        }
+/* SECTION HEADING */
+.sec-head{padding:14px 16px 6px;display:flex;align-items:baseline;justify-content:space-between;}
+.sec-title{font:700 15px Poppins,sans-serif;color:var(--dark);}
+.sec-sub{font:700 10px Poppins,sans-serif;color:var(--green);}
 
-        /* ── FOOD CARDS ── */
-        .food-card {
-            background: var(--white);
-            border-radius: 14px;
-            margin-bottom: 9px;
-            display: flex;
-            align-items: center;
-            padding: 10px 12px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-            gap: 12px;
-        }
-        .food-img {
-            width: 60px; height: 60px;
-            border-radius: 10px;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-        .food-info { flex: 1; min-width: 0; }
-        .food-info h3 {
-            margin: 0 0 3px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 700;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .price { font-weight: 600; color: var(--green); font-size: 0.88rem; }
-        .add-btn {
-            background: var(--yellow);
-            border: none;
-            width: 34px; height: 34px;
-            border-radius: 50%;
-            font-size: 1.3rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: transform 0.1s;
-        }
-        .add-btn:active { transform: scale(0.88); }
+/* FEATURED CARD */
+.featured-card{margin:0 16px;border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.featured-img{height:110px;background:repeating-linear-gradient(45deg,#FFF3D6,#FFF3D6 8px,#FFE7AE 8px,#FFE7AE 16px);position:relative;}
+.featured-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.chef-pill{position:absolute;top:9px;left:9px;background:var(--green);color:var(--white);font:700 9px Poppins,sans-serif;padding:3px 9px;border-radius:20px;z-index:1;}
+.featured-bottom{padding:11px 13px;display:flex;align-items:center;gap:10px;}
+.featured-info{flex:1;min-width:0;}
+.featured-name{font:700 14px Poppins,sans-serif;color:var(--dark);}
+.featured-desc{font-size:10.5px;color:var(--muted);margin-top:1px;line-height:1.4;}
+.featured-price{font:700 14px Poppins,sans-serif;color:var(--green);margin-top:6px;}
 
-        /* ── CLOSED STATE ── */
-        .closed-state {
-            display: none;
-            background: var(--white);
-            border-radius: 14px;
-            padding: 28px 20px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            margin-bottom: 14px;
-        }
-        .closed-emoji { font-size: 2.5rem; margin-bottom: 10px; }
-        .closed-title {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-        .closed-sub { font-size: 0.82rem; color: var(--mid); line-height: 1.5; }
+/* DISH ROWS */
+.dish-list{padding-bottom:8px;}
+.dish-row{margin:0 16px 8px;padding:9px 10px;border:1px solid var(--border);border-radius:14px;display:flex;align-items:center;gap:10px;transition:border-color .15s;}
+.dish-row.has-qty{border-color:var(--yellow);}
+.dish-row.soldout{opacity:.55;}
+.dish-thumb{width:52px;height:52px;border-radius:10px;object-fit:cover;flex:0 0 auto;background:repeating-linear-gradient(45deg,#F1F5F4,#F1F5F4 6px,#E4EEEC 6px,#E4EEEC 12px);}
+.dish-info{flex:1;min-width:0;}
+.dish-name{font:700 12.5px Poppins,sans-serif;color:var(--dark);}
+.dish-desc{font-size:10px;color:#9A9A9A;margin-top:1px;line-height:1.35;}
+.dish-price{font:700 12px Poppins,sans-serif;color:var(--green);margin-top:4px;}
 
-        /* ── CART BAR ── */
-        .cart-bar {
-            position: fixed;
-            bottom: 16px; left: 14px; right: 14px;
-            background: var(--green);
-            color: var(--white);
-            padding: 14px 16px;
-            border-radius: 16px;
-            display: none;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 8px 24px rgba(0,160,130,0.35);
-            z-index: 200;
-            max-width: 452px;
-            margin: 0 auto;
-        }
-        .cart-bar-info { font-size: 0.8rem; opacity: 0.85; }
-        .cart-bar-total { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; font-weight: 700; }
-        .cart-bar button {
-            background: var(--white);
-            border: none;
-            color: var(--green);
-            padding: 10px 18px;
-            border-radius: 10px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
+/* QTY STEPPER — yellow */
+.qty-wrap{display:flex;align-items:center;flex-shrink:0;}
+.qty-btn{width:28px;height:28px;border:1.5px solid var(--yellow);background:var(--white);color:var(--yellow-dark);font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.qty-btn.minus{border-radius:8px 0 0 8px;}
+.qty-btn.plus{border-radius:0 8px 8px 0;}
+.qty-num{min-width:24px;height:28px;border-top:1.5px solid var(--yellow);border-bottom:1.5px solid var(--yellow);display:flex;align-items:center;justify-content:center;font:700 12px Poppins,sans-serif;color:var(--yellow-dark);background:var(--yellow-tint);}
+.add-btn{border:none;border-radius:10px;font:700 11px Poppins,sans-serif;padding:8px 13px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.add-btn.default{background:var(--yellow-tint);color:var(--yellow-dark);}
+.add-btn.soldout{background:var(--red-tint);color:var(--red);cursor:default;}
+.add-btn.closed{background:#F0F0F0;color:#A8A8A8;cursor:default;}
+.add-btn.weekly-sel{background:var(--yellow);color:var(--dark);font-weight:700;}
 
-        /* ── MODALS (shared) ── */
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.65);
-            justify-content: center;
-            align-items: flex-end;
-            z-index: 300;
-        }
-        .modal-content {
-            background: var(--white);
-            width: 100%;
-            max-width: 480px;
-            padding: 24px 18px 32px;
-            border-radius: 22px 22px 0 0;
-            text-align: center;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        .modal-handle {
-            width: 36px; height: 4px;
-            background: var(--border);
-            border-radius: 2px;
-            margin: 0 auto 18px;
-        }
-        .modal-title {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 800;
-            margin: 0 0 4px;
-        }
-        .modal-subtitle {
-            font-size: 0.8rem;
-            color: var(--mid);
-            margin-bottom: 16px;
-        }
+/* WEEKLY */
+.weekly-card{margin:14px 16px 0;border-radius:16px;overflow:hidden;border:1px solid var(--border);}
+.weekly-card-head{background:var(--dark);padding:12px 14px;display:flex;justify-content:space-between;align-items:center;}
+.weekly-card-title{font:700 13px Poppins,sans-serif;color:var(--yellow);}
+.weekly-card-sub{font-size:10px;color:#BDBDBD;margin-top:1px;}
+.weekly-row{border-top:1px solid #F1F1F1;}
+.weekly-row.today-row .wr-day{color:#E8A317;}
+.wr-head{display:flex;align-items:center;padding:10px 14px;gap:10px;cursor:pointer;}
+.wr-day{width:32px;flex:0 0 auto;font:700 10px Poppins,sans-serif;color:var(--muted);}
+.wr-summary{flex:1;font:600 12px Poppins,sans-serif;color:var(--dark);}
+.wr-status{font-size:15px;flex:0 0 auto;}
+/* expanded day panel */
+.wr-panel{display:none;background:#FAFAFA;border-top:1px solid var(--border2);padding:10px 14px 14px;}
+.wr-panel.open{display:block;}
+.wr-panel-title{font:700 10px Poppins,sans-serif;color:var(--muted);letter-spacing:.06em;margin-bottom:8px;}
+.wr-meal-option{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--white);border:1.5px solid var(--border);border-radius:12px;margin-bottom:6px;cursor:pointer;transition:border-color .15s;}
+.wr-meal-option.selected{border-color:var(--yellow);background:var(--yellow-tint);}
+.wr-meal-name{flex:1;font:600 12px Poppins,sans-serif;color:var(--dark);}
+.wr-meal-price{font:700 11px Poppins,sans-serif;color:var(--green);}
+.wr-check{font-size:18px;flex:0 0 auto;}
+.wr-confirm-btn{width:100%;border:none;border-radius:11px;background:#25D366;color:var(--white);font:700 13px Poppins,sans-serif;padding:12px;cursor:pointer;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.wr-change-btn{width:100%;border:1.5px solid var(--border);border-radius:11px;background:var(--white);color:var(--mid);font:700 12px Poppins,sans-serif;padding:10px;cursor:pointer;margin-top:6px;}
+.wr-pending-note{font-size:10.5px;color:var(--muted);text-align:center;margin-top:6px;line-height:1.5;}
 
-        /* ── ORDER CHECKOUT ── */
-        .order-list {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 12px 14px;
-            text-align: left;
-            margin-bottom: 4px;
-        }
-        .order-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            padding: 4px 0;
-            border-bottom: 1px solid var(--border);
-        }
-        .order-row:last-child { border-bottom: none; }
-        .order-total {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            text-align: right;
-            padding: 10px 0 4px;
-        }
-        .field-group { text-align: left; margin: 12px 0; }
-        .field-label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 6px; }
-        .field-label .req { color: var(--red); }
-        .field-input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1.5px solid var(--border);
-            border-radius: 11px;
-            font-size: 0.9rem;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            outline: none;
-            transition: border-color 0.18s;
-        }
-        .field-input:focus { border-color: var(--green); }
-        .field-input.err { border-color: var(--red); }
-        .field-hint { font-size: 0.72rem; color: var(--mid); margin-top: 5px; }
-        .field-err { font-size: 0.72rem; color: var(--red); margin-top: 5px; display: none; }
-        .cbd-note {
-            background: #FFF8E7;
-            border-radius: 10px;
-            padding: 9px 12px;
-            font-size: 0.76rem;
-            color: #7A5300;
-            text-align: left;
-            margin-bottom: 14px;
-            display: flex;
-            gap: 7px;
-            align-items: flex-start;
-        }
-        .method-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            padding: 15px;
-            margin: 9px 0;
-            border-radius: 13px;
-            text-decoration: none;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            border: none;
-        }
-        .wa { background: #25D366; color: white; }
-        .sms-btn { background: #007AFF; color: white; }
-        .clear-btn {
-            background: none;
-            border: none;
-            color: var(--red);
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-decoration: underline;
-            padding: 8px;
-            cursor: pointer;
-        }
+/* ORDER BAR */
+#order-bar{flex:0 0 auto;padding:9px 14px 11px;border-top:1px solid var(--border);background:var(--white);display:none;}
+.order-bar-inner{display:flex;align-items:center;gap:10px;}
+.order-bar-left{flex:1;}
+.order-bar-count{font-size:10px;color:var(--muted);}
+.order-bar-total{font:700 16px Poppins,sans-serif;color:var(--dark);}
+.order-bar-btn{border:none;border-radius:12px;background:var(--green);color:var(--white);font:700 12px Poppins,sans-serif;padding:11px 15px;cursor:pointer;display:flex;align-items:center;gap:6px;flex-shrink:0;}
 
-        /* ── SUBSCRIPTION MENU PICKER ── */
-        .sub-modal-content {
-            background: var(--white);
-            width: 100%;
-            max-width: 480px;
-            border-radius: 22px 22px 0 0;
-            max-height: 92vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        .sub-modal-header {
-            padding: 20px 18px 14px;
-            border-bottom: 1px solid var(--border);
-            flex-shrink: 0;
-        }
-        .sub-modal-body {
-            flex: 1;
-            overflow-y: auto;
-            padding: 16px 18px;
-        }
-        .sub-modal-footer {
-            padding: 14px 18px 28px;
-            border-top: 1px solid var(--border);
-            flex-shrink: 0;
-            background: var(--white);
-        }
+/* SUCCESS BAR */
+#success-bar{flex:0 0 auto;padding:11px 14px;border-top:1px solid var(--border);background:var(--green-tint);display:none;align-items:center;gap:10px;}
 
-        /* step progress */
-        .step-progress {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 14px;
-        }
-        .step-dot {
-            flex: 1;
-            height: 4px;
-            border-radius: 2px;
-            background: var(--border);
-            transition: background 0.25s;
-        }
-        .step-dot.done { background: var(--green); }
-        .step-dot.active { background: var(--yellow); }
+/* CLOSED */
+.closed-state{padding:32px 20px;text-align:center;}
+.wa-btn-green{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:var(--white);padding:13px 22px;border-radius:12px;text-decoration:none;font:700 13px Poppins,sans-serif;}
 
-        .day-label {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1rem;
-            font-weight: 800;
-            margin-bottom: 4px;
-        }
-        .day-sublabel {
-            font-size: 0.78rem;
-            color: var(--mid);
-            margin-bottom: 14px;
-        }
+/* POPULAR */
+.hero-rank-card{margin:12px 16px 0;border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.hero-rank-img{height:100px;background:repeating-linear-gradient(45deg,#FFF3D6,#FFF3D6 8px,#FFE7AE 8px,#FFE7AE 16px);position:relative;}
+.hero-rank-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.rank1-pill{position:absolute;top:9px;left:9px;background:var(--dark);color:var(--yellow);font:700 9px Poppins,sans-serif;padding:3px 9px;border-radius:20px;z-index:1;}
+.rank-list{margin:4px 16px 0;}
+.rank-row{display:flex;align-items:center;gap:9px;padding:7px 0;border-top:.5px solid var(--border2);}
+.rank-num{width:18px;text-align:center;font:700 11px Poppins,sans-serif;color:#B0B0B0;flex:0 0 auto;}
+.rank-num.top{color:var(--dark);}
+.rank-info{flex:1;min-width:0;}
+.rank-name{font:600 11.5px Poppins,sans-serif;color:var(--dark);margin-bottom:4px;}
+.rank-track{height:7px;background:#F0F0F0;border-radius:4px;overflow:hidden;}
+.rank-fill{height:100%;border-radius:4px;background:#9FD8CC;}
+.rank-fill.top{background:var(--green);}
+.rank-pct{font:700 11px Poppins,sans-serif;color:var(--dark);width:30px;text-align:right;flex:0 0 auto;}
+.tip-card{margin:12px 16px 16px;background:var(--yellow-tint);border-radius:12px;padding:10px 12px;display:flex;gap:9px;align-items:flex-start;}
 
-        /* meal option rows inside picker */
-        .meal-option {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 11px 12px;
-            border-radius: 12px;
-            border: 2px solid var(--border);
-            margin-bottom: 8px;
-            cursor: pointer;
-            transition: border-color 0.15s, background 0.15s;
-        }
-        .meal-option.selected {
-            border-color: var(--green);
-            background: #E8F8F5;
-        }
-        .meal-option-img {
-            width: 48px; height: 48px;
-            border-radius: 8px;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-        .meal-option-info { flex: 1; }
-        .meal-option-name {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
-        .meal-option-price { font-size: 0.78rem; color: var(--green); font-weight: 600; }
-        .meal-option-check {
-            width: 22px; height: 22px;
-            border-radius: 50%;
-            border: 2px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            color: transparent;
-            flex-shrink: 0;
-            transition: all 0.15s;
-        }
-        .meal-option.selected .meal-option-check {
-            background: var(--green);
-            border-color: var(--green);
-            color: white;
-        }
+/* ACCOUNT */
+.account-bg{flex:1;overflow-y:auto;background:var(--light);}
+.profile-header{background:var(--white);padding:16px;display:flex;align-items:center;gap:12px;}
+.profile-avatar{width:52px;height:52px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font:700 16px Poppins,sans-serif;color:var(--dark);flex:0 0 auto;}
+.profile-badge{margin-left:auto;background:var(--green-tint);border-radius:20px;padding:4px 9px;display:flex;align-items:center;gap:4px;}
+.sub-card-dark{margin:12px 14px 0;background:var(--dark);border-radius:16px;overflow:hidden;}
+.list-group{margin:10px 14px 0;background:var(--white);border-radius:14px;overflow:hidden;}
+.list-row{display:flex;align-items:center;gap:10px;padding:11px 13px;border-top:.5px solid var(--border2);cursor:pointer;}
+.list-row:first-child{border-top:none;}
+.list-chevron{font-size:16px;color:#C8C8C8;}
 
-        /* nav buttons */
-        .sub-nav {
-            display: flex;
-            gap: 10px;
-        }
-        .btn-back {
-            background: var(--light);
-            border: none;
-            padding: 14px 20px;
-            border-radius: 12px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            color: var(--mid);
-        }
-        .btn-next {
-            flex: 1;
-            background: var(--green);
-            border: none;
-            padding: 14px;
-            border-radius: 12px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: white;
-            cursor: pointer;
-            transition: opacity 0.15s;
-        }
-        .btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+/* MODAL */
+.modal-overlay{display:none;position:absolute;inset:0;background:rgba(0,0,0,.6);justify-content:flex-end;flex-direction:column;align-items:center;z-index:500;}
+.modal-overlay.open{display:flex;}
+.modal-sheet{background:var(--white);width:100%;max-width:430px;border-radius:22px 22px 0 0;padding:20px 18px 32px;max-height:88vh;overflow-y:auto;}
+.modal-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px;}
+.modal-title{font:700 16px Poppins,sans-serif;color:var(--dark);text-align:center;margin-bottom:14px;}
+.order-list-box{background:var(--light);border-radius:12px;padding:12px 14px;margin-bottom:6px;}
+.order-item-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:.5px solid var(--border2);}
+.order-item-row:last-child{border-bottom:none;}
+.order-item-remove{font-size:13px;color:var(--red);cursor:pointer;margin-left:8px;}
+.cbd-note{background:#FFF8E7;border-radius:10px;padding:9px 12px;font-size:11px;color:#7A5300;display:flex;gap:7px;margin-bottom:12px;}
+.field-group{margin-bottom:14px;}
+.field-label{display:block;font:600 11px Poppins,sans-serif;margin-bottom:6px;color:var(--dark);}
+.field-req{color:var(--red);}
+.field-input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:11px;font:400 14px 'Nunito Sans',sans-serif;outline:none;transition:border-color .18s;color:var(--dark);}
+.field-input:focus{border-color:var(--green);}
+.field-input.err{border-color:var(--red);}
+.field-hint{font-size:10.5px;color:var(--muted);margin-top:4px;}
+.field-err{font-size:10.5px;color:var(--red);margin-top:4px;display:none;}
+.gift-toggle{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:10px 13px;background:var(--green-tint);border-radius:12px;cursor:pointer;}
+.toggle-switch{width:36px;height:20px;background:#ccc;border-radius:20px;position:relative;transition:background .2s;flex-shrink:0;}
+.toggle-switch.on{background:var(--green);}
+.toggle-switch::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;background:var(--white);border-radius:50%;transition:transform .2s;}
+.toggle-switch.on::after{transform:translateX(16px);}
+.wa-order-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:15px;margin:10px 0 6px;border-radius:13px;background:#25D366;color:var(--white);font:700 14px Poppins,sans-serif;text-decoration:none;cursor:pointer;border:none;}
+.clear-link{display:block;text-align:center;font:600 12px 'Nunito Sans',sans-serif;color:var(--red);text-decoration:underline;padding:8px;cursor:pointer;background:none;border:none;width:100%;}
 
-        /* summary step */
-        .summary-day-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 9px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.85rem;
-        }
-        .summary-day-row:last-child { border-bottom: none; }
-        .summary-day { font-weight: 600; color: var(--mid); font-size: 0.78rem; }
-        .summary-meal { font-weight: 600; }
-        .summary-price { color: var(--green); font-size: 0.82rem; }
+/* number check box */
+.num-check-box{background:#FFF8E7;border:1.5px solid #FFE096;border-radius:13px;padding:14px 16px;margin-bottom:16px;}
+.num-check-title{font:700 12.5px Poppins,sans-serif;color:#7A5300;margin-bottom:6px;}
+.num-check-opts{display:flex;gap:8px;margin-bottom:0;}
+.num-check-opt{flex:1;padding:9px;border:1.5px solid var(--border);border-radius:10px;font:600 11px Poppins,sans-serif;color:var(--mid);cursor:pointer;text-align:center;background:var(--white);transition:all .15s;}
+.num-check-opt.active{border-color:var(--green);background:var(--green-tint);color:var(--green-dark);}
 
-        .plan-total-box {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 12px 14px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 12px 0;
-        }
-        .plan-total-label { font-size: 0.82rem; color: var(--mid); }
-        .plan-total-amount {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--green);
-        }
-
-        .renewal-note {
-            background: #E8F8F5;
-            border-radius: 10px;
-            padding: 9px 12px;
-            font-size: 0.75rem;
-            color: #005C49;
-            text-align: left;
-            margin-bottom: 12px;
-            display: flex;
-            gap: 7px;
-        }
-
-        .sub-location-group { text-align: left; margin-bottom: 14px; }
-    </style>
+/* INSTALL BANNER */
+#install-banner{display:none;position:absolute;bottom:70px;left:14px;right:14px;background:var(--dark);border-radius:14px;padding:12px 14px;z-index:400;flex-direction:row;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(0,0,0,.3);}
+#install-banner.show{display:flex;}
+</style>
 </head>
 <body>
 
-<header>
-    <img src="Nairobidishes.png" alt="Logo" class="logo">
-    <div class="header-text">
-        <h1>Nairobi Dishes</h1>
-        <div class="header-sub">Affordable · Healthy · Microwavable · From KES 100</div>
+<!-- ══════════════════════════════════════════
+     DESKTOP LAYOUT
+══════════════════════════════════════════ -->
+<div id="desktop-shell">
+
+  <!-- LEFT SIDEBAR -->
+  <div id="desktop-sidebar">
+    <div class="ds-brand">
+      <img src="Nairobidishes.png" alt="Nairobi Dishes" class="ds-brand-logo" onerror="this.style.display='none'">
+      <div class="ds-brand-name">Nairobi Dishes</div>
+      <div class="ds-brand-tag">AFFORDABLE · HEALTHY · MICROWAVABLE</div>
     </div>
-</header>
-
-<div class="container">
-
-    <!-- Notice strip -->
-    <div class="notice-strip">
-        <div class="notice-row" onclick="toggleNotice(this)">
-            <span class="notice-icon">⏰</span>
-            <span class="notice-text">Orders close at <strong>14:30 PM</strong> <span>· Mon – Fri</span></span>
-            <span class="notice-chevron">›</span>
-        </div>
-        <div class="notice-expand">
-            To keep deliveries on time and reduce logistics costs, we stop taking orders at 11:30 PM on weekdays. No weekend orders.
-        </div>
-        <div class="notice-row" onclick="toggleNotice(this)">
-            <span class="notice-icon">📍</span>
-            <span class="notice-text">Delivery: <strong>Nairobi CBD only</strong></span>
-            <span class="notice-chevron">›</span>
-        </div>
-        <div class="notice-expand">
-            We currently deliver within Nairobi CBD. We're working on expanding to more areas soon!
-        </div>
-        <div class="notice-row" onclick="toggleNotice(this)">
-            <span class="notice-icon">🚚</span>
-            <span class="notice-text">Orders: <strong>Before 11:30 helps with logistics.</strong></span>
-            <span class="notice-chevron">›</span>
-        </div>
-        <div class="notice-expand">
-            Order before 14:30, we're trying to understand Nairobi logistics.
-         </div>
+    <div class="ds-card">
+      <div class="ds-card-title">MENU</div>
+      <div class="ds-nav-item active" id="dsnav-today" onclick="dsGoTab('today')">
+        <span class="ms msfill" style="color:var(--green);">restaurant_menu</span>Today's Menu
+      </div>
+      <div class="ds-nav-item" id="dsnav-popular" onclick="dsGoTab('popular')">
+        <span class="ms">leaderboard</span>Most Popular
+      </div>
+      <div class="ds-nav-item" id="dsnav-weekly" onclick="dsGoTab('weekly')">
+        <span class="ms">calendar_month</span>Weekly Plan
+      </div>
+      <div class="ds-nav-item" id="dsnav-account" onclick="dsGoTab('account')">
+        <span class="ms">account_circle</span>Account
+      </div>
     </div>
+    <div class="ds-card">
+      <div class="ds-card-title">INFO</div>
+      <div class="ds-info-row"><span>Order by</span><strong>11:30 AM</strong></div>
+      <div class="ds-info-row"><span>Delivery from</span><strong>12:30 PM</strong></div>
+      <div class="ds-info-row"><span>Days</span><strong>Mon – Fri</strong></div>
+      <div class="ds-info-row"><span>Area</span><strong>Nairobi CBD</strong></div>
+      <div class="ds-info-row"><span>Payment</span><strong>M-Pesa</strong></div>
+      <div class="ds-info-row"><span>From</span><strong>KES 100</strong></div>
+    </div>
+    <a href="https://wa.me/254714243150" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:#fff;padding:14px;border-radius:14px;text-decoration:none;font:700 13px Poppins,sans-serif;">
+      <span class="ms msfill" style="font-size:18px;">chat</span>WhatsApp Us
+    </a>
+  </div>
 
-    <!-- Subscription cards -->
-    <div class="sub-section-title">Subscriptions</div>
-    <div class="sub-cards-list">
+  <!-- MAIN CONTENT -->
+  <div id="desktop-main">
 
-        <div class="sub-card-full weekly">
-            <span class="sub-badge">Weekly</span>
-            <div class="sub-card-title">5-Day Plan</div>
-            <div class="sub-price">KES 750 <span class="sub-per">/ week</span></div>
-            <ul class="sub-perks">
-                <li>✔ Mon – Fri, 5 meals</li>
-                <li>✔ Predictable weekly spend</li>
-                <li>✔ No daily ordering stress</li>
-                <li>✔ Great for office workers</li>
-            </ul>
-            <button class="sub-subscribe-btn weekly-btn" onclick="subscribeViaWA('weekly')">
-                Subscribe
-            </button>
+    <!-- TODAY -->
+    <div class="ds-main-section active" id="dssec-today">
+      <div class="ds-section-title">Today's Menu</div>
+      <div class="ds-section-sub" id="ds-date-sub">Mon, 23 June · Nairobi CBD</div>
+      <div class="ds-banner" id="ds-banner">
+        <span class="ms msfill" style="font-size:22px;color:#9A6E12;">schedule</span>
+        <div>
+          <div style="font:700 13px Poppins,sans-serif;color:#9A6E12;" id="ds-banner-title">Ordering closes at 11:30 AM</div>
+          <div style="font-size:12px;color:var(--mid);margin-top:2px;" id="ds-banner-text">Place your order before 11:30 AM to get lunch delivered from 12:30 PM.</div>
         </div>
-
-        <div class="sub-card-full monthly">
-            <span class="sub-badge">Monthly</span>
-            <div class="sub-card-title">20-Day Plan</div>
-            <div class="sub-price">KES 3,000 <span class="sub-per">/ month</span></div>
-            <ul class="sub-perks">
-                <li>✔ Full month covered</li>
-                <li>✔ Best value, KES 150/meal</li>
-                <li>✔ New menu every week</li>
-                <li>✔ Ideal for daily lunch</li>
-            </ul>
-            <button class="sub-subscribe-btn monthly-btn" onclick="subscribeViaWA('monthly')">
-                Subscribe
-            </button>
-        </div>
-
+      </div>
+      <div class="ds-menu-grid" id="ds-menu-grid"></div>
     </div>
 
-    <!-- Closed state -->
-    <div class="closed-state" id="closed-state">
-        <div class="closed-emoji">🍱</div>
-        <div class="closed-title">Orders closed for today</div>
-        <div class="closed-sub">
-            We stopped taking orders at 11:30 PM.<br>
-            Come back tomorrow (Mon–Fri) before 11:30 PM.<br><br>
-            You can still sign up for a subscription below!
+    <!-- POPULAR -->
+    <div class="ds-main-section" id="dssec-popular">
+      <div class="ds-section-title">Most Ordered</div>
+      <div class="ds-section-sub">Top picks this week · Nairobi CBD</div>
+      <div style="background:var(--white);border-radius:18px;overflow:hidden;border:1px solid var(--border);margin-bottom:16px;">
+        <div style="height:140px;background:repeating-linear-gradient(45deg,#FFF3D6,#FFF3D6 8px,#FFE7AE 8px,#FFE7AE 16px);position:relative;">
+          <span style="position:absolute;top:12px;left:12px;background:var(--dark);color:var(--yellow);font:700 10px Poppins,sans-serif;padding:4px 10px;border-radius:20px;">#1 MOST LOVED</span>
+          <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Beef Pilau" onerror="this.style.display='none'">
         </div>
-        <a href="https://wa.me/254714243150" target="_blank"
-           style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:#25D366;color:white;padding:13px 22px;border-radius:12px;text-decoration:none;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:0.9rem;">
-            💬 Chat with us on WhatsApp
-        </a>
+        <div style="padding:14px 18px;display:flex;align-items:center;gap:12px;">
+          <div style="flex:1;"><div style="font:700 16px Poppins,sans-serif;">Beef Pilau</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Ordered by 28% of customers</div></div>
+          <div style="font:700 28px Poppins,sans-serif;color:var(--green);">28%</div>
+        </div>
+      </div>
+      <div class="ds-pop-list" id="ds-pop-list"></div>
+      <div style="background:var(--yellow-tint);border-radius:14px;padding:14px 16px;margin-top:14px;display:flex;gap:10px;">
+        <span class="ms msfill" style="font-size:20px;color:#9A6E12;">lightbulb</span>
+        <div style="font-size:12px;color:var(--mid);line-height:1.6;">Beef Pilau sells out fastest — order before 10:00 AM to secure yours.</div>
+      </div>
     </div>
 
-    <!-- Menu (hidden after 11:30 PM EAT) -->
-    <div id="menu-section">
-        <div class="menu-label">Today's Menu</div>
-        <div id="menu-container"></div>
+    <!-- WEEKLY -->
+    <div class="ds-main-section" id="dssec-weekly">
+      <div class="ds-section-title">Weekly Plan</div>
+      <div class="ds-section-sub">All meals KES 150 · Packed &amp; Microwavable · Swap any meal before 10:00 AM</div>
+      <div class="ds-weekly-table">
+        <div class="ds-weekly-table-head">
+          <span>DAY</span><span>DISHES AVAILABLE</span><span>STATUS</span>
+        </div>
+        <div id="ds-weekly-rows"></div>
+      </div>
+      <div style="background:var(--dark);border-radius:18px;padding:18px 20px;">
+        <div style="font:700 14px Poppins,sans-serif;color:var(--yellow);margin-bottom:4px;">Subscribe to the weekly plan</div>
+        <div style="font-size:11px;color:#BDBDBD;margin-bottom:14px;">5 meals Mon–Fri · KES 750/week · No daily ordering stress</div>
+        <button onclick="dsSubscribeWA('weekly')" style="width:100%;border:none;border-radius:12px;background:var(--green);color:#fff;font:700 14px Poppins,sans-serif;padding:14px;cursor:pointer;">Subscribe via WhatsApp</button>
+      </div>
     </div>
 
+    <!-- ACCOUNT -->
+    <div class="ds-main-section" id="dssec-account">
+      <div class="ds-section-title">Account</div>
+      <div class="ds-section-sub">Manage your subscription, referrals and preferences</div>
+      <div style="background:var(--dark);border-radius:18px;padding:18px 20px;margin-bottom:14px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+          <div><div style="font:700 14px Poppins,sans-serif;color:var(--yellow);">Weekly Plan</div><div style="font-size:11px;color:#BDBDBD;margin-top:2px;">5 meals · Mon–Fri</div></div>
+          <div style="font:700 14px Poppins,sans-serif;color:#fff;">KES 750<span style="font-size:10px;color:#9A9A9A;font-weight:400;"> / week</span></div>
+        </div>
+        <div style="height:4px;background:rgba(255,255,255,.14);border-radius:3px;overflow:hidden;margin-bottom:6px;"><div style="width:60%;height:100%;background:var(--green);border-radius:3px;"></div></div>
+        <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:#BDBDBD;">3 of 5 meals remaining</span><span style="font:700 10px Poppins,sans-serif;color:var(--yellow);">Renews Mon</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+        <button onclick="dsSubscribeWA('weekly')" style="border:none;border-radius:13px;background:var(--green-tint);color:var(--green-dark);font:700 13px Poppins,sans-serif;padding:14px;cursor:pointer;">Manage Plan</button>
+        <button onclick="openReferModal()" style="border:none;border-radius:13px;background:var(--yellow-tint);color:var(--yellow-dark);font:700 13px Poppins,sans-serif;padding:14px;cursor:pointer;">Refer &amp; Earn 10%</button>
+      </div>
+      <div style="background:var(--white);border-radius:16px;overflow:hidden;border:1px solid var(--border);">
+        <div class="ds-pop-row" style="cursor:pointer;" onclick="openGiftModal()">
+          <span class="ms msfill" style="font-size:20px;color:var(--green);">card_giftcard</span>
+          <div style="flex:1;"><div style="font:600 13px Poppins,sans-serif;">Gift a meal to someone</div><div style="font-size:11px;color:var(--muted);">Order for a colleague using their number</div></div>
+          <span class="ms" style="color:#ccc;">chevron_right</span>
+        </div>
+        <div class="ds-pop-row" style="cursor:pointer;" onclick="window.open('https://wa.me/254714243150','_blank')">
+          <span class="ms" style="font-size:20px;color:var(--muted);">help</span>
+          <div style="flex:1;"><div style="font:600 13px Poppins,sans-serif;">Help &amp; Support</div><div style="font-size:11px;color:var(--muted);">WhatsApp 0714 243 150</div></div>
+          <span class="ms" style="color:#ccc;">chevron_right</span>
+        </div>
+        <div class="ds-pop-row" style="cursor:pointer;" onclick="window.open('https://whatsapp.com/channel/0029VaYT0S96PsNPGUKoUW0W','_blank')">
+          <span class="ms" style="font-size:20px;color:var(--muted);">notifications</span>
+          <div style="flex:1;"><div style="font:600 13px Poppins,sans-serif;">Menu Updates</div><div style="font-size:11px;color:var(--muted);">Join our WhatsApp Channel</div></div>
+          <span class="ms" style="color:#ccc;">chevron_right</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /desktop-main -->
+
+  <!-- RIGHT ORDER PANEL (desktop) -->
+  <div class="ds-order-sidebar">
+    <div class="ds-order-card" style="position:sticky;top:40px;">
+      <div style="font:700 14px Poppins,sans-serif;color:var(--dark);margin-bottom:12px;">Your order</div>
+      <div id="ds-order-empty" class="ds-order-empty">
+        <span class="ms" style="font-size:36px;color:#DDD;">restaurant_menu</span>
+        <div style="margin-top:8px;">Nothing added yet</div>
+        <div style="font-size:11px;margin-top:4px;">Pick dishes from the menu</div>
+      </div>
+      <div id="ds-order-items" style="display:none;">
+        <div id="ds-order-list" style="background:var(--light);border-radius:12px;padding:12px 14px;margin-bottom:8px;"></div>
+        <div style="text-align:right;font:700 15px Poppins,sans-serif;color:var(--dark);margin-bottom:12px;">Total: KES <span id="ds-order-total">0</span></div>
+        <div class="field-group" style="margin-bottom:12px;">
+          <label class="field-label">Delivery location <span class="field-req">*</span></label>
+          <input type="text" id="ds-delivery-loc" class="field-input" placeholder="e.g. Anniversary Towers, Moi Ave">
+          <div class="field-err" id="ds-loc-err">Please enter your delivery location.</div>
+        </div>
+        <button onclick="dsHandleOrder()" class="wa-order-btn" style="margin:0 0 6px;">
+          <span style="font-size:18px;">📲</span>Order via WhatsApp
+        </button>
+        <button onclick="dsClearCart()" class="clear-link">Clear order</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /desktop-shell -->
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE LAYOUT
+══════════════════════════════════════════ -->
+<div id="mobile-shell">
+<div id="app">
+
+<!-- SPLASH -->
+<div id="splash">
+  <img src="Nairobidishes.png" alt="Nairobi Dishes" class="splash-logo" onerror="this.style.display='none'">
+  <div class="splash-tagline">Buying back<br>your time.</div>
+  <div class="splash-loader-wrap">
+    <div class="splash-loader-track"><div class="splash-loader-fill"></div></div>
+  </div>
 </div>
 
-<!-- Cart bar -->
-<div class="cart-bar" id="cart-bar">
+<!-- TODAY -->
+<div id="scr-today" class="screen active">
+  <div class="status-bar">
+    <span id="status-time">11:05</span>
+    <div class="status-icons">
+      <span class="ms" style="font-size:15px;">signal_cellular_alt</span>
+      <span class="ms" style="font-size:15px;">wifi</span>
+      <span class="ms" style="font-size:15px;">battery_full</span>
+    </div>
+  </div>
+  <div class="scroll-area scr" id="today-scroll">
+    <div class="today-header">
+      <div><div class="greeting-name" id="greeting-name">Habari!</div><div class="greeting-sub" id="greeting-sub">Nairobi CBD</div></div>
+      <div class="avatar-circle">ND</div>
+    </div>
+    <div class="seg-wrap">
+      <button class="seg-btn active" id="seg-daily" onclick="setView('daily')">Daily order</button>
+      <button class="seg-btn" id="seg-weekly" onclick="setView('weekly')">Weekly plan</button>
+    </div>
+    <div class="banner" id="banner">
+      <span class="ms msfill" id="banner-icon" style="font-size:20px;color:#9A6E12;flex:0 0 auto;">schedule</span>
+      <div>
+        <div class="banner-title" id="banner-title" style="color:#9A6E12;">Ordering closes at 11:30 AM</div>
+        <div class="banner-text" id="banner-text">Place your order before 11:30 AM to get lunch delivered from 12:30 PM.</div>
+      </div>
+    </div>
+
+    <!-- DAILY VIEW -->
+    <div id="daily-view">
+      <div id="closed-block" style="display:none;">
+        <div class="closed-state">
+          <div style="font-size:2.5rem;margin-bottom:12px;">🍱</div>
+          <div style="font:700 18px Poppins,sans-serif;margin-bottom:6px;">Orders closed for today</div>
+          <div style="font-size:12px;color:var(--mid);line-height:1.6;margin-bottom:20px;" id="closed-sub-text">We stopped taking orders at 11:30 AM. Come back tomorrow before 11:30 AM.</div>
+          <a href="https://wa.me/254714243150" class="wa-btn-green"><span class="ms msfill" style="font-size:18px;">chat</span>Chat on WhatsApp</a>
+        </div>
+      </div>
+      <div id="menu-block">
+        <div class="sec-head"><span class="sec-title">Today's menu</span><span class="sec-sub">from KES 100</span></div>
+        <div id="featured-card-wrap"></div>
+        <div class="sec-head" style="padding-top:10px;"><span class="sec-title">More on the menu</span></div>
+        <div class="dish-list" id="dish-list"></div>
+      </div>
+    </div>
+
+    <!-- WEEKLY VIEW -->
+    <div id="weekly-view" style="display:none;">
+      <div class="weekly-card">
+        <div class="weekly-card-head">
+          <div><div class="weekly-card-title">This week's menu</div><div class="weekly-card-sub">All meals KES 150 · Packed &amp; Microwavable</div></div>
+        </div>
+        <div id="weekly-rows"></div>
+      </div>
+      <div style="margin:10px 16px 4px;font-size:10.5px;color:var(--muted);line-height:1.6;">
+        💡 Tap any day to select your meal. Swap before <strong>10:00 AM</strong> on that day.<br>
+        <span style="color:#BDBDBD;">In-app auto-save coming soon — selections currently sent via WhatsApp.</span>
+      </div>
+      <div style="margin:8px 16px 16px;background:var(--dark);border-radius:14px;padding:14px 16px;">
+        <div style="font:700 13px Poppins,sans-serif;color:var(--yellow);margin-bottom:3px;">Get the weekly plan</div>
+        <div style="font-size:11px;color:#BDBDBD;margin-bottom:12px;">5 meals Mon–Fri · KES 750/week</div>
+        <button onclick="subscribeViaWA('weekly')" style="width:100%;border:none;border-radius:11px;background:var(--green);color:#fff;font:700 13px Poppins,sans-serif;padding:13px;cursor:pointer;">Subscribe via WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="order-bar">
+    <div class="order-bar-inner">
+      <div class="order-bar-left">
+        <div class="order-bar-count" id="bar-count"></div>
+        <div class="order-bar-total" id="bar-total"></div>
+      </div>
+      <button class="order-bar-btn" onclick="openCheckout()">
+        <span class="ms msfill" style="font-size:16px;">payments</span>Order via WhatsApp
+      </button>
+    </div>
+  </div>
+  <div id="success-bar">
+    <span class="ms msfill" style="font-size:22px;color:var(--green);">check_circle</span>
     <div>
-        <div class="cart-bar-info">Your order</div>
-        <div class="cart-bar-total">KES <span id="total-price">0</span></div>
+      <div style="font:700 12px Poppins,sans-serif;color:var(--green-dark);">Order sent to WhatsApp!</div>
+      <div style="font-size:10px;color:#3E7A6C;margin-top:1px;">Complete your M-Pesa payment there. Lunch arrives from 12:30 PM.</div>
     </div>
-    <button onclick="openCheckout()">Order Now →</button>
+  </div>
 </div>
 
-<!-- ── CHECKOUT MODAL ── -->
-<div class="modal" id="checkout-modal" onclick="handleModalBg(event, 'checkout-modal')">
-    <div class="modal-content">
-        <div class="modal-handle"></div>
-        <div class="modal-title">Confirm Order</div>
-        <div class="order-list" id="order-items-list"></div>
-        <div class="order-total">Total: KES <span id="summary-total">0</span></div>
-        <div class="cbd-note">
-            <span>📍</span>
-            <span>We deliver within <strong>Nairobi CBD only</strong>. Please ensure your location is within the CBD.</span>
-        </div>
-        <div class="field-group">
-            <label class="field-label">Delivery Location <span class="req">*</span></label>
-            <input type="text" id="delivery-location" class="field-input" placeholder="e.g. Anniversary Towers, Moi Ave">
-            <div class="field-hint">Building, street or landmark within Nairobi CBD.</div>
-            <div class="field-err" id="location-error">Please enter your delivery location.</div>
-        </div>
-        <a href="#" class="method-btn wa" onclick="return handleOrder('wa')">📲 Order via WhatsApp</a>
-        <button class="method-btn sms-btn" onclick="handleOrder('sms')">💬 Order via SMS</button>
-        <button onclick="closeAndClear()" class="clear-btn">Clear & start over</button>
+<!-- POPULAR -->
+<div id="scr-popular" class="screen">
+  <div class="status-bar"><span>11:05</span><div class="status-icons"><span class="ms" style="font-size:15px;">signal_cellular_alt</span><span class="ms" style="font-size:15px;">wifi</span><span class="ms" style="font-size:15px;">battery_full</span></div></div>
+  <div class="scroll-area scr">
+    <div style="padding:8px 16px 2px;"><div style="font:700 20px Poppins,sans-serif;">Most ordered</div><div style="font-size:11px;color:var(--muted);margin-top:1px;">Top picks this week · Nairobi CBD</div></div>
+    <div class="hero-rank-card">
+      <div class="hero-rank-img"><span class="rank1-pill">#1 MOST LOVED</span><img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80" alt="Beef Pilau" onerror="this.style.display='none'"></div>
+      <div style="padding:10px 13px;display:flex;align-items:center;gap:10px;">
+        <div style="flex:1;"><div style="font:700 14px Poppins,sans-serif;">Beef Pilau</div><div style="font-size:10px;color:var(--muted);margin-top:1px;">Ordered by 28% of customers</div></div>
+        <div style="font:700 24px Poppins,sans-serif;color:var(--green);">28%</div>
+      </div>
     </div>
+    <div class="rank-list" id="rank-list"></div>
+    <div class="tip-card"><span class="ms msfill" style="font-size:18px;color:#9A6E12;flex:0 0 auto;">lightbulb</span><div style="font-size:10.5px;color:var(--mid);line-height:1.5;">Beef Pilau sells out fastest — order before 10:00 AM to secure yours.</div></div>
+  </div>
 </div>
 
+<!-- ACCOUNT -->
+<div id="scr-account" class="screen" style="background:var(--light);">
+  <div class="status-bar" style="background:var(--light);"><span>11:05</span><div class="status-icons"><span class="ms" style="font-size:15px;">signal_cellular_alt</span><span class="ms" style="font-size:15px;">wifi</span><span class="ms" style="font-size:15px;">battery_full</span></div></div>
+  <div class="account-bg scr">
+    <div class="profile-header">
+      <div class="profile-avatar">ND</div>
+      <div><div style="font:700 16px Poppins,sans-serif;">Nairobi Dishes</div><div style="font-size:11px;color:var(--muted);margin-top:1px;">0714 243 150</div></div>
+      <div class="profile-badge"><span class="ms msfill" style="font-size:13px;color:var(--green-dark);">verified</span><span style="font:600 9px Poppins,sans-serif;color:var(--green-dark);">WEEKLY</span></div>
+    </div>
+    <div class="sub-card-dark">
+      <div style="padding:12px 14px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <div><div style="font:700 13px Poppins,sans-serif;color:var(--yellow);">Weekly Plan</div><div style="font-size:10px;color:#BDBDBD;margin-top:1px;">5 meals · Mon–Fri</div></div>
+          <div style="font:700 13px Poppins,sans-serif;color:#fff;">KES 750<small style="font-size:10px;color:#9A9A9A;font-weight:400;"> / week</small></div>
+        </div>
+        <div style="height:4px;background:rgba(255,255,255,.14);border-radius:3px;overflow:hidden;margin-bottom:6px;"><div style="width:60%;height:100%;background:var(--green);border-radius:3px;"></div></div>
+        <div style="display:flex;justify-content:space-between;"><span style="font-size:10px;color:#BDBDBD;">3 of 5 meals remaining</span><span style="font:700 10px Poppins,sans-serif;color:var(--yellow);">Renews Mon</span></div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,.1);display:flex;">
+        <div style="flex:1;padding:10px;text-align:center;font:700 11px Poppins,sans-serif;color:#fff;cursor:pointer;" onclick="subscribeViaWA('weekly')">Manage plan</div>
+        <div style="width:1px;background:rgba(255,255,255,.1);"></div>
+        <div style="flex:1;padding:10px;text-align:center;font:700 11px Poppins,sans-serif;color:var(--yellow);cursor:pointer;" onclick="setView('weekly');goTab('today')">View this week</div>
+      </div>
+    </div>
+    <div class="list-group" style="margin-top:10px;">
+      <div class="list-row" onclick="openGiftModal()"><span class="ms" style="font-size:18px;color:var(--green);">card_giftcard</span><div style="flex:1;"><div style="font:600 12px Poppins,sans-serif;">Gift a meal</div><div style="font-size:10px;color:#9A9A9A;margin-top:1px;">Order for a colleague</div></div><span class="ms list-chevron">chevron_right</span></div>
+    </div>
+    <div class="list-group">
+      <div class="list-row" onclick="subscribeViaWA('weekly')"><span class="ms" style="font-size:18px;color:var(--green);">event_repeat</span><div style="flex:1;"><div style="font:600 12px Poppins,sans-serif;">My Subscription</div><div style="font-size:10px;color:#9A9A9A;margin-top:1px;">Weekly Plan · active</div></div><span class="ms list-chevron">chevron_right</span></div>
+      <div class="list-row"><span class="ms" style="font-size:18px;color:var(--green);">receipt_long</span><div style="flex:1;"><div style="font:600 12px Poppins,sans-serif;">Order History</div><div style="font-size:10px;color:#9A9A9A;margin-top:1px;">Your past orders</div></div><span class="ms list-chevron">chevron_right</span></div>
+      <div class="list-row"><span class="ms" style="font-size:18px;color:var(--green);">account_balance_wallet</span><div style="flex:1;"><div style="font:600 12px Poppins,sans-serif;">Payment</div><div style="font-size:10px;color:#9A9A9A;margin-top:1px;">M-Pesa · Pay on WhatsApp</div></div><span class="ms list-chevron">chevron_right</span></div>
+      <div class="list-row"><span class="ms" style="font-size:18px;color:var(--green);">location_on</span><div style="flex:1;"><div style="font:600 12px Poppins,sans-serif;">Delivery location</div><div style="font-size:10px;color:#9A9A9A;margin-top:1px;">Nairobi CBD</div></div><span class="ms list-chevron">chevron_right</span></div>
+    </div>
+    <div class="list-group">
+      <div class="list-row" onclick="openReferModal()"><span class="ms" style="font-size:18px;color:var(--muted);">redeem</span><div style="flex:1;"><div style="font:600 12px Poppins,sans-serif;">Refer &amp; earn 10%</div><div style="font-size:10px;color:#9A9A9A;margin-top:1px;">Get 10% of their subscription via M-Pesa</div></div><span class="ms list-chevron">chevron_right</span></div>
+      <div class="list-row" onclick="window.open('https://whatsapp.com/channel/0029VaYT0S96PsNPGUKoUW0W','_blank')"><span class="ms" style="font-size:18px;color:var(--muted);">notifications</span><div style="flex:1;"><div style="font:600 12px Poppins,sans-serif;">Menu updates</div><div style="font-size:10px;color:#9A9A9A;margin-top:1px;">Join our WhatsApp Channel</div></div><span class="ms list-chevron">chevron_right</span></div>
+      <div class="list-row" onclick="window.open('https://wa.me/254714243150','_blank')"><span class="ms" style="font-size:18px;color:var(--muted);">help</span><div style="flex:1;"><div style="font:600 12px Poppins,sans-serif;">Help &amp; Support</div><div style="font-size:10px;color:#9A9A9A;margin-top:1px;">WhatsApp 0714 243 150</div></div><span class="ms list-chevron">chevron_right</span></div>
+    </div>
+    <div class="list-group">
+      <div class="list-row" onclick="subscribeViaWA('weekly')"><span class="ms" style="font-size:18px;color:var(--yellow);">star</span><div style="flex:1;"><div style="font:600 12px Poppins,sans-serif;">Weekly Plan — KES 750/week</div><div style="font-size:10px;color:#9A9A9A;margin-top:1px;">5 meals, Mon–Fri</div></div><span class="ms list-chevron">chevron_right</span></div>
+      <div class="list-row" onclick="subscribeViaWA('monthly')"><span class="ms" style="font-size:18px;color:var(--green);">workspace_premium</span><div style="flex:1;"><div style="font:600 12px Poppins,sans-serif;">Monthly Plan — KES 3,000/month</div><div style="font-size:10px;color:#9A9A9A;margin-top:1px;">20 meals · KES 150/meal · Best value</div></div><span class="ms list-chevron">chevron_right</span></div>
+    </div>
+    <div style="padding:16px;text-align:center;"><div style="font:700 9px Poppins,sans-serif;letter-spacing:.1em;color:#B8B8B8;">AFFORDABLE · HEALTHY · MICROWAVABLE</div><div style="font-size:10px;color:#BDBDBD;margin-top:3px;">Nairobi Dishes · v2.0</div></div>
+  </div>
+</div>
+
+<!-- TAB BAR -->
+<div id="tab-bar">
+  <div class="tab-item active" id="tab-today" onclick="goTab('today')"><span class="ms msfill" style="font-size:23px;">restaurant_menu</span><span class="tab-label">Today</span></div>
+  <div class="tab-item" id="tab-popular" onclick="goTab('popular')"><span class="ms" style="font-size:23px;">leaderboard</span><span class="tab-label">Popular</span></div>
+  <div class="tab-item" id="tab-account" onclick="goTab('account')"><span class="ms" style="font-size:23px;">account_circle</span><span class="tab-label">Account</span></div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkout-modal" onclick="if(event.target===this)closeCheckout()">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Confirm Order</div>
+    <div class="order-list-box" id="order-items-list"></div>
+    <div style="text-align:right;font:700 14px Poppins,sans-serif;color:var(--dark);padding:8px 0 4px;">Total: KES <span id="summary-total">0</span></div>
+    <!-- gift toggle -->
+    <div class="gift-toggle" onclick="toggleGift()">
+      <span class="ms msfill" style="font-size:20px;color:var(--green);">card_giftcard</span>
+      <div style="flex:1;"><div style="font:600 12px Poppins,sans-serif;color:var(--green-dark);">Order for someone else?</div><div style="font-size:10px;color:var(--green-dark);opacity:.75;margin-top:1px;">Send this order to a colleague's number</div></div>
+      <div class="toggle-switch" id="gift-switch"></div>
+    </div>
+    <div id="gift-phone-group" style="display:none;" class="field-group">
+      <label class="field-label">Recipient's phone number <span class="field-req">*</span></label>
+      <input type="tel" id="gift-phone" class="field-input" placeholder="e.g. 0712 345 678">
+      <div class="field-hint">Their Safaricom number.</div>
+      <div class="field-err" id="gift-phone-error">Please enter the recipient's phone number.</div>
+    </div>
+    <div class="cbd-note"><span>📍</span><span>We deliver within <strong>Nairobi CBD only</strong>.</span></div>
+    <div class="field-group">
+      <label class="field-label">Delivery location <span class="field-req">*</span></label>
+      <input type="text" id="delivery-location" class="field-input" placeholder="e.g. Anniversary Towers, Moi Ave">
+      <div class="field-hint">Building or landmark within Nairobi CBD.</div>
+      <div class="field-err" id="location-error">Please enter your delivery location.</div>
+    </div>
+    <button class="wa-order-btn" onclick="handleOrder()"><span style="font-size:18px;">📲</span>Order via WhatsApp</button>
+    <button class="clear-link" onclick="closeAndClear()">Clear &amp; start over</button>
+  </div>
+</div>
+
+<!-- SUBSCRIBE MODAL -->
+<div class="modal-overlay" id="subscribe-modal" onclick="if(event.target===this)closeSubscribeModal()">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="sub-modal-title">Subscribe — Weekly Plan</div>
+    <div style="background:var(--green-tint);border-radius:14px;padding:14px 16px;margin-bottom:16px;text-align:center;">
+      <div style="font:700 22px Poppins,sans-serif;color:var(--green);" id="sub-modal-price">KES 750<span style="font-size:13px;font-weight:600;"> / week</span></div>
+      <div style="font-size:11px;color:var(--green-dark);margin-top:4px;" id="sub-modal-desc">5 meals · Mon–Fri · No daily ordering stress</div>
+    </div>
+    <!-- number check -->
+    <div class="num-check-box">
+      <div class="num-check-title">📱 Which number will you use to pay?</div>
+      <div class="num-check-opts">
+        <div class="num-check-opt active" id="numopt-same" onclick="setNumOpt('same')">My registered number</div>
+        <div class="num-check-opt" id="numopt-diff" onclick="setNumOpt('diff')">A different number</div>
+      </div>
+      <div id="diff-num-group" style="display:none;margin-top:10px;">
+        <input type="tel" id="payment-number" class="field-input" placeholder="M-Pesa number e.g. 0712 345 678">
+        <div class="field-hint" style="margin-top:4px;">We'll link this number to your account for payment matching.</div>
+      </div>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Your name</label>
+      <input type="text" id="sub-name" class="field-input" placeholder="e.g. Wanjiru K.">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Your phone number <span class="field-req">*</span></label>
+      <input type="tel" id="sub-phone" class="field-input" placeholder="e.g. 0714 243 150">
+      <div class="field-hint">Your Safaricom number — for order confirmations.</div>
+      <div class="field-err" id="sub-phone-err">Please enter your phone number.</div>
+    </div>
+    <button class="wa-order-btn" onclick="sendSubscribeWA()"><span style="font-size:18px;">📲</span>Continue on WhatsApp</button>
+    <button class="clear-link" onclick="closeSubscribeModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- WEEKLY MEAL SELECT MODAL -->
+<div class="modal-overlay" id="weekly-select-modal" onclick="if(event.target===this)closeWeeklyModal()">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="ws-modal-title">Choose your meal</div>
+    <div style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:14px;" id="ws-modal-sub">Select one dish for this day</div>
+    <div id="ws-meal-options"></div>
+    <div id="ws-confirm-wrap" style="display:none;">
+      <button class="wa-order-btn" onclick="confirmWeeklyMeal()"><span style="font-size:18px;">📲</span>Confirm via WhatsApp</button>
+      <div style="font-size:10.5px;color:var(--muted);text-align:center;margin-top:6px;line-height:1.5;">This will open WhatsApp so we can confirm your selection.<br>Auto-save coming once the API is connected.</div>
+    </div>
+    <button class="clear-link" onclick="closeWeeklyModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- GIFT MODAL -->
+<div class="modal-overlay" id="gift-modal" onclick="if(event.target===this)closeGiftModal()">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Gift a meal 🎁</div>
+    <p style="font-size:12px;color:var(--mid);text-align:center;margin-bottom:16px;line-height:1.6;">Order lunch for a colleague. Enter their number and we'll sort the rest on WhatsApp.</p>
+    <div class="field-group"><label class="field-label">Recipient's phone number <span class="field-req">*</span></label><input type="tel" id="gift-standalone-phone" class="field-input" placeholder="e.g. 0712 345 678"><div class="field-err" id="gift-standalone-err">Please enter a phone number.</div></div>
+    <div class="field-group"><label class="field-label">Your name (so they know who sent it)</label><input type="text" id="gift-sender-name" class="field-input" placeholder="e.g. Wanjiru"></div>
+    <button class="wa-order-btn" onclick="sendGiftViaWA()"><span style="font-size:18px;">📲</span>Continue on WhatsApp</button>
+    <button class="clear-link" onclick="closeGiftModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- REFER MODAL -->
+<div class="modal-overlay" id="refer-modal" onclick="if(event.target===this)closeReferModal()">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Refer &amp; Earn 💸</div>
+    <div style="background:var(--green-tint);border-radius:14px;padding:14px 16px;margin-bottom:16px;text-align:center;">
+      <div style="font:700 28px Poppins,sans-serif;color:var(--green);">10%</div>
+      <div style="font-size:12px;color:var(--green-dark);margin-top:2px;">of their subscription sent to your M-Pesa</div>
+      <div style="font-size:10.5px;color:var(--mid);margin-top:6px;">Weekly = <strong>KES 75</strong> · Monthly = <strong>KES 300</strong></div>
+    </div>
+    <div style="font-size:12px;color:var(--mid);line-height:1.8;margin-bottom:16px;">1. Share Nairobi Dishes with a colleague<br>2. They subscribe and mention your name/number<br>3. We send your 10% to your M-Pesa within 24 hrs</div>
+    <div class="field-group"><label class="field-label">Friend's phone number <span class="field-req">*</span></label><input type="tel" id="refer-phone" class="field-input" placeholder="e.g. 0712 345 678"><div class="field-err" id="refer-phone-err">Please enter a phone number.</div></div>
+    <button class="wa-order-btn" onclick="sendReferViaWA()"><span style="font-size:18px;">📲</span>Send invite via WhatsApp</button>
+    <button class="clear-link" onclick="closeReferModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- INSTALL BANNER -->
+<div id="install-banner">
+  <div style="flex:1;"><div style="font:700 12px Poppins,sans-serif;color:#fff;">Install Nairobi Dishes</div><div style="font-size:10px;color:#BDBDBD;margin-top:1px;">Add to home screen for quick ordering</div></div>
+  <button style="background:var(--yellow);border:none;border-radius:9px;padding:8px 13px;font:700 11px Poppins,sans-serif;color:var(--dark);cursor:pointer;" id="install-btn">Install</button>
+  <span class="ms" style="color:#BDBDBD;font-size:18px;cursor:pointer;" onclick="dismissInstall()">close</span>
+</div>
+
+</div><!-- /app -->
+</div><!-- /mobile-shell -->
 
 <script>
-    const MY_PHONE = "254714243150";
-    const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+const MY_PHONE="254714243150";
 
-    const sides = [
+/* ══ DATA ══ */
+const MENU=[
+  {id:0,name:"Beef Pilau",          desc:"Fragrant spiced rice with tender beef",             price:150,featured:true, soldOut:false,img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80"},
+  {id:1,name:"Rice + Kamande",       desc:"Green lentils slow-cooked — full portion",          price:150,featured:false,soldOut:false,img:""},
+  {id:2,name:"Rice + Kamande (S)",   desc:"Smaller portion, lighter lunch",                    price:100,featured:false,soldOut:false,img:""},
+  {id:3,name:"Chapo + Minji",        desc:"Chapati with spiced green peas",                    price:150,featured:false,soldOut:false,img:""},
+  {id:4,name:"Mashed Potatoes & Veg",desc:"Creamy mash with seasonal vegetables",              price:150,featured:false,soldOut:false,img:""},
+  {id:5,name:"Mukimo",               desc:"Mashed potato, peas & spinach",                    price:150,featured:false,soldOut:false,img:""},
+  {id:6,name:"Spaghetti Minced Meat",desc:"Kenyan-style spaghetti bolognese",                  price:150,featured:false,soldOut:false,img:""},
+  {id:7,name:"Githeri",              desc:"Slow-cooked maize and beans",                       price:150,featured:false,soldOut:false,img:""},
+];
 
-    ];
+/* Weekly menu — each day lists the available dishes by name */
+const WEEKLY_MENU=[
+  {day:"Mon",meals:["Beef Pilau","Rice + Kamande","Chapo + Minji","Mashed Potatoes & Veg","Mukimo"]},
+  {day:"Tue",meals:["Beef Pilau","Rice + Kamande","Chapo + Minji","Spaghetti Minced Meat","Githeri"]},
+  {day:"Wed",meals:["Beef Pilau","Rice + Kamande","Chapo + Minji","Mashed Potatoes & Veg","Mukimo"]},
+  {day:"Thu",meals:["Beef Pilau","Rice + Kamande","Chapo + Minji","Spaghetti Minced Meat","Githeri"]},
+  {day:"Fri",meals:["Beef Pilau","Rice + Kamande","Chapo + Minji","Mashed Potatoes & Veg","Mukimo"]},
+];
 
-    function mealName(item) { return item.isRiceSide ? `Rice + ${item.name}` : item.name; }
-    
+/* Stores user's selected weekly meals after WhatsApp confirmation */
+/* key = day index 0-4, value = meal name */
+let weeklySelections={};
+/* tracks which days are "confirmed" (user sent WA message) */
+let weeklyConfirmed={};
 
-    let cart = [];
+const RANKING=[
+  {name:"Rice + Kamande",pct:19},{name:"Chapo + Minji",pct:15},
+  {name:"Mashed Potatoes & Veg",pct:12},{name:"Spaghetti Minced Meat",pct:9},
+  {name:"Githeri",pct:7},{name:"Mukimo",pct:6},{name:"Others",pct:4},
+];
 
-    /* ── TIME GATE ── */
-    function getEAT() {
-        const now = new Date();
-        const eatMs = now.getTime() + (3 * 60 * 60 * 1000);
-        const eat = new Date(eatMs);
-        return {
-            hour: eat.getUTCHours(),
-            min:  eat.getUTCMinutes(),
-            day:  eat.getUTCDay() // 0=Sun,1=Mon...5=Fri,6=Sat
-        };
-    }
+/* ══ STATE ══ */
+let cart=[];
+let placed=false;
+let currentView='daily';
+let orderOpen=true;
+let giftOn=false;
+let deferredInstall=null;
+let subPlan='weekly';
+let numOpt='same';
+/* weekly modal state */
+let wsDay=null;   // day index being selected
+let wsMeal=null;  // currently highlighted meal in modal
 
-    function isOrderingClosed() {
-        const { hour, min, day } = getEAT();
-        const isWeekend = (day === 0 || day === 6);
-        const isPastCutoff = (hour > 11) || (hour === 11 && min >= 30);
-        return isWeekend || isPastCutoff;
-    }
+/* ══ TIME ══ */
+function getEAT(){const n=new Date(),e=new Date(n.getTime()+3*60*60*1000);return{h:e.getUTCHours(),m:e.getUTCMinutes(),day:e.getUTCDay()};}
+function isOpen(){const{h,m,day}=getEAT();if(day===0||day===6)return false;return!(h>11||(h===11&&m>=30));}
+function greet(){const{h}=getEAT();return h<12?"Habari asubuhi!":h<17?"Habari mchana!":"Habari jioni!";}
+function todayDate(){const D=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],d=new Date();return`${D[d.getDay()]}, ${d.getDate()} ${M[d.getMonth()]}`;}
+function liveTime(){const n=new Date();return`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;}
+function todayWeekIdx(){const d=new Date().getDay();const m={1:0,2:1,3:2,4:3,5:4};return m[d]!==undefined?m[d]:-1;}
 
-    function applyTimeGate() {
-        const closed = isOrderingClosed();
-        const { day } = getEAT();
-        const isWeekend = (day === 0 || day === 6);
+/* ══ TABS (mobile) ══ */
+function goTab(tab){
+  ['today','popular','account'].forEach(t=>{
+    document.getElementById('scr-'+t).classList.remove('active');
+    const ti=document.getElementById('tab-'+t);ti.classList.remove('active');ti.querySelector('.ms').classList.remove('msfill');
+  });
+  document.getElementById('scr-'+tab).classList.add('active');
+  const a=document.getElementById('tab-'+tab);a.classList.add('active');a.querySelector('.ms').classList.add('msfill');
+}
 
-        document.getElementById('menu-section').style.display = closed ? 'none' : 'block';
-        document.getElementById('closed-state').style.display = closed ? 'block' : 'none';
-        if (!closed && cart.length > 0) {
-            document.getElementById('cart-bar').style.display = 'flex';
-        } else if (closed) {
-            document.getElementById('cart-bar').style.display = 'none';
-        }
+/* ══ TABS (desktop) ══ */
+function dsGoTab(tab){
+  ['today','popular','weekly','account'].forEach(t=>{
+    document.getElementById('dssec-'+t).classList.remove('active');
+    document.getElementById('dsnav-'+t).classList.remove('active');
+  });
+  document.getElementById('dssec-'+tab).classList.add('active');
+  document.getElementById('dsnav-'+tab).classList.add('active');
+}
 
-        const sub = document.querySelector('.closed-sub');
-        if (sub) {
-            sub.innerHTML = isWeekend
-                ? "We only operate Monday to Friday.<br>Come back on Monday before 11:30 PM!<br><br>You can still sign up for a subscription above!<br>⏰ Pro tip: Ordering early helps us plan better and deliver faster!"
-                : "We stopped taking orders at 11:30 PM.<br>Come back tomorrow (Mon–Fri) before 11:30 PM.<br><br>You can still sign up for a subscription above!<br>⏰ Pro tip: Ordering early helps us plan better and deliver faster!";
-        }
-    }
+/* ══ BANNER ══ */
+function updateBanner(){
+  const b=document.getElementById('banner'),ic=document.getElementById('banner-icon'),ti=document.getElementById('banner-title'),tx=document.getElementById('banner-text');
+  const weekly=currentView==='weekly';
+  if(orderOpen&&!weekly){b.style.background='#FFF3D6';ic.textContent='schedule';ic.style.color='#9A6E12';ti.style.color='#9A6E12';ti.textContent='Ordering closes at 11:30 AM';tx.textContent='Place your order before 11:30 AM to get lunch delivered from 12:30 PM.';}
+  else if(orderOpen&&weekly){b.style.background='#e6f9ee';ic.textContent='restaurant';ic.style.color='#008f48';ti.style.color='#008f48';ti.textContent='Weekly menu is ready';tx.textContent='All meals KES 150 · Tap any day to select or swap your meal.';}
+  else if(!orderOpen&&!weekly){b.style.background='#e6f9ee';ic.textContent='local_shipping';ic.style.color='#008f48';ti.style.color='#008f48';ti.textContent="Today's meals have been dispatched";tx.textContent='All orders out for delivery, arriving from 12:30 PM. Ordering reopens tomorrow at 6:00 AM.';}
+  else{b.style.background='#e6f9ee';ic.textContent='local_shipping';ic.style.color='#008f48';ti.style.color='#008f48';ti.textContent='Your meal is on the way';tx.textContent='Out for delivery — arrives at your desk from 12:30 PM.';}
+}
 
-    /* Re-check every minute so the menu unlocks at midnight without a refresh */
-    function scheduleTimeGate() {
-        applyTimeGate();
-        const now = new Date();
-        const msToNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
-        setTimeout(() => {
-            applyTimeGate();
-            setInterval(applyTimeGate, 60 * 1000);
-        }, msToNextMinute);
-    }
+/* ══ VIEW SWITCH ══ */
+function setView(v){
+  currentView=v;placed=false;cart=[];
+  document.getElementById('seg-daily').classList.toggle('active',v==='daily');
+  document.getElementById('seg-weekly').classList.toggle('active',v==='weekly');
+  document.getElementById('daily-view').style.display=v==='daily'?'block':'none';
+  document.getElementById('weekly-view').style.display=v==='weekly'?'block':'none';
+  updateBanner();renderDishes();updateBars();
+}
 
-    /* ── NOTICE ACCORDION ── */
-    function toggleNotice(row) {
-        const expand = row.nextElementSibling;
-        const isOpen = expand.classList.contains('visible');
-        document.querySelectorAll('.notice-expand').forEach(e => e.classList.remove('visible'));
-        document.querySelectorAll('.notice-row').forEach(r => r.classList.remove('open'));
-        if (!isOpen) { expand.classList.add('visible'); row.classList.add('open'); }
-    }
+/* ══ RENDER DISHES (mobile) ══ */
+function getQty(id){return cart.filter(x=>x===id).length;}
+function mkStepper(id){return`<div class="qty-wrap"><button class="qty-btn minus" onclick="changeQty(${id},-1)">−</button><div class="qty-num">${getQty(id)}</div><button class="qty-btn plus" onclick="changeQty(${id},1)">+</button></div>`;}
+function mkAddBtn(extra=''){return`<button class="add-btn default${extra}" onclick="changeQty(${extra.includes('id=')?extra.split('id=')[1].split('"')[1]:0},1)">+ Add</button>`;}
 
-    /* ── REGULAR MENU ── */
-    function renderMenu() {
-        document.getElementById('menu-container').innerHTML = sides.map((item, i) => `
-            <div class="food-card">
-                <img src="${item.img}" class="food-img" alt="${mealName(item)}" loading="lazy">
-                <div class="food-info">
-                    <h3>${mealName(item)}</h3>
-                    <span class="price">KES ${item.price}</span>
-                </div>
-                <button class="add-btn" onclick="addToCart(${i})" aria-label="Add ${mealName(item)}">+</button>
-            </div>
-        `).join('');
-    }
+function renderDishes(){
+  const featured=MENU.find(d=>d.featured);
+  const rest=MENU.filter(d=>!d.featured);
+  const open=orderOpen;
+  /* featured */
+  const fw=document.getElementById('featured-card-wrap');
+  if(featured){
+    const qty=getQty(featured.id);
+    const imgH=featured.img?`<img src="${featured.img}" alt="${featured.name}" onerror="this.style.display='none'">`:'';
+    let ctrl='';
+    if(!open)ctrl=`<button class="add-btn closed">Closed</button>`;
+    else if(featured.soldOut)ctrl=`<button class="add-btn soldout">Sold out</button>`;
+    else if(qty>0)ctrl=mkStepper(featured.id);
+    else ctrl=`<button class="add-btn default" onclick="changeQty(${featured.id},1)">+ Add</button>`;
+    fw.innerHTML=`<div class="featured-card"><div class="featured-img">${imgH}<span class="chef-pill">CHEF'S PICK</span></div><div class="featured-bottom"><div class="featured-info"><div class="featured-name">${featured.name}</div><div class="featured-desc">${featured.desc}</div><div class="featured-price">KES ${featured.price}</div></div>${ctrl}</div></div>`;
+  }
+  /* list */
+  document.getElementById('dish-list').innerHTML=rest.map(d=>{
+    const qty=getQty(d.id);
+    let ctrl='';
+    if(d.soldOut)ctrl=`<button class="add-btn soldout">Sold out</button>`;
+    else if(!open)ctrl=`<button class="add-btn closed">Closed</button>`;
+    else if(qty>0)ctrl=mkStepper(d.id);
+    else ctrl=`<button class="add-btn default" onclick="changeQty(${d.id},1)">+ Add</button>`;
+    return`<div class="dish-row${qty>0?' has-qty':''}${d.soldOut?' soldout':''}">
+      <div class="dish-thumb"></div>
+      <div class="dish-info"><div class="dish-name">${d.name}</div><div class="dish-desc">${d.desc}</div><div class="dish-price">KES ${d.price}</div></div>
+      ${ctrl}
+    </div>`;
+  }).join('');
+}
 
-    function addToCart(index) { cart.push(sides[index]); updateCartUI(); }
+function changeQty(id,delta){
+  if(!orderOpen||placed)return;
+  const d=MENU.find(m=>m.id===id);if(!d||d.soldOut)return;
+  if(delta>0)cart.push(id);else{const i=cart.lastIndexOf(id);if(i>=0)cart.splice(i,1);}
+  renderDishes();updateBars();
+}
 
-    function updateCartUI() {
-        const total = cart.reduce((s, i) => s + i.price, 0);
-        document.getElementById('total-price').innerText = total;
-        const bar = document.getElementById('cart-bar');
-        bar.style.display = (cart.length > 0 && !isOrderingClosed()) ? 'flex' : 'none';
-    }
+/* ══ ORDER BAR ══ */
+function cartTotal(){return cart.reduce((s,id)=>{const d=MENU.find(m=>m.id===id);return s+(d?d.price:0);},0);}
+function updateBars(){
+  const ob=document.getElementById('order-bar'),sb=document.getElementById('success-bar');
+  if(placed){ob.style.display='none';sb.style.display='flex';return;}
+  const show=currentView==='daily'&&orderOpen&&cart.length>0;
+  ob.style.display=show?'block':'none';sb.style.display='none';
+  if(show){
+    document.getElementById('bar-count').textContent=cart.length+' item'+(cart.length>1?'s':'');
+    document.getElementById('bar-total').textContent='KES '+cartTotal();
+  }
+}
 
-    function openCheckout() {
-        const total = cart.reduce((s, i) => s + i.price, 0);
-        document.getElementById('order-items-list').innerHTML = cart.map(i =>
-            `<div class="order-row"><span>${mealName(i)}</span><span>KES ${i.price}</span></div>`
-        ).join('');
-        document.getElementById('summary-total').innerText = total;
-        const loc = document.getElementById('delivery-location');
-        loc.value = ''; loc.classList.remove('err');
-        document.getElementById('location-error').style.display = 'none';
-        document.getElementById('checkout-modal').style.display = 'flex';
-    }
+/* ══ CHECKOUT ══ */
+function openCheckout(){
+  const uniq=[...new Set(cart)];
+  document.getElementById('order-items-list').innerHTML=uniq.map(id=>{
+    const d=MENU.find(m=>m.id===id),q=getQty(id);
+    return`<div class="order-item-row"><span style="font-size:12px;font-weight:600;flex:1;">${d.name}</span><span style="font-size:11px;color:var(--muted);margin:0 6px;">×${q}</span><span style="font-size:12px;color:var(--green);font-weight:700;">KES ${d.price*q}</span><span class="order-item-remove" onclick="removeAllOfDish(${id})">✕</span></div>`;
+  }).join('');
+  document.getElementById('summary-total').textContent=cartTotal();
+  document.getElementById('delivery-location').value='';
+  document.getElementById('delivery-location').classList.remove('err');
+  document.getElementById('location-error').style.display='none';
+  document.getElementById('checkout-modal').classList.add('open');
+}
+function removeAllOfDish(id){cart=cart.filter(x=>x!==id);if(cart.length===0){closeCheckout();updateBars();renderDishes();return;}openCheckout();updateBars();renderDishes();}
+function handleOrder(){
+  const loc=document.getElementById('delivery-location'),location=loc.value.trim();
+  if(!location){loc.classList.add('err');document.getElementById('location-error').style.display='block';loc.focus();return;}
+  loc.classList.remove('err');document.getElementById('location-error').style.display='none';
+  let giftPhone='';
+  if(giftOn){giftPhone=document.getElementById('gift-phone').value.trim();if(!giftPhone){document.getElementById('gift-phone').classList.add('err');document.getElementById('gift-phone-error').style.display='block';document.getElementById('gift-phone').focus();return;}}
+  const uniq=[...new Set(cart)];
+  const lines=uniq.map((id,i)=>{const d=MENU.find(m=>m.id===id),q=getQty(id);return`  ${i+1}. ${d.name}${q>1?` ×${q}`:''} — KES ${d.price*q}`;}).join('\n');
+  const msg=['🍱 *New Order — Nairobi Dishes*','',
+    '*Items:*',lines,'',
+    `*Total:* KES ${cartTotal()}`,
+    `*Delivery:* ${location}, Nairobi CBD`,
+    giftPhone?`*Gift for:* ${giftPhone}`:'','',
+    '_Please send M-Pesa payment after confirming._'
+  ].filter(Boolean).join('\n');
+  placed=true;closeCheckout();updateBars();renderDishes();cart=[];
+  setTimeout(()=>{window.location.href=`https://wa.me/${MY_PHONE}?text=${encodeURIComponent(msg)}`;},300);
+}
+function closeCheckout(){document.getElementById('checkout-modal').classList.remove('open');}
+function closeAndClear(){cart=[];placed=false;giftOn=false;updateGiftUI();closeCheckout();updateBars();renderDishes();}
+function toggleGift(){giftOn=!giftOn;updateGiftUI();}
+function updateGiftUI(){document.getElementById('gift-switch').classList.toggle('on',giftOn);document.getElementById('gift-phone-group').style.display=giftOn?'block':'none';}
 
-    function handleOrder(type) {
-        const loc = document.getElementById('delivery-location');
-        const location = loc.value.trim();
-        if (!location) {
-            loc.classList.add('err');
-            document.getElementById('location-error').style.display = 'block';
-            loc.focus();
-            return false;
-        }
-        loc.classList.remove('err');
-        document.getElementById('location-error').style.display = 'none';
-        const total = cart.reduce((s, i) => s + i.price, 0);
-        const itemLines = cart.map((i, idx) => `  ${idx + 1}. ${mealName(i)} — KES ${i.price}`).join('\n');
-        const msg = [
-            '🍱 *New Order — Nairobi Dishes*',
-            '',
-            '*Items:*',
-            itemLines,
-            '',
-            `*Total:* KES ${total}`,
-            `*Delivery:* ${location}, Nairobi CBD`,
-            '',
-        ].join('\n');
-        const enc = encodeURIComponent(msg);
-        window.location.href = type === 'wa'
-            ? `https://wa.me/${MY_PHONE}?text=${enc}`
-            : `sms:+${MY_PHONE}?body=${enc}`;
-        return false;
-    }
+/* ══ SUBSCRIBE MODAL ══ */
+function subscribeViaWA(plan){
+  subPlan=plan;numOpt='same';
+  const isWeekly=plan==='weekly';
+  document.getElementById('sub-modal-title').textContent=`Subscribe — ${isWeekly?'Weekly':'Monthly'} Plan`;
+  document.getElementById('sub-modal-price').innerHTML=isWeekly?'KES 750<span style="font-size:13px;font-weight:600;"> / week</span>':'KES 3,000<span style="font-size:13px;font-weight:600;"> / month</span>';
+  document.getElementById('sub-modal-desc').textContent=isWeekly?'5 meals · Mon–Fri · No daily ordering stress':'20 meals · Mon–Fri · Best value';
+  document.getElementById('numopt-same').classList.add('active');document.getElementById('numopt-diff').classList.remove('active');
+  document.getElementById('diff-num-group').style.display='none';
+  document.getElementById('sub-name').value='';document.getElementById('sub-phone').value='';document.getElementById('sub-phone-err').style.display='none';
+  document.getElementById('subscribe-modal').classList.add('open');
+}
+function closeSubscribeModal(){document.getElementById('subscribe-modal').classList.remove('open');}
+function setNumOpt(opt){
+  numOpt=opt;
+  document.getElementById('numopt-same').classList.toggle('active',opt==='same');
+  document.getElementById('numopt-diff').classList.toggle('active',opt==='diff');
+  document.getElementById('diff-num-group').style.display=opt==='diff'?'block':'none';
+}
+function sendSubscribeWA(){
+  const phone=document.getElementById('sub-phone').value.trim();
+  if(!phone){document.getElementById('sub-phone').classList.add('err');document.getElementById('sub-phone-err').style.display='block';return;}
+  const name=document.getElementById('sub-name').value.trim();
+  const payNum=numOpt==='diff'?document.getElementById('payment-number').value.trim():'';
+  const planLabel=subPlan==='weekly'?'Weekly Plan (KES 750/week)':'Monthly Plan (KES 3,000/month)';
+  const msg=['👋 Hello Nairobi Dishes!','',
+    `I'd like to subscribe to the *${planLabel}*.`,
+    name?`*Name:* ${name}`:'',
+    `*Contact number:* ${phone}`,
+    numOpt==='diff'&&payNum?`*M-Pesa payment number:* ${payNum} _(different from my registered number)_`:'',
+    '','_Please guide me on next steps and payment._'
+  ].filter(Boolean).join('\n');
+  window.open(`https://wa.me/${MY_PHONE}?text=${encodeURIComponent(msg)}`,'_blank');
+  closeSubscribeModal();
+}
 
-    function handleModalBg(e, id) {
-        if (e.target === document.getElementById(id)) closeAndClear();
-    }
+/* ══ WEEKLY ROWS (mobile) ══ */
+function renderWeekly(){
+  const todayIdx=todayWeekIdx();
+  const c=document.getElementById('weekly-rows');if(!c)return;
+  c.innerHTML=WEEKLY_MENU.map((d,i)=>{
+    const isToday=i===todayIdx,isPast=todayIdx!==-1&&i<todayIdx;
+    const confirmed=weeklyConfirmed[i];
+    const selected=weeklySelections[i];
+    const dayColor=isToday?'#E8A317':isPast?'#B0B0B0':'#1A1A1A';
+    const icon=confirmed?'check_circle':isToday?'schedule':'radio_button_unchecked';
+    const iconColor=confirmed?'#00b960':isToday?'#E8A317':'#D0D0D0';
+    const summary=selected?`<span style="color:var(--green);font-weight:700;">${selected}</span>`:`<span style="color:var(--muted);">${d.meals.length} options</span>`;
+    const canChange=!isPast;
+    return`<div class="weekly-row${isToday?' today-row':''}">
+      <div class="wr-head" onclick="${canChange?`toggleWeekDay(${i})`:''}">
+        <div class="wr-day" style="color:${dayColor}">${d.day}</div>
+        <div class="wr-summary">${summary}</div>
+        ${confirmed?`<button class="add-btn weekly-sel" style="font-size:9px;padding:5px 8px;" onclick="event.stopPropagation();openChangeDay(${i})">Change</button>`:''}
+        <span class="ms msfill wr-status" style="color:${iconColor};margin-left:4px;">${icon}</span>
+      </div>
+      <div class="wr-panel" id="wrp-${i}">
+        <div class="wr-panel-title">SELECT YOUR MEAL FOR ${d.day.toUpperCase()}</div>
+        ${d.meals.map(m=>`<div class="wr-meal-option${weeklySelections[i]===m?' selected':''}" onclick="selectWeeklyMeal(${i},'${m}')">
+          <span class="ms msfill wr-check" style="color:${weeklySelections[i]===m?'var(--yellow)':'#DDD'};">${weeklySelections[i]===m?'check_circle':'radio_button_unchecked'}</span>
+          <span class="wr-meal-name">${m}</span>
+          <span class="wr-meal-price">KES 150</span>
+        </div>`).join('')}
+        ${weeklySelections[i]?`<button class="wr-confirm-btn" onclick="confirmWeeklySelection(${i})"><span style="font-size:16px;">📲</span>Confirm via WhatsApp</button><p class="wr-pending-note">After sending, your meal will show as confirmed here.</p>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
 
-    function closeAndClear() {
-        cart = []; updateCartUI();
-        document.getElementById('checkout-modal').style.display = 'none';
-    }
+function toggleWeekDay(i){
+  const panel=document.getElementById('wrp-'+i);
+  if(!panel)return;
+  const isOpen=panel.classList.contains('open');
+  document.querySelectorAll('.wr-panel').forEach(p=>p.classList.remove('open'));
+  if(!isOpen)panel.classList.add('open');
+}
+function openChangeDay(i){
+  const panel=document.getElementById('wrp-'+i);
+  if(panel){document.querySelectorAll('.wr-panel').forEach(p=>p.classList.remove('open'));panel.classList.add('open');}
+}
+function selectWeeklyMeal(dayIdx,meal){
+  weeklySelections[dayIdx]=meal;
+  renderWeekly();
+  // keep panel open
+  const panel=document.getElementById('wrp-'+dayIdx);
+  if(panel)panel.classList.add('open');
+}
+function confirmWeeklySelection(dayIdx){
+  const meal=weeklySelections[dayIdx];if(!meal)return;
+  const day=WEEKLY_MENU[dayIdx].day;
+  const msg=['👋 Hello Nairobi Dishes!','',
+    `I'd like to confirm my meal selection for *${day}*:`,
+    `*Meal:* ${meal}`,
+    '','_Please update my weekly plan. Thanks!_'
+  ].join('\n');
+  window.open(`https://wa.me/${MY_PHONE}?text=${encodeURIComponent(msg)}`,'_blank');
+  // mark as pending confirmed
+  weeklyConfirmed[dayIdx]=true;
+  setTimeout(()=>renderWeekly(),500);
+}
 
-    /* ── SUBSCRIPTION ── */
-    function subscribeViaWA(plan) {
-        const label = plan === 'weekly'
-            ? 'Weekly Plan (5 days – KES 750/week)'
-            : 'Monthly Plan (20 days – KES 3,000/month)';
-        const msg = [
-            '👋 Hello Nairobi Dishes!',
-            '',
-            `I'd like to subscribe to the *${label}*.`,
-            '',
-        ].join('\n');
-        window.location.href = `https://wa.me/${MY_PHONE}?text=${encodeURIComponent(msg)}`;
-    }
+/* ══ RANKING ══ */
+function renderRanking(){
+  const c=document.getElementById('rank-list');if(!c)return;
+  c.innerHTML=RANKING.map((r,i)=>`<div class="rank-row">
+    <div class="rank-num${i<2?' top':''}">${i+2}</div>
+    <div class="rank-info"><div class="rank-name">${r.name}</div><div class="rank-track"><div class="rank-fill${i<2?' top':''}" style="width:${Math.round(r.pct/28*100)}%"></div></div></div>
+    <div class="rank-pct">${r.pct}%</div>
+  </div>`).join('');
+  /* desktop */
+  const dc=document.getElementById('ds-pop-list');if(!dc)return;
+  dc.innerHTML=RANKING.map((r,i)=>`<div class="ds-pop-row">
+    <div style="width:20px;text-align:center;font:700 12px Poppins,sans-serif;color:${i<2?'var(--dark)':'#B0B0B0'}">${i+2}</div>
+    <div style="flex:1;padding:0 10px;"><div style="font:600 13px Poppins,sans-serif;">${r.name}</div><div style="height:6px;background:#F0F0F0;border-radius:3px;margin-top:5px;overflow:hidden;"><div style="width:${Math.round(r.pct/28*100)}%;height:100%;background:${i<2?'var(--green)':'#9FD8CC'};border-radius:3px;"></div></div></div>
+    <div style="font:700 12px Poppins,sans-serif;">${r.pct}%</div>
+  </div>`).join('');
+}
 
-    renderMenu();
-    scheduleTimeGate();
+/* ══ DESKTOP MENU GRID ══ */
+function renderDesktopMenu(){
+  const g=document.getElementById('ds-menu-grid');if(!g)return;
+  g.innerHTML=MENU.map(d=>{
+    const qty=dsCart.filter(x=>x===d.id).length;
+    let ctrl='';
+    if(!orderOpen)ctrl=`<button class="add-btn closed" style="font-size:10px;padding:6px 10px;">Closed</button>`;
+    else if(d.soldOut)ctrl=`<button class="add-btn soldout" style="font-size:10px;padding:6px 10px;">Sold out</button>`;
+    else if(qty>0)ctrl=`<div class="qty-wrap"><button class="qty-btn minus" onclick="dsChangeQty(${d.id},-1)">−</button><div class="qty-num">${qty}</div><button class="qty-btn plus" onclick="dsChangeQty(${d.id},1)">+</button></div>`;
+    else ctrl=`<button class="add-btn default" style="font-size:10px;padding:6px 10px;" onclick="dsChangeQty(${d.id},1)">+ Add</button>`;
+    return`<div class="ds-dish-card${qty>0?' has-qty':''}">
+      <div class="ds-dish-img">${d.img?`<img src="${d.img}" alt="${d.name}" onerror="this.style.display='none'">`:''}${d.featured?`<span style="position:absolute;top:8px;left:8px;background:var(--green);color:#fff;font:700 8px Poppins,sans-serif;padding:2px 7px;border-radius:12px;">CHEF'S PICK</span>`:''}</div>
+      <div class="ds-dish-body"><div class="ds-dish-name">${d.name}</div><div class="ds-dish-desc">${d.desc}</div><div class="ds-dish-footer"><div class="ds-dish-price">KES ${d.price}</div>${ctrl}</div></div>
+    </div>`;
+  }).join('');
+}
 
+/* desktop cart */
+let dsCart=[];
+function dsChangeQty(id,delta){
+  const d=MENU.find(m=>m.id===id);if(!d||d.soldOut||!orderOpen)return;
+  if(delta>0)dsCart.push(id);else{const i=dsCart.lastIndexOf(id);if(i>=0)dsCart.splice(i,1);}
+  renderDesktopMenu();renderDesktopOrderPanel();
+}
+function renderDesktopOrderPanel(){
+  const empty=document.getElementById('ds-order-empty');
+  const items=document.getElementById('ds-order-items');
+  if(dsCart.length===0){empty.style.display='block';items.style.display='none';return;}
+  empty.style.display='none';items.style.display='block';
+  const uniq=[...new Set(dsCart)];
+  document.getElementById('ds-order-list').innerHTML=uniq.map(id=>{
+    const d=MENU.find(m=>m.id===id),q=dsCart.filter(x=>x===id).length;
+    return`<div class="order-item-row"><span style="font-size:12px;font-weight:600;flex:1;">${d.name}</span><span style="font-size:11px;color:var(--muted);margin:0 4px;">×${q}</span><span style="font-size:12px;color:var(--green);font-weight:700;">KES ${d.price*q}</span><span class="order-item-remove" onclick="dsRemoveDish(${id})">✕</span></div>`;
+  }).join('');
+  document.getElementById('ds-order-total').textContent=dsCart.reduce((s,id)=>{const d=MENU.find(m=>m.id===id);return s+(d?d.price:0);},0);
+}
+function dsRemoveDish(id){dsCart=dsCart.filter(x=>x!==id);renderDesktopMenu();renderDesktopOrderPanel();}
+function dsClearCart(){dsCart=[];renderDesktopMenu();renderDesktopOrderPanel();}
+function dsHandleOrder(){
+  const loc=document.getElementById('ds-delivery-loc'),location=loc.value.trim();
+  if(!location){loc.classList.add('err');document.getElementById('ds-loc-err').style.display='block';loc.focus();return;}
+  loc.classList.remove('err');document.getElementById('ds-loc-err').style.display='none';
+  const uniq=[...new Set(dsCart)];
+  const total=dsCart.reduce((s,id)=>{const d=MENU.find(m=>m.id===id);return s+(d?d.price:0);},0);
+  const lines=uniq.map((id,i)=>{const d=MENU.find(m=>m.id===id),q=dsCart.filter(x=>x===id).length;return`  ${i+1}. ${d.name}${q>1?` ×${q}`:''} — KES ${d.price*q}`;}).join('\n');
+  const msg=['🍱 *New Order — Nairobi Dishes*','','*Items:*',lines,'',`*Total:* KES ${total}`,`*Delivery:* ${location}, Nairobi CBD`,'','_Please send M-Pesa payment after confirming._'].join('\n');
+  window.open(`https://wa.me/${MY_PHONE}?text=${encodeURIComponent(msg)}`,'_blank');
+  dsClearCart();
+}
+
+/* desktop weekly */
+function renderDesktopWeekly(){
+  const c=document.getElementById('ds-weekly-rows');if(!c)return;
+  const todayIdx=todayWeekIdx();
+  c.innerHTML=WEEKLY_MENU.map((d,i)=>{
+    const isToday=i===todayIdx,isPast=todayIdx!==-1&&i<todayIdx;
+    const confirmed=weeklyConfirmed[i];const selected=weeklySelections[i];
+    const icon=confirmed?'<span class="ms msfill" style="color:var(--green);font-size:16px;">check_circle</span>':isToday?'<span class="ms msfill" style="color:#E8A317;font-size:16px;">schedule</span>':'<span class="ms" style="color:#DDD;font-size:16px;">radio_button_unchecked</span>';
+    const mealList=selected?`<strong style="color:var(--green);">${selected}</strong>`:d.meals.join(', ');
+    return`<div class="ds-weekly-row${isToday?' today':''}">
+      <div style="font:700 11px Poppins,sans-serif;color:${isToday?'#E8A317':isPast?'#B0B0B0':'var(--dark)'};">${d.day}</div>
+      <div style="font-size:11.5px;color:var(--mid);">${mealList}</div>
+      <div>${icon}</div>
+    </div>`;
+  }).join('');
+}
+
+/* desktop banner */
+function updateDsBanner(){
+  const bt=document.getElementById('ds-banner-title'),bx=document.getElementById('ds-banner-text'),db=document.getElementById('ds-banner');if(!bt)return;
+  if(orderOpen){db.style.background='#FFF3D6';bt.style.color='#9A6E12';bt.textContent='Ordering closes at 11:30 AM';bx.textContent='Place your order before 11:30 AM to get lunch delivered from 12:30 PM.';}
+  else{db.style.background='#e6f9ee';bt.style.color='#008f48';bt.textContent="Today's orders have been dispatched";bx.textContent='Ordering reopens tomorrow at 6:00 AM.';}
+  const dsub=document.getElementById('ds-date-sub');if(dsub)dsub.textContent=todayDate()+' · Nairobi CBD';
+}
+
+/* ══ GIFT ══ */
+function openGiftModal(){document.getElementById('gift-modal').classList.add('open');}
+function closeGiftModal(){document.getElementById('gift-modal').classList.remove('open');}
+function sendGiftViaWA(){
+  const phone=document.getElementById('gift-standalone-phone').value.trim();
+  if(!phone){document.getElementById('gift-standalone-phone').classList.add('err');document.getElementById('gift-standalone-err').style.display='block';return;}
+  const sender=document.getElementById('gift-sender-name').value.trim();
+  const msg=['👋 Hello Nairobi Dishes!','',`I'd like to *gift a meal* to someone.`,`*Recipient number:* ${phone}`,sender?`*Sent by:* ${sender}`:'','_Please help me sort this out!_'].filter(Boolean).join('\n');
+  window.open(`https://wa.me/${MY_PHONE}?text=${encodeURIComponent(msg)}`,'_blank');
+  closeGiftModal();
+}
+
+/* ══ REFER ══ */
+function openReferModal(){document.getElementById('refer-modal').classList.add('open');}
+function closeReferModal(){document.getElementById('refer-modal').classList.remove('open');}
+function sendReferViaWA(){
+  const phone=document.getElementById('refer-phone').value.trim();
+  if(!phone){document.getElementById('refer-phone').classList.add('err');document.getElementById('refer-phone-err').style.display='block';return;}
+  const msg=['👋 Hello Nairobi Dishes!','',`I'd like to refer a friend — their number is *${phone}*.`,'','_Please reach out to them and credit my 10% referral to my M-Pesa._'].join('\n');
+  window.open(`https://wa.me/${MY_PHONE}?text=${encodeURIComponent(msg)}`,'_blank');
+  closeReferModal();
+}
+
+/* ══ SUBSCRIBE (desktop alias) ══ */
+function dsSubscribeWA(plan){subscribeViaWA(plan);}
+
+/* ══ TIME GATE ══ */
+function applyTimeGate(){
+  orderOpen=isOpen();
+  const mb=document.getElementById('menu-block'),cb=document.getElementById('closed-block');
+  if(mb)mb.style.display=orderOpen?'block':'none';
+  if(cb)cb.style.display=orderOpen?'none':'block';
+  const{day}=getEAT();const isWeekend=day===0||day===6;
+  const sub=document.getElementById('closed-sub-text');
+  if(sub)sub.innerHTML=isWeekend?'We only operate Mon–Fri.<br>Come back Monday before 11:30 AM!':'We stopped taking orders at 11:30 AM.<br>Come back tomorrow before 11:30 AM.';
+  updateBanner();updateDsBanner();renderDishes();renderDesktopMenu();updateBars();
+}
+function scheduleTimeGate(){applyTimeGate();const n=new Date();const ms=(60-n.getSeconds())*1000-n.getMilliseconds();setTimeout(()=>{applyTimeGate();setInterval(applyTimeGate,60000);},ms);}
+
+/* ══ PWA ══ */
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;setTimeout(()=>document.getElementById('install-banner').classList.add('show'),30000);});
+document.getElementById('install-btn').addEventListener('click',()=>{if(!deferredInstall)return;deferredInstall.prompt();deferredInstall.userChoice.then(()=>{deferredInstall=null;dismissInstall();});});
+function dismissInstall(){document.getElementById('install-banner').classList.remove('show');}
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+/* ══ INIT ══ */
+document.getElementById('greeting-name').textContent=greet();
+document.getElementById('greeting-sub').textContent=todayDate()+' · Nairobi CBD';
+document.getElementById('status-time').textContent=liveTime();
+setInterval(()=>{document.getElementById('status-time').textContent=liveTime();},30000);
+renderRanking();
+scheduleTimeGate();
+renderWeekly();
+renderDesktopWeekly();
+renderDesktopMenu();
+renderDesktopOrderPanel();
+updateDsBanner();
+
+setTimeout(()=>{document.getElementById('splash').classList.add('hide');setTimeout(()=>document.getElementById('splash').style.display='none',400);},1800);
 </script>
 </body>
 </html>
