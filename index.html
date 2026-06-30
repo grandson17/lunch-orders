@@ -651,7 +651,7 @@
     <div class="notice-strip">
         <div class="notice-row" onclick="toggleNotice(this)">
             <span class="notice-icon">⏰</span>
-            <span class="notice-text">Orders close at <strong>14:30 PM</strong> <span>· Mon – Fri</span></span>
+            <span class="notice-text">Orders close at <strong>11:30 PM</strong> <span>· Mon – Fri</span></span>
             <span class="notice-chevron">›</span>
         </div>
         <div class="notice-expand">
@@ -671,7 +671,7 @@
             <span class="notice-chevron">›</span>
         </div>
         <div class="notice-expand">
-            Order before 14:30, we're trying to understand Nairobi logistics.
+            Order before 11:30, we're trying to understand Nairobi logistics.
          </div>
     </div>
 
@@ -797,7 +797,7 @@
     function isOrderingClosed() {
         const { hour, min, day } = getEAT();
         const isWeekend = (day === 0 || day === 6);
-        const isPastCutoff = (hour > 14) || (hour === 14 && min >= 30);
+        const isPastCutoff = (hour > 11) || (hour === 11 && min >= 30);
         return isWeekend || isPastCutoff;
     }
 
