@@ -790,7 +790,7 @@ let wsMeal=null;  // currently highlighted meal in modal
 /* ══ TIME ══ */
 function getEAT(){const n=new Date(),e=new Date(n.getTime()+3*60*60*1000);return{h:e.getUTCHours(),m:e.getUTCMinutes(),day:e.getUTCDay()};}
 function isOpen(){const{h,m,day}=getEAT();if(day===0||day===6)return false;return!(h>14||(h===14&&m>=30));}
-function greet(){const{h}=getEAT();return h<12?"Habari asubuhi!":h<17?"Habari mchana!":"Habari jioni!";}
+function greet(){const{h}=getEAT();return h<12?"Niaje!":h<17?"Habari ya Leo!":"Habari Ya Jioni!";}
 function todayDate(){const D=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],d=new Date();return`${D[d.getDay()]}, ${d.getDate()} ${M[d.getMonth()]}`;}
 function liveTime(){const n=new Date();return`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;}
 function todayWeekIdx(){const d=new Date().getDay();const m={1:0,2:1,3:2,4:3,5:4};return m[d]!==undefined?m[d]:-1;}
