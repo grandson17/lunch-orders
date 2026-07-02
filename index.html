@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Nairobi Dishes | Affordable Packed Meals Delivered in Nairobi CBD</title>
-<meta name="description" content="Order affordable, healthy, microwavable packed meals delivered within Nairobi CBD. Meals from KES 100. Order by 11:30 AM Mon–Fri.">
+<meta name="description" content="Order affordable, healthy, microwavable packed meals delivered within Nairobi CBD. Meals from KES 100. Order by 2:30 PM Mon–Fri.">
 <meta name="theme-color" content="#FFC244">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -347,7 +347,7 @@ body{font-family:'Nunito Sans',sans-serif;background:#e8e8e8;color:var(--dark);-
     </div>
     <div class="ds-card">
       <div class="ds-card-title">INFO</div>
-      <div class="ds-info-row"><span>Order by</span><strong>11:30 AM</strong></div>
+      <div class="ds-info-row"><span>Order by</span><strong>2:30 PM</strong></div>
       <div class="ds-info-row"><span>Delivery from</span><strong>12:30 PM</strong></div>
       <div class="ds-info-row"><span>Days</span><strong>Mon – Fri</strong></div>
       <div class="ds-info-row"><span>Area</span><strong>Nairobi CBD</strong></div>
@@ -369,8 +369,17 @@ body{font-family:'Nunito Sans',sans-serif;background:#e8e8e8;color:var(--dark);-
       <div class="ds-banner" id="ds-banner">
         <span class="ms msfill" style="font-size:22px;color:#9A6E12;">schedule</span>
         <div>
-          <div style="font:700 13px Poppins,sans-serif;color:#9A6E12;" id="ds-banner-title">Ordering closes at 11:30 AM</div>
-          <div style="font-size:12px;color:var(--mid);margin-top:2px;" id="ds-banner-text">Place your order before 11:30 AM to get lunch delivered from 12:30 PM.</div>
+          <div style="font:700 13px Poppins,sans-serif;color:#9A6E12;" id="ds-banner-title">Ordering closes at 2:30 PM</div>
+          <div style="font-size:12px;color:var(--mid);margin-top:2px;" id="ds-banner-text">Place your order before 2:30 PM to get lunch delivered from 12:30 PM.</div>
+        </div>
+      </div>
+      <div id="ds-banner-cta" style="display:none;background:var(--white);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:16px;">
+        <div style="font:700 14px Poppins,sans-serif;color:var(--dark);margin-bottom:3px;">Want lunch tomorrow?</div>
+        <div style="font-size:12px;color:var(--mid);margin-bottom:14px;line-height:1.5;">Order ahead for tomorrow, or set up a Weekly Plan so your meals are sorted all week.</div>
+        <div id="ds-tomorrow-picker" style="display:none;margin-bottom:14px;"></div>
+        <div style="display:flex;gap:10px;">
+          <button onclick="dsToggleTomorrowPicker()" style="flex:1;border:none;border-radius:11px;background:var(--dark);color:#fff;font:700 13px Poppins,sans-serif;padding:12px;cursor:pointer;">Order for Tomorrow</button>
+          <button onclick="dsGoTab('weekly')" style="flex:1;border:1px solid var(--border);border-radius:11px;background:#fff;color:var(--dark);font:700 13px Poppins,sans-serif;padding:12px;cursor:pointer;">View Weekly Menu</button>
         </div>
       </div>
       <div class="ds-menu-grid" id="ds-menu-grid"></div>
@@ -400,17 +409,30 @@ body{font-family:'Nunito Sans',sans-serif;background:#e8e8e8;color:var(--dark);-
     <!-- WEEKLY -->
     <div class="ds-main-section" id="dssec-weekly">
       <div class="ds-section-title">Weekly Plan</div>
-      <div class="ds-section-sub">All meals KES 150 · Packed &amp; Microwavable · Swap any meal before 10:00 AM</div>
+      <div class="ds-section-sub">All meals KES 150 · Packed &amp; Microwavable · Swap any meal before 10:00 AM on that day</div>
       <div class="ds-weekly-table">
         <div class="ds-weekly-table-head">
           <span>DAY</span><span>DISHES AVAILABLE</span><span>STATUS</span>
         </div>
         <div id="ds-weekly-rows"></div>
       </div>
-      <div style="background:var(--dark);border-radius:18px;padding:18px 20px;">
-        <div style="font:700 14px Poppins,sans-serif;color:var(--yellow);margin-bottom:4px;">Subscribe to the weekly plan</div>
-        <div style="font-size:11px;color:#BDBDBD;margin-bottom:14px;">5 meals Mon–Fri · KES 750/week · No daily ordering stress</div>
-        <button onclick="dsSubscribeWA('weekly')" style="width:100%;border:none;border-radius:12px;background:var(--green);color:#fff;font:700 14px Poppins,sans-serif;padding:14px;cursor:pointer;">Subscribe via WhatsApp</button>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:18px;padding:18px 20px;margin-bottom:16px;">
+        <div style="font:700 13px Poppins,sans-serif;color:var(--dark);margin-bottom:10px;">Select your meals</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:12px;line-height:1.5;">Pick a day, then a meal. You can even pick an earlier day — it'll simply be prepared next week.</div>
+        <div id="ds-week-day-tabs" style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;"></div>
+        <div id="ds-week-meal-options"></div>
+      </div>
+      <div id="ds-weekly-summary" style="display:none;background:var(--dark);border-radius:18px;padding:18px 20px;margin-bottom:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+          <div style="font:700 13px Poppins,sans-serif;color:#fff;" id="ds-weekly-summary-count">0 days selected</div>
+          <div style="font:700 15px Poppins,sans-serif;color:var(--yellow);" id="ds-weekly-summary-total">KES 0</div>
+        </div>
+        <div class="field-group" style="margin-bottom:12px;">
+          <label class="field-label" style="color:#BDBDBD;">Delivery location <span class="field-req">*</span></label>
+          <input type="text" id="ds-weekly-loc" class="field-input" placeholder="e.g. Anniversary Towers, Moi Ave">
+          <div class="field-err" id="ds-weekly-loc-err">Please enter your delivery location.</div>
+        </div>
+        <button onclick="dsSendWeeklyOrder()" class="wa-order-btn" style="margin:0;"><span style="font-size:18px;">📲</span>Send Weekly Order via WhatsApp</button>
       </div>
     </div>
 
@@ -494,7 +516,7 @@ body{font-family:'Nunito Sans',sans-serif;background:#e8e8e8;color:var(--dark);-
 <!-- TODAY -->
 <div id="scr-today" class="screen active">
   <div class="status-bar">
-    <span id="status-time">11:05</span>
+    <span class="live-time" id="status-time">11:05</span>
   </div>
   <div class="scroll-area scr" id="today-scroll">
     <div class="today-header">
@@ -508,8 +530,16 @@ body{font-family:'Nunito Sans',sans-serif;background:#e8e8e8;color:var(--dark);-
     <div class="banner" id="banner">
       <span class="ms msfill" id="banner-icon" style="font-size:20px;color:#9A6E12;flex:0 0 auto;">schedule</span>
       <div>
-        <div class="banner-title" id="banner-title" style="color:#9A6E12;">Ordering closes at 11:30 AM</div>
-        <div class="banner-text" id="banner-text">Place your order before 11:30 AM to get lunch delivered from 12:30 PM.</div>
+        <div class="banner-title" id="banner-title" style="color:#9A6E12;">Ordering closes at 2:30 PM</div>
+        <div class="banner-text" id="banner-text">Place your order before 2:30 PM to get lunch delivered from 12:30 PM.</div>
+      </div>
+    </div>
+    <div id="banner-cta" style="display:none;margin:8px 16px 0;background:#fff;border:1px solid var(--border);border-radius:14px;padding:14px;">
+      <div style="font:700 12.5px Poppins,sans-serif;color:var(--dark);margin-bottom:2px;">Want lunch tomorrow?</div>
+      <div style="font-size:11px;color:var(--mid);margin-bottom:10px;line-height:1.5;">Order ahead for tomorrow, or set up a Weekly Plan so your meals are sorted all week.</div>
+      <div style="display:flex;gap:8px;">
+        <button onclick="orderForTomorrowWA()" style="flex:1;border:none;border-radius:10px;background:var(--dark);color:#fff;font:700 11.5px Poppins,sans-serif;padding:10px;cursor:pointer;">Order for Tomorrow</button>
+        <button onclick="setView('weekly')" style="flex:1;border:1px solid var(--border);border-radius:10px;background:#fff;color:var(--dark);font:700 11.5px Poppins,sans-serif;padding:10px;cursor:pointer;">View Weekly Menu</button>
       </div>
     </div>
 
@@ -519,7 +549,7 @@ body{font-family:'Nunito Sans',sans-serif;background:#e8e8e8;color:var(--dark);-
         <div class="closed-state">
           <div style="font-size:2.5rem;margin-bottom:12px;">🍱</div>
           <div style="font:700 18px Poppins,sans-serif;margin-bottom:6px;">Orders closed for today</div>
-          <div style="font-size:12px;color:var(--mid);line-height:1.6;margin-bottom:20px;" id="closed-sub-text">We stopped taking orders at 11:30 AM. Come back tomorrow before 11:30 AM.</div>
+          <div style="font-size:12px;color:var(--mid);line-height:1.6;margin-bottom:20px;" id="closed-sub-text">We stopped taking orders at 2:30 PM. Come back tomorrow before 2:30 PM.</div>
           <a href="https://wa.me/254714243150" class="wa-btn-green"><span class="ms msfill" style="font-size:18px;">chat</span>Chat on WhatsApp</a>
         </div>
       </div>
@@ -540,13 +570,15 @@ body{font-family:'Nunito Sans',sans-serif;background:#e8e8e8;color:var(--dark);-
         <div id="weekly-rows"></div>
       </div>
       <div style="margin:10px 16px 4px;font-size:10.5px;color:var(--muted);line-height:1.6;">
-        💡 Tap any day to select your meal. Swap before <strong>10:00 AM</strong> on that day.<br>
-        <span style="color:#BDBDBD;">In-app auto-save coming soon — selections currently sent via WhatsApp.</span>
+        💡 Tap any day to select your meal — even earlier days, which will simply be prepared next week.<br>
+        <span style="color:#BDBDBD;">Select all the days you want, then send your whole week in one WhatsApp message.</span>
       </div>
-      <div style="margin:8px 16px 16px;background:var(--dark);border-radius:14px;padding:14px 16px;">
-        <div style="font:700 13px Poppins,sans-serif;color:var(--yellow);margin-bottom:3px;">Get the weekly plan</div>
-        <div style="font-size:11px;color:#BDBDBD;margin-bottom:12px;">5 meals Mon–Fri · KES 750/week</div>
-        <button onclick="subscribeViaWA('weekly')" style="width:100%;border:none;border-radius:11px;background:var(--green);color:#fff;font:700 13px Poppins,sans-serif;padding:13px;cursor:pointer;">Subscribe via WhatsApp</button>
+      <div id="weekly-summary" style="display:none;margin:10px 16px 4px;background:var(--dark);border-radius:14px;padding:14px 16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <div style="font:700 12px Poppins,sans-serif;color:#fff;" id="weekly-summary-count">0 days selected</div>
+          <div style="font:700 13px Poppins,sans-serif;color:var(--yellow);" id="weekly-summary-total">KES 0</div>
+        </div>
+        <button onclick="openWeeklyCheckout()" style="width:100%;border:none;border-radius:11px;background:var(--green);color:#fff;font:700 13px Poppins,sans-serif;padding:12px;cursor:pointer;"><span style="font-size:15px;">📲</span> Send Weekly Order via WhatsApp</button>
       </div>
     </div>
   </div>
@@ -573,7 +605,7 @@ body{font-family:'Nunito Sans',sans-serif;background:#e8e8e8;color:var(--dark);-
 
 <!-- POPULAR -->
 <div id="scr-popular" class="screen">
-  <div class="status-bar"><span>11:05</span></div>
+  <div class="status-bar"><span class="live-time">11:05</span></div>
   <div class="scroll-area scr">
     <div style="padding:8px 16px 2px;"><div style="font:700 20px Poppins,sans-serif;">Most ordered</div><div style="font-size:11px;color:var(--muted);margin-top:1px;">Top picks this week · Nairobi CBD</div></div>
     <div class="hero-rank-card">
@@ -590,7 +622,7 @@ body{font-family:'Nunito Sans',sans-serif;background:#e8e8e8;color:var(--dark);-
 
 <!-- ACCOUNT -->
 <div id="scr-account" class="screen" style="background:var(--light);">
-  <div class="status-bar" style="background:var(--light);"><span>11:05</span></div>
+  <div class="status-bar" style="background:var(--light);"><span class="live-time">11:05</span></div>
   <div class="account-bg scr">
     <div style="margin:14px 14px 0;background:var(--dark);border-radius:16px;padding:22px 18px;text-align:center;">
       <span class="ms msfill" style="font-size:34px;color:var(--yellow);">account_circle</span>
@@ -648,6 +680,45 @@ body{font-family:'Nunito Sans',sans-serif;background:#e8e8e8;color:var(--dark);-
     </div>
     <button class="wa-order-btn" onclick="handleOrder()"><span style="font-size:18px;">📲</span>Order via WhatsApp</button>
     <button class="clear-link" onclick="closeAndClear()">Clear &amp; start over</button>
+  </div>
+</div>
+
+<!-- WEEKLY CHECKOUT MODAL -->
+<div class="modal-overlay" id="weekly-checkout-modal" onclick="if(event.target===this)closeWeeklyCheckout()">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Confirm Weekly Order</div>
+    <div class="order-list-box" id="weekly-order-items-list"></div>
+    <div style="text-align:right;font:700 14px Poppins,sans-serif;color:var(--dark);padding:8px 0 4px;">Total: KES <span id="weekly-summary-total-modal">0</span></div>
+    <div class="cbd-note"><span>📍</span><span>We deliver within <strong>Nairobi CBD only</strong>.</span></div>
+    <div class="field-group">
+      <label class="field-label">Delivery location <span class="field-req">*</span></label>
+      <input type="text" id="weekly-delivery-location" class="field-input" placeholder="e.g. Anniversary Towers, Moi Ave">
+      <div class="field-hint">Building or landmark within Nairobi CBD.</div>
+      <div class="field-err" id="weekly-location-error">Please enter your delivery location.</div>
+    </div>
+    <button class="wa-order-btn" onclick="handleWeeklyOrder()"><span style="font-size:18px;">📲</span>Send Weekly Order via WhatsApp</button>
+    <button class="clear-link" onclick="closeWeeklyCheckout()">Back to menu</button>
+  </div>
+</div>
+
+<!-- ORDER FOR TOMORROW MODAL -->
+<div class="modal-overlay" id="tomorrow-modal" onclick="if(event.target===this)closeTomorrowModal()">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="tomorrow-modal-title">Order for Tomorrow</div>
+    <p style="font-size:11.5px;color:var(--mid);text-align:center;margin:-6px 0 14px;line-height:1.5;" id="tomorrow-modal-sub">Pick your meal</p>
+    <div id="tomorrow-meal-options"></div>
+    <div class="field-err" id="tomorrow-meal-error" style="display:none;margin:2px 0 8px;">Please select a meal.</div>
+    <div class="cbd-note" style="margin-top:6px;"><span>📍</span><span>We deliver within <strong>Nairobi CBD only</strong>.</span></div>
+    <div class="field-group">
+      <label class="field-label">Delivery location <span class="field-req">*</span></label>
+      <input type="text" id="tomorrow-delivery-location" class="field-input" placeholder="e.g. Anniversary Towers, Moi Ave">
+      <div class="field-hint">Building or landmark within Nairobi CBD.</div>
+      <div class="field-err" id="tomorrow-location-error">Please enter your delivery location.</div>
+    </div>
+    <button class="wa-order-btn" onclick="sendTomorrowOrderWA()"><span style="font-size:18px;">📲</span>Order via WhatsApp</button>
+    <button class="clear-link" onclick="closeTomorrowModal()">Cancel</button>
   </div>
 </div>
 
@@ -709,6 +780,8 @@ body{font-family:'Nunito Sans',sans-serif;background:#e8e8e8;color:var(--dark);-
     <div class="modal-title">Gift a meal 🎁</div>
     <p style="font-size:12px;color:var(--mid);text-align:center;margin-bottom:16px;line-height:1.6;">Order lunch for a colleague. Enter their number and we'll sort the rest on WhatsApp.</p>
     <div class="field-group"><label class="field-label">Recipient's phone number <span class="field-req">*</span></label><input type="tel" id="gift-standalone-phone" class="field-input" placeholder="e.g. 0712 345 678"><div class="field-err" id="gift-standalone-err">Please enter a phone number.</div></div>
+    <div class="cbd-note"><span>📍</span><span>We deliver within <strong>Nairobi CBD only</strong>.</span></div>
+    <div class="field-group"><label class="field-label">Delivery location <span class="field-req">*</span></label><input type="text" id="gift-standalone-loc" class="field-input" placeholder="e.g. Anniversary Towers, Moi Ave"><div class="field-hint">Building or landmark within Nairobi CBD.</div><div class="field-err" id="gift-standalone-loc-err">Please enter the delivery location.</div></div>
     <div class="field-group"><label class="field-label">Your name (so they know who sent it)</label><input type="text" id="gift-sender-name" class="field-input" placeholder="e.g. Wanjiru"></div>
     <button class="wa-order-btn" onclick="sendGiftViaWA()"><span style="font-size:18px;">📲</span>Continue on WhatsApp</button>
     <button class="clear-link" onclick="closeGiftModal()">Cancel</button>
@@ -790,10 +863,12 @@ let wsMeal=null;  // currently highlighted meal in modal
 /* ══ TIME ══ */
 function getEAT(){const n=new Date(),e=new Date(n.getTime()+3*60*60*1000);return{h:e.getUTCHours(),m:e.getUTCMinutes(),day:e.getUTCDay()};}
 function isOpen(){const{h,m,day}=getEAT();if(day===0||day===6)return false;return!(h>14||(h===14&&m>=30));}
-function greet(){const{h}=getEAT();return h<12?"Niaje!":h<17?"Habari ya Leo!":"Habari Ya Jioni!";}
+function greet(){const{h}=getEAT();return h<12?"Hello!":h<17?"Habari Ya Leo!":"Habari Ya Jioni!";}
 function todayDate(){const D=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],d=new Date();return`${D[d.getDay()]}, ${d.getDate()} ${M[d.getMonth()]}`;}
 function liveTime(){const n=new Date();return`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;}
 function todayWeekIdx(){const d=new Date().getDay();const m={1:0,2:1,3:2,4:3,5:4};return m[d]!==undefined?m[d]:-1;}
+function isPastWeeklySubCutoff(){const{h}=getEAT();return h>=10;}
+function weeklyDayIsPast(i){const todayIdx=todayWeekIdx();if(todayIdx===-1)return false;if(i<todayIdx)return true;if(i===todayIdx)return isPastWeeklySubCutoff();return false;}
 
 /* ══ TABS (mobile) ══ */
 function goTab(tab){
@@ -819,13 +894,62 @@ function dsGoTab(tab){
 function updateBanner(){
   const b=document.getElementById('banner'),ic=document.getElementById('banner-icon'),ti=document.getElementById('banner-title'),tx=document.getElementById('banner-text');
   const weekly=currentView==='weekly';
-  if(orderOpen&&!weekly){b.style.background='#FFF3D6';ic.textContent='schedule';ic.style.color='#9A6E12';ti.style.color='#9A6E12';ti.textContent='Ordering closes at 11:30 AM';tx.textContent='Place your order before 11:30 AM to get lunch delivered from 12:30 PM.';}
+  const cta=document.getElementById('banner-cta');if(cta)cta.style.display=(!orderOpen&&!weekly)?'block':'none';
+  if(orderOpen&&!weekly){b.style.background='#FFF3D6';ic.textContent='schedule';ic.style.color='#9A6E12';ti.style.color='#9A6E12';ti.textContent='Ordering closes at 2:30 PM';tx.textContent='Place your order before 2:30 PM to get lunch delivered from 12:30 PM.';}
   else if(orderOpen&&weekly){b.style.background='#e6f9ee';ic.textContent='restaurant';ic.style.color='#008f48';ti.style.color='#008f48';ti.textContent='Weekly menu is ready';tx.textContent='All meals KES 150 · Tap any day to select or swap your meal.';}
   else if(!orderOpen&&!weekly){b.style.background='#e6f9ee';ic.textContent='local_shipping';ic.style.color='#008f48';ti.style.color='#008f48';ti.textContent="Today's meals have been dispatched";tx.textContent='All orders out for delivery, arriving from 12:30 PM. Ordering reopens tomorrow at 6:00 AM.';}
   else{b.style.background='#e6f9ee';ic.textContent='local_shipping';ic.style.color='#008f48';ti.style.color='#008f48';ti.textContent='Your meal is on the way';tx.textContent='Out for delivery — arrives at your desk from 12:30 PM.';}
 }
 
 /* ══ VIEW SWITCH ══ */
+let tmrIdx=null,tmrSelectedMeal=null,tmrDateStr='',tmrLabel='',tmrWeekday='';
+function tomorrowInfo(){
+  const dayNames=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const now=new Date();
+  let tmr=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);
+  let label='Tomorrow';
+  if(tmr.getDay()===6){tmr=new Date(tmr.getFullYear(),tmr.getMonth(),tmr.getDate()+2);label=null;}
+  else if(tmr.getDay()===0){tmr=new Date(tmr.getFullYear(),tmr.getMonth(),tmr.getDate()+1);label=null;}
+  const map={1:0,2:1,3:2,4:3,5:4};
+  return{idx:map[tmr.getDay()],weekday:dayNames[tmr.getDay()],dateStr:`${tmr.getDate()} ${M[tmr.getMonth()]}`,label:label||dayNames[tmr.getDay()]};
+}
+function orderForTomorrowWA(){
+  const info=tomorrowInfo();
+  tmrIdx=info.idx;tmrSelectedMeal=null;tmrDateStr=info.dateStr;tmrLabel=info.label;tmrWeekday=info.weekday;
+  document.getElementById('tomorrow-modal-title').textContent=`Order for ${info.label}`;
+  document.getElementById('tomorrow-modal-sub').textContent=`Pick your meal for ${info.weekday}, ${info.dateStr}`;
+  document.getElementById('tomorrow-meal-error').style.display='none';
+  renderTomorrowMealOptions();
+  document.getElementById('tomorrow-delivery-location').value='';
+  document.getElementById('tomorrow-delivery-location').classList.remove('err');
+  document.getElementById('tomorrow-location-error').style.display='none';
+  document.getElementById('tomorrow-modal').classList.add('open');
+}
+function renderTomorrowMealOptions(){
+  const dayData=WEEKLY_MENU[tmrIdx];if(!dayData)return;
+  document.getElementById('tomorrow-meal-options').innerHTML=dayData.meals.map(m=>`<div class="wr-meal-option${tmrSelectedMeal===m?' selected':''}" onclick="selectTomorrowMeal('${m}')">
+    <span class="ms msfill wr-check" style="color:${tmrSelectedMeal===m?'var(--yellow)':'#DDD'};">${tmrSelectedMeal===m?'check_circle':'radio_button_unchecked'}</span>
+    <span class="wr-meal-name">${m}</span>
+    <span class="wr-meal-price">KES 150</span>
+  </div>`).join('');
+}
+function selectTomorrowMeal(m){tmrSelectedMeal=m;document.getElementById('tomorrow-meal-error').style.display='none';renderTomorrowMealOptions();}
+function closeTomorrowModal(){document.getElementById('tomorrow-modal').classList.remove('open');}
+function sendTomorrowOrderWA(){
+  if(!tmrSelectedMeal){document.getElementById('tomorrow-meal-error').style.display='block';return;}
+  const loc=document.getElementById('tomorrow-delivery-location'),location=loc.value.trim();
+  if(!location){loc.classList.add('err');document.getElementById('tomorrow-location-error').style.display='block';loc.focus();return;}
+  loc.classList.remove('err');document.getElementById('tomorrow-location-error').style.display='none';
+  const msg=[`🍱 *${tmrLabel}'s Order — Nairobi Dishes*`,`_${tmrWeekday}, ${tmrDateStr}_`,'',
+    '*Items:*',`  1. ${tmrSelectedMeal} — KES 150`,'',
+    `*Total:* KES 150`,
+    `*Delivery:* ${location}, Nairobi CBD`,'',
+    '_Please send M-Pesa payment after confirming._'
+  ].join('\n');
+  closeTomorrowModal();
+  setTimeout(()=>{window.location.href=`https://wa.me/${MY_PHONE}?text=${encodeURIComponent(msg)}`;},300);
+}
 function setView(v){
   currentView=v;placed=false;cart=[];
   document.getElementById('seg-daily').classList.toggle('active',v==='daily');
@@ -970,32 +1094,32 @@ function renderWeekly(){
   const todayIdx=todayWeekIdx();
   const c=document.getElementById('weekly-rows');if(!c)return;
   c.innerHTML=WEEKLY_MENU.map((d,i)=>{
-    const isToday=i===todayIdx,isPast=todayIdx!==-1&&i<todayIdx;
+    const isToday=i===todayIdx,isPast=weeklyDayIsPast(i);
     const confirmed=weeklyConfirmed[i];
     const selected=weeklySelections[i];
     const dayColor=isToday?'#E8A317':isPast?'#B0B0B0':'#1A1A1A';
-    const icon=confirmed?'check_circle':isToday?'schedule':'radio_button_unchecked';
-    const iconColor=confirmed?'#00b960':isToday?'#E8A317':'#D0D0D0';
+    const icon=confirmed?'check_circle':selected?'radio_button_checked':isToday?'schedule':'radio_button_unchecked';
+    const iconColor=confirmed?'#00b960':selected?'var(--yellow)':isToday?'#E8A317':'#D0D0D0';
     const summary=selected?`<span style="color:var(--green);font-weight:700;">${selected}</span>`:`<span style="color:var(--muted);">${d.meals.length} options</span>`;
-    const canChange=!isPast;
+    const dayLabel=isPast?`${d.day}<div style="font-size:7.5px;color:var(--muted);font-weight:700;letter-spacing:.03em;">NEXT WEEK</div>`:d.day;
     return`<div class="weekly-row${isToday?' today-row':''}">
-      <div class="wr-head" onclick="${canChange?`toggleWeekDay(${i})`:''}">
-        <div class="wr-day" style="color:${dayColor}">${d.day}</div>
+      <div class="wr-head" onclick="toggleWeekDay(${i})">
+        <div class="wr-day" style="color:${dayColor}">${dayLabel}</div>
         <div class="wr-summary">${summary}</div>
         ${confirmed?`<button class="add-btn weekly-sel" style="font-size:9px;padding:5px 8px;" onclick="event.stopPropagation();openChangeDay(${i})">Change</button>`:''}
         <span class="ms msfill wr-status" style="color:${iconColor};margin-left:4px;">${icon}</span>
       </div>
       <div class="wr-panel" id="wrp-${i}">
-        <div class="wr-panel-title">SELECT YOUR MEAL FOR ${d.day.toUpperCase()}</div>
+        <div class="wr-panel-title">SELECT YOUR MEAL FOR ${d.day.toUpperCase()}${isPast?' (NEXT WEEK)':''}</div>
         ${d.meals.map(m=>`<div class="wr-meal-option${weeklySelections[i]===m?' selected':''}" onclick="selectWeeklyMeal(${i},'${m}')">
           <span class="ms msfill wr-check" style="color:${weeklySelections[i]===m?'var(--yellow)':'#DDD'};">${weeklySelections[i]===m?'check_circle':'radio_button_unchecked'}</span>
           <span class="wr-meal-name">${m}</span>
           <span class="wr-meal-price">KES 150</span>
         </div>`).join('')}
-        ${weeklySelections[i]?`<button class="wr-confirm-btn" onclick="confirmWeeklySelection(${i})"><span style="font-size:16px;">📲</span>Confirm via WhatsApp</button><p class="wr-pending-note">After sending, your meal will show as confirmed here.</p>`:''}
       </div>
     </div>`;
   }).join('');
+  updateWeeklySummary();
 }
 
 function toggleWeekDay(i){
@@ -1010,24 +1134,159 @@ function openChangeDay(i){
   if(panel){document.querySelectorAll('.wr-panel').forEach(p=>p.classList.remove('open'));panel.classList.add('open');}
 }
 function selectWeeklyMeal(dayIdx,meal){
-  weeklySelections[dayIdx]=meal;
-  renderWeekly();
+  if(weeklySelections[dayIdx]===meal){delete weeklySelections[dayIdx];delete weeklyConfirmed[dayIdx];}
+  else{weeklySelections[dayIdx]=meal;delete weeklyConfirmed[dayIdx];}
+  syncWeeklyViews();
   // keep panel open
   const panel=document.getElementById('wrp-'+dayIdx);
   if(panel)panel.classList.add('open');
 }
-function confirmWeeklySelection(dayIdx){
-  const meal=weeklySelections[dayIdx];if(!meal)return;
-  const day=WEEKLY_MENU[dayIdx].day;
-  const msg=['👋 Hello Nairobi Dishes!','',
-    `I'd like to confirm my meal selection for *${day}*:`,
-    `*Meal:* ${meal}`,
-    '','_Please update my weekly plan. Thanks!_'
+
+/* ══ WEEKLY SUMMARY + CHECKOUT (combined WhatsApp order) ══ */
+function weeklySelectedDays(){return WEEKLY_MENU.map((d,i)=>({d,i})).filter(x=>weeklySelections[x.i]).map(x=>({...x,isPast:weeklyDayIsPast(x.i)}));}
+function weeklyTotal(){return weeklySelectedDays().length*150;}
+function syncWeeklyViews(){renderWeekly();renderDesktopWeekly();renderDsWeekDayTabs();}
+function updateWeeklySummary(){
+  const el=document.getElementById('weekly-summary');if(!el)return;
+  const n=weeklySelectedDays().length;
+  el.style.display=n>0?'block':'none';
+  document.getElementById('weekly-summary-count').textContent=n+' day'+(n!==1?'s':'')+' selected';
+  document.getElementById('weekly-summary-total').textContent='KES '+weeklyTotal();
+}
+function openWeeklyCheckout(){
+  const days=weeklySelectedDays();if(days.length===0)return;
+  document.getElementById('weekly-order-items-list').innerHTML=days.map(({d,i,isPast})=>
+    `<div class="order-item-row"><span style="font-size:12px;font-weight:600;flex:1;">${d.day}${isPast?' <span style="color:var(--muted);font-weight:600;font-size:9.5px;">(NEXT WK)</span>':''} — ${weeklySelections[i]}</span><span style="font-size:12px;color:var(--green);font-weight:700;margin:0 6px;">KES 150</span><span class="order-item-remove" onclick="removeWeeklyDay(${i})">✕</span></div>`
+  ).join('');
+  document.getElementById('weekly-summary-total-modal').textContent=weeklyTotal();
+  document.getElementById('weekly-delivery-location').value='';
+  document.getElementById('weekly-delivery-location').classList.remove('err');
+  document.getElementById('weekly-location-error').style.display='none';
+  document.getElementById('weekly-checkout-modal').classList.add('open');
+}
+function removeWeeklyDay(i){
+  delete weeklySelections[i];delete weeklyConfirmed[i];
+  syncWeeklyViews();
+  if(weeklySelectedDays().length===0){closeWeeklyCheckout();}else{openWeeklyCheckout();}
+}
+function closeWeeklyCheckout(){document.getElementById('weekly-checkout-modal').classList.remove('open');}
+function handleWeeklyOrder(){
+  const loc=document.getElementById('weekly-delivery-location'),location=loc.value.trim();
+  if(!location){loc.classList.add('err');document.getElementById('weekly-location-error').style.display='block';loc.focus();return;}
+  loc.classList.remove('err');document.getElementById('weekly-location-error').style.display='none';
+  const days=weeklySelectedDays();if(days.length===0)return;
+  const lines=days.map(({d,i,isPast})=>`${d.day}${isPast?' (next wk)':''} - ${weeklySelections[i]} — KES 150`).join(',\n');
+  const msg=['🍱 *Weekly Order — Nairobi Dishes*','',
+    '*Items:*',lines,'',
+    `*Total:* KES ${weeklyTotal()}`,
+    `*Delivery:* ${location}, Nairobi CBD`,'',
+    '_Please send M-Pesa payment after confirming._'
   ].join('\n');
+  days.forEach(({i})=>weeklyConfirmed[i]=true);
+  closeWeeklyCheckout();
+  syncWeeklyViews();
+  setTimeout(()=>{window.location.href=`https://wa.me/${MY_PHONE}?text=${encodeURIComponent(msg)}`;},300);
+}
+
+/* ══ WEEKLY (desktop day/meal picker) ══ */
+let dsWeekActiveDay=null;
+function renderDsWeekDayTabs(){
+  const wrap=document.getElementById('ds-week-day-tabs');if(!wrap)return;
+  const todayIdx=todayWeekIdx();
+  if(dsWeekActiveDay===null)dsWeekActiveDay=todayIdx!==-1?todayIdx:0;
+  wrap.innerHTML=WEEKLY_MENU.map((d,i)=>{
+    const isPast=weeklyDayIsPast(i);
+    const selected=weeklySelections[i];
+    const active=i===dsWeekActiveDay;
+    return`<button onclick="dsSelectWeekDay(${i})" style="border:1.5px solid ${active?'var(--dark)':'var(--border)'};background:${active?'var(--dark)':'#fff'};color:${active?'#fff':'var(--dark)'};border-radius:10px;padding:8px 14px;font:700 12px Poppins,sans-serif;cursor:pointer;">${d.day}${isPast?` <span style="font-size:8px;opacity:.7;">(NEXT WK)</span>`:''}${selected?`<span class="ms msfill" style="font-size:13px;color:${active?'var(--yellow)':'var(--green)'};vertical-align:middle;margin-left:3px;">check_circle</span>`:''}</button>`;
+  }).join('');
+  renderDsWeekMealOptions();
+  updateDsWeeklySummary();
+}
+function dsSelectWeekDay(i){dsWeekActiveDay=i;renderDsWeekDayTabs();}
+function renderDsWeekMealOptions(){
+  const box=document.getElementById('ds-week-meal-options');if(!box||dsWeekActiveDay===null)return;
+  const d=WEEKLY_MENU[dsWeekActiveDay];if(!d)return;
+  box.innerHTML=d.meals.map(m=>`<div class="wr-meal-option${weeklySelections[dsWeekActiveDay]===m?' selected':''}" onclick="dsSelectWeekMeal(${dsWeekActiveDay},'${m}')">
+    <span class="ms msfill wr-check" style="color:${weeklySelections[dsWeekActiveDay]===m?'var(--yellow)':'#DDD'};">${weeklySelections[dsWeekActiveDay]===m?'check_circle':'radio_button_unchecked'}</span>
+    <span class="wr-meal-name">${m}</span>
+    <span class="wr-meal-price">KES 150</span>
+  </div>`).join('');
+}
+function dsSelectWeekMeal(i,m){
+  if(weeklySelections[i]===m){delete weeklySelections[i];delete weeklyConfirmed[i];}
+  else{weeklySelections[i]=m;delete weeklyConfirmed[i];}
+  syncWeeklyViews();
+}
+function updateDsWeeklySummary(){
+  const el=document.getElementById('ds-weekly-summary');if(!el)return;
+  const n=weeklySelectedDays().length;
+  el.style.display=n>0?'block':'none';
+  document.getElementById('ds-weekly-summary-count').textContent=n+' day'+(n!==1?'s':'')+' selected';
+  document.getElementById('ds-weekly-summary-total').textContent='KES '+weeklyTotal();
+}
+function dsSendWeeklyOrder(){
+  const loc=document.getElementById('ds-weekly-loc'),location=loc.value.trim();
+  if(!location){loc.classList.add('err');document.getElementById('ds-weekly-loc-err').style.display='block';loc.focus();return;}
+  loc.classList.remove('err');document.getElementById('ds-weekly-loc-err').style.display='none';
+  const days=weeklySelectedDays();if(days.length===0)return;
+  const lines=days.map(({d,i,isPast})=>`${d.day}${isPast?' (next wk)':''} - ${weeklySelections[i]} — KES 150`).join(',\n');
+  const msg=['🍱 *Weekly Order — Nairobi Dishes*','',
+    '*Items:*',lines,'',
+    `*Total:* KES ${weeklyTotal()}`,
+    `*Delivery:* ${location}, Nairobi CBD`,'',
+    '_Please send M-Pesa payment after confirming._'
+  ].join('\n');
+  days.forEach(({i})=>weeklyConfirmed[i]=true);
+  syncWeeklyViews();
+  loc.value='';
   window.open(`https://wa.me/${MY_PHONE}?text=${encodeURIComponent(msg)}`,'_blank');
-  // mark as pending confirmed
-  weeklyConfirmed[dayIdx]=true;
-  setTimeout(()=>renderWeekly(),500);
+}
+
+/* ══ ORDER FOR TOMORROW (desktop inline picker) ══ */
+let dsTmrIdx=null,dsTmrSelectedMeal=null,dsTmrDateStr='',dsTmrLabel='',dsTmrWeekday='';
+function dsToggleTomorrowPicker(){
+  const panel=document.getElementById('ds-tomorrow-picker');if(!panel)return;
+  if(panel.style.display==='block'){panel.style.display='none';return;}
+  const info=tomorrowInfo();
+  dsTmrIdx=info.idx;dsTmrSelectedMeal=null;dsTmrDateStr=info.dateStr;dsTmrLabel=info.label;dsTmrWeekday=info.weekday;
+  panel.innerHTML=`
+    <div style="font:700 10.5px Poppins,sans-serif;color:var(--muted);letter-spacing:.04em;margin-bottom:8px;">PICK YOUR MEAL FOR ${dsTmrWeekday.toUpperCase()}, ${dsTmrDateStr.toUpperCase()}</div>
+    <div id="ds-tomorrow-meal-options"></div>
+    <div class="field-err" id="ds-tomorrow-meal-error" style="display:none;margin:4px 0 8px;">Please select a meal.</div>
+    <div class="field-group" style="margin:10px 0 12px;">
+      <label class="field-label">Delivery location <span class="field-req">*</span></label>
+      <input type="text" id="ds-tomorrow-loc" class="field-input" placeholder="e.g. Anniversary Towers, Moi Ave">
+      <div class="field-err" id="ds-tomorrow-loc-err">Please enter your delivery location.</div>
+    </div>
+    <button class="wa-order-btn" style="margin:0;" onclick="dsSendTomorrowOrder()"><span style="font-size:18px;">📲</span>Order via WhatsApp</button>
+  `;
+  renderDsTomorrowMealOptions();
+  panel.style.display='block';
+}
+function renderDsTomorrowMealOptions(){
+  const box=document.getElementById('ds-tomorrow-meal-options');if(!box)return;
+  const d=WEEKLY_MENU[dsTmrIdx];if(!d)return;
+  box.innerHTML=d.meals.map(m=>`<div class="wr-meal-option${dsTmrSelectedMeal===m?' selected':''}" onclick="dsSelectTomorrowMeal('${m}')">
+    <span class="ms msfill wr-check" style="color:${dsTmrSelectedMeal===m?'var(--yellow)':'#DDD'};">${dsTmrSelectedMeal===m?'check_circle':'radio_button_unchecked'}</span>
+    <span class="wr-meal-name">${m}</span>
+    <span class="wr-meal-price">KES 150</span>
+  </div>`).join('');
+}
+function dsSelectTomorrowMeal(m){dsTmrSelectedMeal=m;const err=document.getElementById('ds-tomorrow-meal-error');if(err)err.style.display='none';renderDsTomorrowMealOptions();}
+function dsSendTomorrowOrder(){
+  if(!dsTmrSelectedMeal){document.getElementById('ds-tomorrow-meal-error').style.display='block';return;}
+  const loc=document.getElementById('ds-tomorrow-loc'),location=loc.value.trim();
+  if(!location){loc.classList.add('err');document.getElementById('ds-tomorrow-loc-err').style.display='block';loc.focus();return;}
+  loc.classList.remove('err');document.getElementById('ds-tomorrow-loc-err').style.display='none';
+  const msg=[`🍱 *${dsTmrLabel}'s Order — Nairobi Dishes*`,`_${dsTmrWeekday}, ${dsTmrDateStr}_`,'',
+    '*Items:*',`  1. ${dsTmrSelectedMeal} — KES 150`,'',
+    `*Total:* KES 150`,
+    `*Delivery:* ${location}, Nairobi CBD`,'',
+    '_Please send M-Pesa payment after confirming._'
+  ].join('\n');
+  document.getElementById('ds-tomorrow-picker').style.display='none';
+  window.open(`https://wa.me/${MY_PHONE}?text=${encodeURIComponent(msg)}`,'_blank');
 }
 
 /* ══ RANKING ══ */
@@ -1102,7 +1361,7 @@ function renderDesktopWeekly(){
   const c=document.getElementById('ds-weekly-rows');if(!c)return;
   const todayIdx=todayWeekIdx();
   c.innerHTML=WEEKLY_MENU.map((d,i)=>{
-    const isToday=i===todayIdx,isPast=todayIdx!==-1&&i<todayIdx;
+    const isToday=i===todayIdx,isPast=weeklyDayIsPast(i);
     const confirmed=weeklyConfirmed[i];const selected=weeklySelections[i];
     const icon=confirmed?'<span class="ms msfill" style="color:var(--green);font-size:16px;">check_circle</span>':isToday?'<span class="ms msfill" style="color:#E8A317;font-size:16px;">schedule</span>':'<span class="ms" style="color:#DDD;font-size:16px;">radio_button_unchecked</span>';
     const mealList=selected?`<strong style="color:var(--green);">${selected}</strong>`:d.meals.join(', ');
@@ -1117,7 +1376,8 @@ function renderDesktopWeekly(){
 /* desktop banner */
 function updateDsBanner(){
   const bt=document.getElementById('ds-banner-title'),bx=document.getElementById('ds-banner-text'),db=document.getElementById('ds-banner');if(!bt)return;
-  if(orderOpen){db.style.background='#FFF3D6';bt.style.color='#9A6E12';bt.textContent='Ordering closes at 11:30 AM';bx.textContent='Place your order before 11:30 AM to get lunch delivered from 12:30 PM.';}
+  const cta=document.getElementById('ds-banner-cta');if(cta)cta.style.display=!orderOpen?'block':'none';
+  if(orderOpen){db.style.background='#FFF3D6';bt.style.color='#9A6E12';bt.textContent='Ordering closes at 2:30 PM';bx.textContent='Place your order before 2:30 PM to get lunch delivered from 12:30 PM.';}
   else{db.style.background='#e6f9ee';bt.style.color='#008f48';bt.textContent="Today's orders have been dispatched";bx.textContent='Ordering reopens tomorrow at 6:00 AM.';}
   const dsub=document.getElementById('ds-date-sub');if(dsub)dsub.textContent=todayDate()+' · Nairobi CBD';
 }
@@ -1128,8 +1388,12 @@ function closeGiftModal(){document.getElementById('gift-modal').classList.remove
 function sendGiftViaWA(){
   const phone=document.getElementById('gift-standalone-phone').value.trim();
   if(!phone){document.getElementById('gift-standalone-phone').classList.add('err');document.getElementById('gift-standalone-err').style.display='block';return;}
+  document.getElementById('gift-standalone-phone').classList.remove('err');document.getElementById('gift-standalone-err').style.display='none';
+  const loc=document.getElementById('gift-standalone-loc'),location=loc.value.trim();
+  if(!location){loc.classList.add('err');document.getElementById('gift-standalone-loc-err').style.display='block';loc.focus();return;}
+  loc.classList.remove('err');document.getElementById('gift-standalone-loc-err').style.display='none';
   const sender=document.getElementById('gift-sender-name').value.trim();
-  const msg=['👋 Hello Nairobi Dishes!','',`I'd like to *gift a meal* to someone.`,`*Recipient number:* ${phone}`,sender?`*Sent by:* ${sender}`:'','_Please help me sort this out!_'].filter(Boolean).join('\n');
+  const msg=['👋 Hello Nairobi Dishes!','',`I'd like to *gift a meal* to someone.`,`*Recipient number:* ${phone}`,`*Delivery location:* ${location}, Nairobi CBD`,sender?`*Sent by:* ${sender}`:'','_Please help me sort this out!_'].filter(Boolean).join('\n');
   window.open(`https://wa.me/${MY_PHONE}?text=${encodeURIComponent(msg)}`,'_blank');
   closeGiftModal();
 }
@@ -1156,8 +1420,8 @@ function applyTimeGate(){
   if(cb)cb.style.display=orderOpen?'none':'block';
   const{day}=getEAT();const isWeekend=day===0||day===6;
   const sub=document.getElementById('closed-sub-text');
-  if(sub)sub.innerHTML=isWeekend?'We only operate Mon–Fri.<br>Come back Monday before 11:30 AM!':'We stopped taking orders at 11:30 AM.<br>Come back tomorrow before 11:30 AM.';
-  updateBanner();updateDsBanner();renderDishes();renderDesktopMenu();updateBars();
+  if(sub)sub.innerHTML=isWeekend?'We only operate Mon–Fri.<br>Come back Monday before 2:30 PM!':'We stopped taking orders at 2:30 PM.<br>Come back tomorrow before 2:30 PM.';
+  updateBanner();updateDsBanner();renderDishes();renderDesktopMenu();syncWeeklyViews();updateBars();
 }
 function scheduleTimeGate(){applyTimeGate();const n=new Date();const ms=(60-n.getSeconds())*1000-n.getMilliseconds();setTimeout(()=>{applyTimeGate();setInterval(applyTimeGate,60000);},ms);}
 
@@ -1170,12 +1434,13 @@ if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(
 /* ══ INIT ══ */
 document.getElementById('greeting-name').textContent=greet();
 document.getElementById('greeting-sub').textContent=todayDate()+' · Nairobi CBD';
-document.getElementById('status-time').textContent=liveTime();
-setInterval(()=>{document.getElementById('status-time').textContent=liveTime();},30000);
+document.querySelectorAll('.live-time').forEach(el=>el.textContent=liveTime());
+setInterval(()=>{document.querySelectorAll('.live-time').forEach(el=>el.textContent=liveTime());},30000);
 renderRanking();
 scheduleTimeGate();
 renderWeekly();
 renderDesktopWeekly();
+renderDsWeekDayTabs();
 renderDesktopMenu();
 renderDesktopOrderPanel();
 updateDsBanner();
