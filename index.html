@@ -821,9 +821,9 @@ const MY_PHONE="254714243150";
 /* ══ DATA ══ */
 const MENU=[
   {id:0,name:"Beef Pilau",          desc:"Fragrant spiced rice with tender beef",             price:150,featured:false,soldOut:false,img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80"},
-  {id:1,name:"Chapo + Ndengu",        desc:"Chapati with Ndengu",                    price:120,featured:true,soldOut:false,img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80"},
+  {id:1,name:"Chapo + Ndengu",        desc:"Chapati with Ndengu",                    price:120,featured:true,soldOut:true,img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80"},
   {id:3,name:"Rice + Ndengu (S)",   desc:"Smaller portion, lighter lunch",                    price:100,featured:false,soldOut:false,img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80"},
-  {id:4,name:"Rice + Ndengu",   desc:"Well cooked rice served with Ndengu",                    price:150,featured:false,soldOut:false,img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80"},
+  {id:4,name:"Rice + Ndengu",   desc:"Well cooked rice served with Ndengu",                    price:150,featured:false,soldOut:true,img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80"},
 ];
 
 /* Weekly menu — each day lists the available dishes by name */
@@ -862,7 +862,7 @@ let wsMeal=null;  // currently highlighted meal in modal
 
 /* ══ TIME ══ */
 function getEAT(){const n=new Date(),e=new Date(n.getTime()+3*60*60*1000);return{h:e.getUTCHours(),m:e.getUTCMinutes(),day:e.getUTCDay()};}
-function isOpen(){const{h,m,day}=getEAT();if(day===0||day===6)return false;return!(h>11||(h===11&&m>=30));}
+function isOpen(){const{h,m,day}=getEAT();if(day===0||day===6)return false;return!(h>14||(h===14&&m>=30));}
 function greet(){const{h}=getEAT();return h<12?"Hello!":h<17?"Habari Ya Leo!":"Habari Ya Jioni!";}
 function todayDate(){const D=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],d=new Date();return`${D[d.getDay()]}, ${d.getDate()} ${M[d.getMonth()]}`;}
 function liveTime(){const n=new Date();return`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;}
