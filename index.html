@@ -820,20 +820,26 @@ const MY_PHONE="254714243150";
 
 /* ══ DATA ══ */
 const MENU=[
-  {id:0,name:"Beef Pilau",          desc:"Fragrant spiced rice with tender beef",             price:150,featured:true,soldOut:false,img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80"},
-  {id:1,name:"Chapo + Ndengu",        desc:"Chapati with Ndengu",                    price:120,featured:false,soldOut:false,img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80"},
-  {id:3,name:"Rice + Ndengu (S)",   desc:"Smaller portion, lighter lunch",                    price:100,featured:false,soldOut:false,img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80"},
-  {id:4,name:"Rice + Ndengu",   desc:"Well cooked rice served with Ndengu",                    price:150,featured:false,soldOut:false,img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80"},
+  {id:0,name:"Beef Pilau",          desc:"Fragrant spiced rice with tender beef",             price:150,featured:true, soldOut:false,img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80"},
+  {id:1,name:"Rice + Ndengu",       desc:"Ndengu slow-cooked — full portion",          price:150,featured:false,soldOut:false,img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80"},
+  {id:2,name:"Rice + Ndengu (S)",   desc:"Smaller portion, lighter lunch",                    price:100,featured:false,soldOut:false,img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80"},
+  {id:3,name:"Chapo + Ndengu",        desc:"Chapati with Ndengu",                    price:120,featured:false,soldOut:true,img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=200&q=80"},
 ];
 
 /* Weekly menu — each day lists the available dishes by name */
 const WEEKLY_MENU=[
-  {day:"Mon",meals:["Beef Pilau","Rice + Kamande","Chapo + Minji","Matoke","Spaghetti Beef","Mukimo"]},
-  {day:"Tue",meals:["Beef Pilau","Rice + Kamande","Chapo + Minji","Matoke","Mashed Potatoes & Stew","Githeri Special"]},
-  {day:"Wed",meals:["Beef Pilau","Rice + Kamande","Chapo + Minji","Matoke","Mashed Potatoes & Stew","Mukimo"]},
-  {day:"Thu",meals:["Beef Pilau","Rice + Kamande","Chapo + Minji","Matoke","Spaghetti Beef","Githeri Special"]},
-  {day:"Fri",meals:["Beef Pilau","Rice + Kamande","Chapo + Minji","Matoke","Mashed Potatoes & Stew","Mukimo"]},
+  {day:"Mon",meals:["Beef Pilau","Rice + Kamande","Chapo + Minji","Mashed Potatoes & Veg","Mukimo","Rice + Ndengu (S)","Chapo + Ndengu"]},
+  {day:"Tue",meals:["Beef Pilau","Rice + Kamande","Chapo + Minji","Spaghetti Minced Meat","Githeri","Rice + Ndengu (S)","Chapo + Ndengu"]},
+  {day:"Wed",meals:["Beef Pilau","Rice + Kamande","Chapo + Minji","Mashed Potatoes & Veg","Mukimo","Rice + Ndengu (S)","Chapo + Ndengu"]},
+  {day:"Thu",meals:["Beef Pilau","Rice + Kamande","Chapo + Minji","Spaghetti Minced Meat","Githeri","Rice + Ndengu (S)","Chapo + Ndengu"]},
+  {day:"Fri",meals:["Beef Pilau","Rice + Kamande","Chapo + Minji","Mashed Potatoes & Veg","Mukimo","Rice + Ndengu (S)","Chapo + Ndengu"]},
 ];
+
+/* looks up a meal's real price from MENU, since weekly meals are the same
+   dishes as the daily menu and should carry the same varying prices
+   (e.g. Rice + Ndengu (S) at KES 100, Chapo + Ndengu at KES 120) rather
+   than a flat KES 150 for everything. */
+function mealPrice(name){const d=MENU.find(m=>m.name===name);return d?d.price:150;}
 
 /* Stores user's selected weekly meals after WhatsApp confirmation */
 /* key = day index 0-4, value = meal name */
