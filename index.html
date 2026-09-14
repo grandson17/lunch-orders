@@ -347,7 +347,7 @@ body{font-family:'Nunito Sans',sans-serif;background:#e8e8e8;color:var(--dark);-
     </div>
     <div class="ds-card">
       <div class="ds-card-title">INFO</div>
-      <div class="ds-info-row"><span>Order by</span><strong>11:30 AM</strong></div>
+      <div class="ds-info-row"><span>Order by</span><strong> AM</strong></div>
       <div class="ds-info-row"><span>Delivery from</span><strong>12:30 PM</strong></div>
       <div class="ds-info-row"><span>Days</span><strong>Mon – Fri</strong></div>
       <div class="ds-info-row"><span>Area</span><strong>Nairobi CBD</strong></div>
@@ -868,7 +868,7 @@ let wsMeal=null;  // currently highlighted meal in modal
 
 /* ══ TIME ══ */
 function getEAT(){const n=new Date(),e=new Date(n.getTime()+3*60*60*1000);return{h:e.getUTCHours(),m:e.getUTCMinutes(),day:e.getUTCDay()};}
-function isOpen(){const{h,m,day}=getEAT();if(day===0||day===6)return false;return!(h>15||(h===15&&m>=30));}
+function isOpen(){const{h,m,day}=getEAT();if(day===0||day===6)return false;return!(h>11||(h===11&&m>=30));}
 function greet(){const{h}=getEAT();return h<12?"Hello!":h<17?"Habari Ya Leo!":"Habari Ya Jioni!";}
 function todayDate(){const D=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],d=new Date();return`${D[d.getDay()]}, ${d.getDate()} ${M[d.getMonth()]}`;}
 function liveTime(){const n=new Date();return`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;}
